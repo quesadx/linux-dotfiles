@@ -7,7 +7,15 @@ let
   locale = "en_US.UTF-8";
   regionalLocale = "es_CR.UTF-8";
   userGroups = [
-    "networkmanager" "wheel" "video" "render" "audio" "scanner" "docker" "kvm" "libvirtd"
+    "networkmanager"
+    "wheel"
+    "video"
+    "render"
+    "audio"
+    "scanner"
+    "docker"
+    "kvm"
+    "libvirtd"
   ];
 
   corePackages = with pkgs; [
@@ -15,8 +23,8 @@ let
     wget
     git
     curl
-    qemu_full               
-    virtio-win              
+    qemu_full
+    virtio-win
     virt-manager
     steam-run
   ];
@@ -35,14 +43,15 @@ let
   ];
 
   systemFonts = with pkgs; [
-    nerd-fonts.jetbrains-mono   
+    nerd-fonts.jetbrains-mono
     noto-fonts
     noto-fonts-color-emoji
     jetbrains-mono
-    font-awesome                 
+    font-awesome
   ];
 
-in {
+in
+{
   imports = [ ./hardware-configuration.nix ];
 
   boot = {
@@ -57,7 +66,7 @@ in {
     networkmanager.enable = true;
     firewall = {
       enable = true;
-      trustedInterfaces = ["virbr0"];
+      trustedInterfaces = [ "virbr0" ];
       allowedTCPPorts = [ 24800 ]; # 24800 -> input-leap
     };
   };
@@ -97,10 +106,10 @@ in {
     docker.daemon.settings = {
       bip = "172.16.0.1/24";
       "default-address-pool" = [
-         {
-         base = "172.16.1.0/24";
-         size = 24;
-         }
+        {
+          base = "172.16.1.0/24";
+          size = 24;
+        }
       ];
     };
     libvirtd.enable = true;
@@ -109,8 +118,8 @@ in {
   # Default network script stuff
   systemd.services.libvirt-default-network = {
     description = "Start libvirt default network";
-    after = ["libvirtd.service"];
-    wantedBy = ["multi-user.target"];
+    after = [ "libvirtd.service" ];
+    wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
@@ -120,10 +129,9 @@ in {
     };
   };
 
-
   security = {
     polkit.enable = true;
-    sudo.wheelNeedsPassword = false; 
+    sudo.wheelNeedsPassword = false;
   };
 
   services = {
@@ -142,22 +150,28 @@ in {
       pulse.enable = true;
       wireplumber.enable = true;
     };
-    
+
     udev.extraRules = ''
-     ACTION=="add", ENV{ID_INPUT_TOUCHSCREEN}=="1", ATTRS{name}=="ELAN901C:00 04F3:2CBF", ENV{LIBINPUT_IGNORE_DEVICE}="1"
-   '';
+      ACTION=="add", ENV{ID_INPUT_TOUCHSCREEN}=="1", ATTRS{name}=="ELAN901C:00 04F3:2CBF", ENV{LIBINPUT_IGNORE_DEVICE}="1"
+    '';
 
     flatpak.enable = true;
     openssh.enable = true;
   };
 
   environment.systemPackages = corePackages ++ gnomeExtensions;
-  environment.gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];
+  environment.gnome.excludePackages = with pkgs; [
+    gnome-tour
+    gnome-user-docs
+  ];
 
   nixpkgs.config.allowUnfree = true;
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
     };
     gc = {
