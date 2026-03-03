@@ -29,19 +29,6 @@ let
     steam-run
   ];
 
-  gnomeExtensions = with pkgs.gnomeExtensions; [
-    alphabetical-app-grid
-    auto-accent-colour
-    caffeine
-    coverflow-alt-tab
-    clipboard-history
-    grand-theft-focus
-    hide-top-bar
-    luminus-desktop
-    top-bar-organizer
-    appindicator
-  ];
-
   systemFonts = with pkgs; [
     nerd-fonts.jetbrains-mono
     noto-fonts
@@ -136,12 +123,7 @@ in
 
   services = {
     power-profiles-daemon.enable = true;
-
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-    gnome.core-apps.enable = false;
-    gnome.core-developer-tools.enable = false;
-    gnome.games.enable = false;
+    services.gnome.gnome-keyring.enable = true;
 
     pipewire = {
       enable = true;
@@ -159,11 +141,7 @@ in
     openssh.enable = true;
   };
 
-  environment.systemPackages = corePackages ++ gnomeExtensions;
-  environment.gnome.excludePackages = with pkgs; [
-    gnome-tour
-    gnome-user-docs
-  ];
+  environment.systemPackages = corePackages;
 
   nixpkgs.config.allowUnfree = true;
   nix = {

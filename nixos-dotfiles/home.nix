@@ -32,44 +32,20 @@ let
     unzip
     unrar
     p7zip
-    gnome-photos
-    gnome-music
-    gnome-calculator
-    gnome-text-editor
-    gnome-font-viewer
-    gnome-console
-    nautilus
     adwaita-icon-theme
     glib
     gtk3
     dbvisualizer
     jdk21
     fastfetch
-    papers
     showtime
     rnote
-    dconf-editor
     onlyoffice-desktopeditors
     google-chrome
     spotify
     obsidian
-    input-leap
-    distrobox
     dbeaver-bin
     mysql-workbench
-  ];
-
-  gnome-extensions-enabled = [
-    "AlphabeticalAppGrid@stuarthayhurst"
-    "CoverflowAltTab@palatis.blogspot.com"
-    "appindicatorsupport@rgcjonas.gmail.com"
-    "auto-accent-colour@Wartybix"
-    "caffeine@patapon.info"
-    "clipboard-history@alexsaveau.dev"
-    "grand-theft-focus@zalckos.github.com"
-    "hidetopbar@mathieu.bidon.ca"
-    "luminus-desktop@dikasp.gitlab"
-    "top-bar-organizer@julian.gse.jsts.xyz"
   ];
 
   vscode-extensions-enabled = with pkgs.vscode-extensions; [
@@ -84,11 +60,15 @@ let
     bbenoist.nix
     humao.rest-client
     mikestead.dotenv
-    sonarsource.sonarlint-vscode
+    dbaeumer.vscode-eslint
     christian-kohler.npm-intellisense
     yoavbls.pretty-ts-errors
     usernamehw.errorlens
     james-yu.latex-workshop
+    formulahendry.auto-rename-tag
+    formulahendry.auto-close-tag
+    shardulm94.trailing-spaces
+    oderwat.indent-rainbow
   ];
 
   firefoxExtensions = {
@@ -209,71 +189,6 @@ in
         };
       };
       policies.ExtensionSettings = firefoxExtensions;
-    };
-  };
-
-  dconf = {
-    enable = true;
-    settings = {
-      "org/gnome/shell" = {
-        enabled-extensions = gnome-extensions-enabled;
-      };
-      "org/gnome/shell/extensions/alphabetical-app-grid" = {
-        folder-order-position = "start";
-      };
-      "org/gnome/shell/extensions/appindicator" = {
-        legacy-tray-enabled = false;
-      };
-      "org/gnome/shell/extensions/caffeine" = {
-        restore-state = true;
-        enable-fullscreen = false;
-      };
-      "org/gnome/shell/extensions/coverflowalttab" = {
-        current-workspace-only = "all";
-      };
-      "org/gnome/shell/extensions/hidetopbar" = {
-        hot-corner = true;
-        enable-active-window = false;
-        animation-time-overview = 0.2;
-        animation-time-autohide = 0.2;
-      };
-      "org/gnome/desktop/input-sources" = {
-        show-all-sources = true;
-        sources = [
-          (lib.gvariant.mkTuple [
-            "xkb"
-            "us+altgr-intl"
-          ])
-        ];
-      };
-      "org/gnome/desktop/wm/keybindings" = {
-        maximize = [ "<Super>F" ];
-        minimize = [ "<Super>D" ];
-        close = [ "<Super>Q" ];
-      };
-      "org/gnome/settings-daemon/plugins/power" = {
-        power-button-action = "nothing";
-      };
-      "org/gnome/settings-daemon/plugins/media-keys" = {
-        home = [ "<Super>e" ];
-        www = [ "<Super>b" ];
-        control-center = [ "<Super>i" ];
-        custom-keybindings = [
-          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-        ];
-      };
-      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-        binding = "<Super>t";
-        command = "kgx";
-        name = "gnome-console";
-      };
-      "org/gnome/desktop/peripherals/mouse" = {
-        accel-profile = "flat";
-        speed = 0.21;
-      };
-      "org/gnome/desktop/sound" = {
-        event-sounds = false;
-      };
     };
   };
 
