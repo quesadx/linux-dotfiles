@@ -73,7 +73,6 @@ let
   ];
 
   vscode-extensions-enabled = with pkgs.vscode-extensions; [
-    
     esbenp.prettier-vscode
     ms-python.python
     ms-vscode.live-server
