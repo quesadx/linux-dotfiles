@@ -26,6 +26,7 @@ let
     qemu_full
     virtio-win
     virt-manager
+    brightnessctl
     steam-run
   ];
 

@@ -26,37 +26,32 @@ let
   };
 
   userPackages = with pkgs; [
-    waybar
-    fuzzel
-    kanshi
-    nwg-displays
-    swaynotificationcenter
-    swaybg
-    swayidle
-    wl-clipboard
-    libnotify
-    foot
-    direnv
-    nix-direnv
-    file-roller
-    unzip
-    unrar
-    p7zip
-    adwaita-icon-theme
-    glib
-    gtk3
-    dbvisualizer
-    jdk21
-    fastfetch
-    showtime
-    rnote
-    onlyoffice-desktopeditors
-    google-chrome
-    spotify
-    obsidian
-    dbeaver-bin
-    mysql-workbench
-    mongodb-compass
+    # Wayland / Desktop
+    waybar fuzzel nwg-displays
+    swaybg swayidle swaynotificationcenter
+    wl-clipboard libnotify
+
+    # Terminal & Shell
+    foot direnv nix-direnv fastfetch
+
+    # File Management
+    file-roller unzip unrar p7zip
+
+    # GTK / Theming
+    adwaita-icon-theme glib gtk3
+
+    # Development
+    jdk21 dbvisualizer dbeaver-bin
+    mysql-workbench mongodb-compass
+
+    # Productivity & Office
+    rnote onlyoffice-desktopeditors obsidian showtime
+
+    # Internet & Media
+    google-chrome spotify
+
+    # Virtualization
+    virtualbox
   ];
 
   vscode-extensions-enabled = with pkgs.vscode-extensions; [
@@ -220,5 +215,7 @@ in
     };
   };
 
-  services.ssh-agent.enable = true;
+  services = {
+    ssh-agent.enable = true;
+  };
 }

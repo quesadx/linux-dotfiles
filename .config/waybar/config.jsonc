@@ -6,12 +6,23 @@
 
     "modules-left":   ["sway/workspaces"],
     "modules-center": ["clock"],
-    "modules-right":  ["power-profiles-daemon"],
+    "modules-right":  ["backlight", "network",  "battery", "power-profiles-daemon"],
+    "output": ["eDP-1"],
 
     "sway/workspaces": {
         "format": "{name}",
         "on-click": "activate",
-        "persistent-workspaces": { "*": 5 },
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": []
+        },
         "all-outputs": true,
         "show-special": false
     },
@@ -26,9 +37,28 @@
         "tooltip": true,
         "format-icons": {
             "default": "?",
-            "performance": "",
-            "balanced": "",
-            "power-saver": ""
+            "performance": "performance",
+            "balanced": "balanced",
+            "power-saver": "power-saver"
         }
+    },
+    "network": {
+        "format-wifi": "wifi: {essid}",
+        "format-ethernet": "wired: {ifname}",
+        "format-disconnected": "disconnected",
+        "tooltip": true,
+        "on-click": "foot nmtui"
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "backlight: {percent}%",
+        "tooltip": false,
+        "on-scroll-up": "brightnessctl set +5%",
+        "on-scroll-down": "brightnessctl set 5%-"
+    },
+
+    "battery": {
+        "format": "battery: {capacity}%",
+        "tooltip": true
     }
 }

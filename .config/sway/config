@@ -1,5 +1,7 @@
 # sway config — see man 5 sway
 
+include ~/.config/sway/outputs
+
 set $mod   Mod4
 set $left  h
 set $down  j
@@ -13,13 +15,13 @@ exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 
 # autostart
-exec swaybg -i ~/dotfiles/wallpapers/od_nixos.png -m fill
+exec swaybg -i ~/dotfiles/wallpapers/gruvbox_nixos.jpg -m fill
 exec waybar
 
 # appearance
-default_border pixel 2
-default_floating_border pixel 2
-gaps inner 6
+default_border pixel 1
+default_floating_border pixel 1
+gaps inner 0
 gaps outer 0
 smart_borders on
 
@@ -33,6 +35,7 @@ client.background       #282828
 # input
 input "type:keyboard" {
     xkb_layout us
+    xkb_variant intl
     xkb_options caps:escape
 }
 
@@ -44,7 +47,7 @@ for_window [app_id="Preferences"] floating enable
 for_window [app_id="dialog"]      floating enable
 for_window [app_id="menu"]        floating enable
 
-focus_follows_mouse no
+focus_follows_mouse yes
 floating_modifier $mod normal
 
 # --- keybinds ---
@@ -111,3 +114,14 @@ bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
+
+workspace 1 output eDP-1
+workspace 2 output eDP-1
+workspace 3 output eDP-1
+workspace 4 output eDP-1
+workspace 5 output eDP-1
+workspace 6 output eDP-1
+workspace 7 output eDP-1
+workspace 8 output eDP-1
+workspace 9 output eDP-1
+workspace 10 output eDP-1
