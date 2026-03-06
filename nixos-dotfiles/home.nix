@@ -59,6 +59,7 @@ let
     mysql-workbench
     # displaycal
     alacritty
+    mongodb-compass
   ];
 
   gnome-extensions-enabled = [
@@ -135,10 +136,16 @@ in
 
     git = {
       enable = true;
+
+      # Use gitFull to have libsecret
+      package = pkgs.gitFull;
+
       settings = {
-        user = gitUser;
+        user =  gitUser;
         init.defaultBranch = "main";
         pull.rebase = true;
+        # GNOME Keyring
+        credential.helper = "libsecret";
       };
     };
 

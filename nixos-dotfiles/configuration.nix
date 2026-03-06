@@ -22,7 +22,6 @@ let
   corePackages = with pkgs; [
     vim
     wget
-    git
     curl
     qemu_full
     virtio-win
