@@ -27,31 +27,55 @@ let
 
   userPackages = with pkgs; [
     # Wayland / Desktop
-    waybar fuzzel nwg-displays
-    swaybg swayidle swaynotificationcenter
-    wl-clipboard libnotify
+    waybar
+    fuzzel
+    nwg-displays
+    swaybg
+    swayidle
+    swaynotificationcenter
+    wl-clipboard
+    libnotify
+    networkmanager
+    pulsemixer
+    pavucontrol
+    brightnessctl
+    bluetui
 
     # Terminal & Shell
-    foot direnv nix-direnv fastfetch
+    foot
+    direnv
+    nix-direnv
+    fastfetch
 
     # File Management
-    file-roller unzip unrar p7zip
+    file-roller
+    unzip
+    unrar
+    p7zip
+    kdePackages.dolphin
 
     # GTK / Theming
-    adwaita-icon-theme glib gtk3
+    adwaita-icon-theme
+    glib
+    gtk3
 
     # Development
-    jdk21 dbvisualizer dbeaver-bin
-    mysql-workbench mongodb-compass
+    jdk21
+    dbvisualizer
+    dbeaver-bin
+    mysql-workbench
+    mongodb-compass
 
     # Productivity & Office
-    rnote onlyoffice-desktopeditors obsidian showtime
+    rnote
+    onlyoffice-desktopeditors
+    obsidian
+    showtime
 
     # Internet & Media
-    google-chrome spotify
+    google-chrome
+    spotify
 
-    # Virtualization
-    virtualbox
   ];
 
   vscode-extensions-enabled = with pkgs.vscode-extensions; [
@@ -177,7 +201,7 @@ in
       enable = true;
       settings = {
         main = {
-          font = "JetBrains Mono:size=12";
+          font = "IBM Plex Mono:size=12";
         };
       };
     };

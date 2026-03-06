@@ -16,6 +16,7 @@ let
     "docker"
     "kvm"
     "libvirtd"
+    "vboxusers"
   ];
 
   corePackages = with pkgs; [
@@ -26,7 +27,6 @@ let
     qemu_full
     virtio-win
     virt-manager
-    brightnessctl
     steam-run
   ];
 
@@ -34,7 +34,7 @@ let
     nerd-fonts.jetbrains-mono
     noto-fonts
     noto-fonts-color-emoji
-    jetbrains-mono
+    ibm-plex
     font-awesome
   ];
 
@@ -87,6 +87,7 @@ in
       powerOnBoot = true;
     };
     graphics.enable = true;
+    opentabletdriver.enable = true;
   };
 
   virtualisation = {
@@ -99,6 +100,16 @@ in
           size = 24;
         }
       ];
+    };
+    virtualbox = {
+      host = {
+        enable = true;
+        enableExtensionPack = true;
+      };
+      guest = {
+        enable = true;
+        dragAndDrop = true;
+      };
     };
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
@@ -138,6 +149,8 @@ in
       pulse.enable = true;
       wireplumber.enable = true;
     };
+
+    upower.enable = true;
 
     udev.extraRules = ''
       ACTION=="add", ENV{ID_INPUT_TOUCHSCREEN}=="1", ATTRS{name}=="ELAN901C:00 04F3:2CBF", ENV{LIBINPUT_IGNORE_DEVICE}="1"

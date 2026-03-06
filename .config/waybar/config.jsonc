@@ -6,7 +6,7 @@
 
     "modules-left":   ["sway/workspaces"],
     "modules-center": ["clock"],
-    "modules-right":  ["backlight", "network",  "battery", "power-profiles-daemon"],
+    "modules-right":  ["pulseaudio", "backlight", "network",  "battery", "power-profiles-daemon"],
     "output": ["eDP-1"],
 
     "sway/workspaces": {
@@ -57,8 +57,14 @@
         "on-scroll-down": "brightnessctl set 5%-"
     },
 
+    "pulseaudio": {
+        "format": "vol: {volume}%",
+        "format-muted": "muted",
+        "on-click": "foot pulsemixer"
+    },
+
     "battery": {
-        "format": "battery: {capacity}%",
+        "format": "batt: {capacity}%",
         "tooltip": true
     }
 }

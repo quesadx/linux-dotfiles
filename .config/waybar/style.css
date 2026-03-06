@@ -25,7 +25,8 @@ window#waybar {
 }
 
 #workspaces button.focused {
-    color: #ebdbb2;
+    color: #282828;
+    background: #d79921;
     border-bottom: 2px solid #d79921;
 }
 
