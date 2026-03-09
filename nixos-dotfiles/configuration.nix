@@ -1,4 +1,12 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
+
+# ============================================================================
+# VARIABLES
+# ============================================================================
 
 let
   userName = "quesadx";
@@ -6,6 +14,7 @@ let
   timeZone = "America/Costa_Rica";
   locale = "en_US.UTF-8";
   regionalLocale = "es_CR.UTF-8";
+
   userGroups = [
     "networkmanager"
     "wheel"
@@ -23,20 +32,18 @@ let
     vim
     wget
     curl
-    qemu_full
+    qemu
     virtio-win
     virt-manager
     steam-run
+    dnsmasq
   ];
 
   gnomeExtensions = with pkgs.gnomeExtensions; [
     alphabetical-app-grid
     auto-accent-colour
     caffeine
-    # coverflow-alt-tab
     clipboard-history
-    # grand-theft-focus
-    # hide-top-bar
     luminus-desktop
     top-bar-organizer
     appindicator
@@ -50,8 +57,17 @@ let
   ];
 
 in
+
+# ============================================================================
+# CONFIGURATION
+# ============================================================================
+
 {
   imports = [ ./hardware-configuration.nix ];
+
+  # ========================================================================
+  # Boot
+  # ========================================================================
 
   boot = {
     loader = {
@@ -59,6 +75,10 @@ in
       efi.canTouchEfiVariables = true;
     };
   };
+
+  # ========================================================================
+  # Networking
+  # ========================================================================
 
   networking = {
     hostName = "nixos";
@@ -70,13 +90,22 @@ in
     };
   };
 
+  # ========================================================================
+  # Users
+  # ========================================================================
+
   users.users.${userName} = {
     isNormalUser = true; # (non-root)
     description = userDescription;
     extraGroups = userGroups;
   };
 
+  # ========================================================================
+  # Time & Locale
+  # ========================================================================
+
   time.timeZone = timeZone;
+
   i18n = {
     defaultLocale = locale;
     extraLocaleSettings = {
@@ -92,6 +121,10 @@ in
     };
   };
 
+  # ========================================================================
+  # Hardware
+  # ========================================================================
+
   hardware = {
     bluetooth = {
       enable = true;
@@ -99,6 +132,10 @@ in
     };
     graphics.enable = true;
   };
+
+  # ========================================================================
+  # Virtualization
+  # ========================================================================
 
   virtualisation = {
     docker.enable = true;
@@ -117,31 +154,33 @@ in
     #enableExtensionPack = true;
     #};
     #};
-    libvirtd.enable = true;
-    spiceUSBRedirection.enable = true;
-  };
-  # Default network script stuff
-  systemd.services.libvirt-default-network = {
-    description = "Start libvirt default network";
-    after = [ "libvirtd.service" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      ExecStart = "${pkgs.libvirt}/bin/virsh net-start default";
-      ExecStop = "${pkgs.libvirt}/bin/virsh net-destroy default";
-      User = "root";
+
+    # sudo virsh net-start default
+    # sudo virsh net-autostart default
+    libvirtd = {
+      enable = true;
+      onBoot = "ignore";
+      onShutdown = "suspend";
     };
+    #spiceUSBRedirection.enable = true;
   };
+
+  # ========================================================================
+  # Security
+  # ========================================================================
 
   security = {
     polkit.enable = true;
     sudo.wheelNeedsPassword = false;
   };
 
+  # ========================================================================
+  # Services
+  # ========================================================================
+
   services = {
     power-profiles-daemon.enable = true;
-
+    # GNOME stuff
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
     gnome.core-apps.enable = false;
@@ -155,7 +194,7 @@ in
       pulse.enable = true;
       wireplumber.enable = true;
     };
-
+    # Disable touchscreen
     udev.extraRules = ''
       ACTION=="add", ENV{ID_INPUT_TOUCHSCREEN}=="1", ATTRS{name}=="ELAN901C:00 04F3:2CBF", ENV{LIBINPUT_IGNORE_DEVICE}="1"
     '';
@@ -164,13 +203,22 @@ in
     openssh.enable = true;
   };
 
+  # ========================================================================
+  # Environment & Packages
+  # ========================================================================
+
   environment.systemPackages = corePackages ++ gnomeExtensions;
   environment.gnome.excludePackages = with pkgs; [
     gnome-tour
     gnome-user-docs
   ];
 
+  # ========================================================================
+  # Nix Configuration
+  # ========================================================================
+
   nixpkgs.config.allowUnfree = true;
+
   nix = {
     settings = {
       experimental-features = [
@@ -186,8 +234,19 @@ in
     };
   };
 
+  # ========================================================================
+  # Systemd
+  # ========================================================================
+
+  # This is required to avoid the following error when using virt-manager:
+  # virt-secret-init-encryption.service: Unable to locate executable '/usr/bin/sh': No such file or directory
+  systemd.services.virt-secret-init-encryption.enable = false;
+
+  # ========================================================================
+  # Fonts
+  # ========================================================================
+
   fonts.packages = systemFonts;
 
   system.stateVersion = "25.11";
-
 }

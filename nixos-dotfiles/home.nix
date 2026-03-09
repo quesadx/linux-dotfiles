@@ -5,14 +5,26 @@
   ...
 }:
 
+# ============================================================================
+# VARIABLES
+# ============================================================================
+
 let
   username = "quesadx";
   homeDir = "/home/quesadx";
+
+  # ========================================================================
+  # Git Configuration
+  # ========================================================================
 
   gitUser = {
     name = "Matteo Quesada";
     email = "matteo.vargas.quesada@est.una.ac.cr";
   };
+
+  # ========================================================================
+  # Shell Aliases
+  # ========================================================================
 
   bashAliases = {
     ll = "ls -l";
@@ -24,6 +36,10 @@ let
     nrt = "cd ~/dotfiles/nixos-dotfiles && sudo nixos-rebuild test --flake .#nixos";
     nrs = "cd ~/dotfiles && git add . && cd nixos-dotfiles && sudo nixos-rebuild switch --flake .#nixos";
   };
+
+  # ========================================================================
+  # User Packages
+  # ========================================================================
 
   userPackages = with pkgs; [
     direnv
@@ -51,29 +67,33 @@ let
     dconf-editor
     onlyoffice-desktopeditors
     # google-chrome
-    spotify
     obsidian
     input-leap
     # distrobox
     dbeaver-bin
     mysql-workbench
     # displaycal
-    alacritty
     mongodb-compass
+    cisco-packet-tracer_9 # Known to be a pain in the ass
   ];
+
+  # ========================================================================
+  # GNOME Extensions
+  # ========================================================================
 
   gnome-extensions-enabled = [
     "AlphabeticalAppGrid@stuarthayhurst"
-    # "CoverflowAltTab@palatis.blogspot.com"
     "appindicatorsupport@rgcjonas.gmail.com"
     "auto-accent-colour@Wartybix"
     "caffeine@patapon.info"
     "clipboard-history@alexsaveau.dev"
-    # "grand-theft-focus@zalckos.github.com"
-    # "hidetopbar@mathieu.bidon.ca"
     "luminus-desktop@dikasp.gitlab"
     "top-bar-organizer@julian.gse.jsts.xyz"
   ];
+
+  # ========================================================================
+  # VS Code Extensions
+  # ========================================================================
 
   vscode-extensions-enabled = with pkgs.vscode-extensions; [
     esbenp.prettier-vscode
@@ -96,7 +116,12 @@ let
     formulahendry.auto-close-tag
     shardulm94.trailing-spaces
     oderwat.indent-rainbow
+    ms-azuretools.vscode-containers
   ];
+
+  # ========================================================================
+  # Firefox Extensions
+  # ========================================================================
 
   firefoxExtensions = {
     "uBlock0@raymondhill.net" = {
@@ -109,11 +134,20 @@ let
     };
   };
 
+  # ========================================================================
+  # Config Sources
+  # ========================================================================
+
   configSources = {
     "fastfetch".source = ../.config/fastfetch;
   };
 
 in
+
+# ============================================================================
+# HOME CONFIGURATION
+# ============================================================================
+
 {
   home = {
     username = username;
@@ -124,8 +158,17 @@ in
 
   xdg.configFile = configSources;
 
+  # ========================================================================
+  # Programs
+  # ========================================================================
+
   programs = {
     home-manager.enable = true;
+
+    # ====================================================================
+    # Shell & Terminal
+    # ====================================================================
+
     starship.enable = true;
     zsh.enable = true;
 
@@ -134,6 +177,10 @@ in
       shellAliases = bashAliases;
     };
 
+    # ====================================================================
+    # Git
+    # ====================================================================
+
     git = {
       enable = true;
 
@@ -141,7 +188,7 @@ in
       package = pkgs.gitFull;
 
       settings = {
-        user =  gitUser;
+        user = gitUser;
         init.defaultBranch = "main";
         pull.rebase = true;
         # GNOME Keyring
@@ -149,11 +196,19 @@ in
       };
     };
 
+    # ====================================================================
+    # Direnv
+    # ====================================================================
+
     direnv = {
       enable = true;
       enableBashIntegration = true;
       nix-direnv.enable = true;
     };
+
+    # ====================================================================
+    # SSH
+    # ====================================================================
 
     ssh = {
       enable = true;
@@ -163,13 +218,25 @@ in
       };
     };
 
+    # ====================================================================
+    # Task Management
+    # ====================================================================
+
     taskwarrior = {
       enable = true;
     };
 
+    # ====================================================================
+    # Calendar
+    # ====================================================================
+
     khal = {
       enable = true;
     };
+
+    # ====================================================================
+    # Text Editor (Helix)
+    # ====================================================================
 
     helix = {
       enable = true;
@@ -192,6 +259,10 @@ in
       };
     };
 
+    # ====================================================================
+    # Code Editor (VS Code)
+    # ====================================================================
+
     vscode = {
       enable = true;
       # mutableExtensions = true; # Meh
@@ -207,9 +278,17 @@ in
         "workbench.iconTheme" = "material-icon-theme";
         "workbench.editor.scrollToSwitchTabs" = true;
         "workbench.editor.wrapTabs" = true;
-        "workbench.panel.alignment" = "justify"; # Does nothing :/
+        "editor.linkedEditing" = true;
+        "git.openRepositoryInParentFolders" = "always";
+        "git.enableSmartCommit" = true;
+        "explorer.confirmDelete" = false;
+        "git.autofetch" = true;
       };
     };
+
+    # ====================================================================
+    # Web Browser (Firefox)
+    # ====================================================================
 
     firefox = {
       enable = true;
@@ -225,18 +304,37 @@ in
     };
   };
 
+  # ========================================================================
+  # dconf Settings
+  # ========================================================================
+
   dconf = {
     enable = true;
     settings = {
       "org/gnome/shell" = {
         enabled-extensions = gnome-extensions-enabled;
       };
+
+      # ====================================================================
+      # Alphabetical App Grid
+      # ====================================================================
+
       "org/gnome/shell/extensions/alphabetical-app-grid" = {
         folder-order-position = "start";
       };
+
+      # ====================================================================
+      # App Indicator
+      # ====================================================================
+
       "org/gnome/shell/extensions/appindicator" = {
         legacy-tray-enabled = false;
       };
+
+      # ====================================================================
+      # Caffeine
+      # ====================================================================
+
       "org/gnome/shell/extensions/caffeine" = {
         restore-state = true;
         enable-fullscreen = false;
@@ -250,6 +348,9 @@ in
       #animation-time-overview = 0.2;
       #animation-time-autohide = 0.2;
       #};
+      # ====================================================================
+      # Input Sources (Keyboard Layout)
+      # ====================================================================
       "org/gnome/desktop/input-sources" = {
         show-all-sources = true;
         sources = [
@@ -259,14 +360,29 @@ in
           ])
         ];
       };
+
+      # ====================================================================
+      # Window Manager Keybindings
+      # ====================================================================
+
       "org/gnome/desktop/wm/keybindings" = {
         maximize = [ "<Super>F" ];
         minimize = [ "<Super>D" ];
         close = [ "<Super>Q" ];
       };
+
+      # ====================================================================
+      # Power Settings
+      # ====================================================================
+
       "org/gnome/settings-daemon/plugins/power" = {
         power-button-action = "nothing";
       };
+
+      # ====================================================================
+      # Media Keys
+      # ====================================================================
+
       "org/gnome/settings-daemon/plugins/media-keys" = {
         home = [ "<Super>e" ];
         www = [ "<Super>b" ];
@@ -275,20 +391,35 @@ in
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
         ];
       };
+
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         binding = "<Super>t";
         command = "kgx";
         name = "gnome-console";
       };
+
+      # ====================================================================
+      # Mouse Settings
+      # ====================================================================
+
       "org/gnome/desktop/peripherals/mouse" = {
         accel-profile = "flat";
         # speed = 0.21;
       };
+
+      # ====================================================================
+      # Sound Settings
+      # ====================================================================
+
       "org/gnome/desktop/sound" = {
         event-sounds = false;
       };
     };
   };
+
+  # ========================================================================
+  # SSH Agent
+  # ========================================================================
 
   services.ssh-agent.enable = true;
 }
