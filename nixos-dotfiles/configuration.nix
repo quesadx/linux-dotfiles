@@ -140,10 +140,10 @@ in
   virtualisation = {
     docker.enable = true;
     docker.daemon.settings = {
-      bip = "172.16.0.1/24";
-      "default-address-pool" = [
+      bip = "192.168.30.1/24";
+      "default-address-pools" = [
         {
-          base = "172.16.1.0/24";
+          base = "192.168.31.0/24";
           size = 24;
         }
       ];
