@@ -26,73 +26,67 @@ let
   };
 
   userPackages = with pkgs; [
-    direnv # Development environment for shell
-    nix-direnv # Nix integration for direnv
-    file-roller # Archive manager
-    unzip # Unarchiver for .zip files
-    unrar # Unarchiver for .rar files
-    p7zip # Unarchiver for .7z files
-    gnome-photos # GNOME image viewer and organizer
-    gnome-music # GNOME music player
-    gnome-calculator # GNOME calculator
-    gnome-text-editor # GNOME text editor
-    gnome-font-viewer # GNOME font viewer
-    gnome-console # GNOME terminal emulator
-    nautilus # GNOME file manager
-    adwaita-icon-theme # Default GNOME icon theme
-    glib # GLib is a low-level core library that forms the basis for projects such as GTK and GNOME. It provides data structures, utilities, and interfaces for handling various aspects of software development, including memory management, event loops, and object-oriented programming.
-    gtk3 # GTK is a multi-platform toolkit for creating graphical user interfaces. It provides a comprehensive set of widgets and tools for building applications with a native look and feel on various operating systems, including Linux, Windows, and macOS.
-    # dbvisualizer
-    # jdk21
-    fastfetch # Fastfetch is a system information tool that provides a quick overview of your system's hardware and software details. It displays information such as CPU, GPU, RAM, storage, and more in a visually appealing format.
-    papers # GNOME PDF viewer
-    showtime # GNOME video player
-    rnote # Note-taking application
-    dconf-editor  # Graphical editor for dconf settings
-    onlyoffice-desktopeditors # Office suite compatible with Microsoft Office formats
-    # google-chrome
-    obsidian # Note-taking and knowledge management application
-    # input-leap # Virtual KVM for controlling multiple devices with a single keyboard and mouse
-    # distrobox
-    dbeaver-bin # Database management tool
-    mysql-workbench # MySQL database design and administration tool
-    # displaycal
-    mongodb-compass # GUI for MongoDB database management
-    cisco-packet-tracer_9 # Straight up garbage but I need it for networking class
+    direnv
+    nix-direnv
+    file-roller
+    unzip
+    unrar
+    p7zip
+    gnome-photos
+    gnome-music
+    gnome-calculator
+    gnome-text-editor
+    gnome-font-viewer
+    gnome-console
+    nautilus
+    adwaita-icon-theme
+    glib
+    gtk3
+    fastfetch
+    papers
+    showtime
+    rnote
+    dconf-editor
+    onlyoffice-desktopeditors
+    obsidian
+    dbeaver-bin
+    mysql-workbench
+    mongodb-compass
+    cisco-packet-tracer_9
   ];
 
   gnome-extensions-enabled = [
-    "AlphabeticalAppGrid@stuarthayhurst" # Reorders the app grid alphabetically, making it easier to find applications in the overview.
-    "appindicatorsupport@rgcjonas.gmail.com" # Provides support for AppIndicator-based system tray icons, allowing applications that use this standard to display their icons in the GNOME Shell's system tray area.
-    "auto-accent-colour@Wartybix" # Automatically changes the accent color of the GNOME Shell based on the dominant color of the current wallpaper, providing a more cohesive and visually appealing desktop experience.
-    "caffeine@patapon.info" # Prevents the system from going to sleep or activating the screensaver when certain applications are running, allowing you to keep your screen active while using those applications.
-    "clipboard-history@alexsaveau.dev" # Provides a clipboard history manager that allows you to access and manage previously copied items, making it easier to retrieve and reuse clipboard content.
-    "luminus-desktop@dikasp.gitlab" # Luminus Desktop is a GNOME Shell extension that provides a customizable and visually appealing desktop experience. It offers features such as dynamic wallpapers, customizable widgets, and a sleek design to enhance the overall look and feel of the GNOME desktop environment.
-    "top-bar-organizer@julian.gse.jsts.xyz" # Top Bar Organizer is a GNOME Shell extension that allows you to customize and organize the top bar of the GNOME desktop environment. It provides features such as rearranging system indicators, adding custom widgets, and hiding or showing specific elements on the top bar, giving you more control over the layout and functionality of your desktop.
+    "AlphabeticalAppGrid@stuarthayhurst"
+    "appindicatorsupport@rgcjonas.gmail.com"
+    "auto-accent-colour@Wartybix"
+    "caffeine@patapon.info"
+    "clipboard-history@alexsaveau.dev"
+    "luminus-desktop@dikasp.gitlab"
+    "top-bar-organizer@julian.gse.jsts.xyz"
   ];
 
   vscode-extensions-enabled = with pkgs.vscode-extensions; [
-    esbenp.prettier-vscode # Prettier code formatter for Visual Studio Code
-    ms-python.python # Python extension for Visual Studio Code, providing features such as linting, debugging, and code navigation
-    ms-vscode.live-server # Live Server extension for Visual Studio Code, allowing you to launch a local development server with live reload capability for static and dynamic web pages
-    vscjava.vscode-java-pack # Java Extension Pack for Visual Studio Code, providing essential extensions for Java development, including language support, debugging, and testing tools
-    eamodio.gitlens # GitLens extension for Visual Studio Code, enhancing Git capabilities with features like code annotations, blame information, and repository insights
-    pkief.material-icon-theme # Material Icon Theme for Visual Studio Code, providing a comprehensive set of icons for files and folders based on the Material Design guidelines
-    ecmel.vscode-html-css # HTML CSS Support extension for Visual Studio Code, offering features like auto-completion, validation, and formatting for HTML and CSS files
-    christian-kohler.path-intellisense # Path Intellisense extension for Visual Studio Code, providing autocompletion for file paths in your project
-    bbenoist.nix # Nix extension for Visual Studio Code, offering syntax highlighting, linting, and other features for Nix files
-    humao.rest-client # REST Client extension for Visual Studio Code, allowing you to send HTTP requests and view responses directly within the editor
-    mikestead.dotenv # DotENV extension for Visual Studio Code, providing support for .env files with features like syntax highlighting and autocompletion
-    dbaeumer.vscode-eslint # ESLint extension for Visual Studio Code, integrating the ESLint JavaScript linter into the editor for real-time code analysis and error checking
-    christian-kohler.npm-intellisense # NPM Intellisense extension for Visual Studio Code, providing autocompletion for npm modules in your project
-    yoavbls.pretty-ts-errors # Pretty TypeScript Errors extension for Visual Studio Code, enhancing the readability of TypeScript error messages with improved formatting and styling
-    usernamehw.errorlens # Error Lens extension for Visual Studio Code, highlighting errors and warnings directly in the editor with customizable styling
-    james-yu.latex-workshop # LaTeX Workshop extension for Visual Studio Code, providing a comprehensive set of tools for LaTeX editing, including syntax highlighting, compilation, and previewing
-    formulahendry.auto-rename-tag # Auto Rename Tag extension for Visual Studio Code, automatically renaming paired HTML/XML tags when one of them is edited
-    formulahendry.auto-close-tag # Auto Close Tag extension for Visual Studio Code, automatically closing HTML/XML tags when the opening tag is typed
-    shardulm94.trailing-spaces # Trailing Spaces extension for Visual Studio Code, highlighting and allowing you to easily remove trailing whitespace in your code
-    oderwat.indent-rainbow # Indent Rainbow extension for Visual Studio Code, coloring indentation levels in your code to improve readability
-    ms-azuretools.vscode-containers # Visual Studio Code extension for working with Docker containers, providing features like container management, image browsing, and integrated terminal access
+    esbenp.prettier-vscode
+    ms-python.python
+    ms-vscode.live-server
+    vscjava.vscode-java-pack
+    eamodio.gitlens
+    pkief.material-icon-theme
+    ecmel.vscode-html-css
+    christian-kohler.path-intellisense
+    bbenoist.nix
+    humao.rest-client
+    mikestead.dotenv
+    dbaeumer.vscode-eslint
+    christian-kohler.npm-intellisense
+    yoavbls.pretty-ts-errors
+    usernamehw.errorlens
+    james-yu.latex-workshop
+    formulahendry.auto-rename-tag
+    formulahendry.auto-close-tag
+    shardulm94.trailing-spaces
+    oderwat.indent-rainbow
+    ms-azuretools.vscode-containers
   ];
 
   firefoxExtensions = {

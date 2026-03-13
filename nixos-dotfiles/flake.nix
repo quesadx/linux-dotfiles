@@ -21,7 +21,7 @@
 
     {
       nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
-        inherit system;
+        inherit system; # equal to system = "x86_64-linux";
 
         modules = [
           ./configuration.nix

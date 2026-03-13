@@ -21,7 +21,6 @@ let
     "docker"
     "kvm"
     "libvirtd"
-    #"vboxusers"
   ];
 
   corePackages = with pkgs; [
@@ -70,7 +69,7 @@ in
   networking.firewall.allowedTCPPorts = [ 24800 ];
 
   users.users.${userName} = {
-    isNormalUser = true; # (non-root)
+    isNormalUser = true;
     description = userDescription;
     extraGroups = userGroups;
   };
@@ -107,20 +106,9 @@ in
     ];
   };
 
-  #virtualisation.virtualbox = {
-  #host = {
-  #enable = true;
-  #enableExtensionPack = true;
-  #};
-  #};
-
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.onBoot = "ignore";
   virtualisation.libvirtd.onShutdown = "suspend";
-
-  # sudo virsh net-start default
-  # sudo virsh net-autostart default
-  #virtualisation.spiceUSBRedirection.enable = true;
 
   security.polkit.enable = true;
   security.sudo.wheelNeedsPassword = false;
@@ -159,7 +147,6 @@ in
   nix.gc.dates = "weekly";
   nix.gc.options = "--delete-older-than 3d";
 
-  # Fixes virt-manager error: Unable to locate executable '/usr/bin/sh'
   systemd.services.virt-secret-init-encryption.enable = false;
 
   fonts.packages = systemFonts;
