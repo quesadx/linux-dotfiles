@@ -164,13 +164,15 @@ in
   };
   # firefox home-manager configuration
   programs.firefox.enable = true;
-  programs.firefox.profiles.${username}.isDefault = true;
-  programs.firefox.policies.ExtensionSettings = firefoxExtensions;
-  programs.firefox.profiles.${username}.settings = {
-    "browser.search.region" = "CR";
-    "browser.search.isUS" = false;
-    "distribution.id" = "nixos";
+  programs.firefox.profiles.${username} = {
+    isDefault = true;
+    settings = {
+      "browser.search.region" = "CR";
+      "browser.search.isUS" = false;
+      "distribution.id" = "nixos";
+    };
   };
+  programs.firefox.policies.ExtensionSettings = firefoxExtensions;
 
   dconf.enable = true;
   dconf.settings."org/gnome/shell".enabled-extensions = gnome-extensions-enabled;
