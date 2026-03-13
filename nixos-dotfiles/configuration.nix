@@ -4,10 +4,6 @@
   ...
 }:
 
-# ============================================================================
-# VARIABLES
-# ============================================================================
-
 let
   userName = "quesadx";
   userDescription = "Matteo Quesada";
@@ -58,51 +54,26 @@ let
 
 in
 
-# ============================================================================
-# CONFIGURATION
-# ============================================================================
-
 {
   imports = [ ./hardware-configuration.nix ];
 
-  # ========================================================================
-  # Boot
-  # ========================================================================
-
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
-  };
-
-  # ========================================================================
-  # Networking
-  # ========================================================================
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
-    firewall = {
-      enable = true;
-      trustedInterfaces = [ "virbr0" ];
-      allowedTCPPorts = [ 24800 ]; # 24800 -> input-leap
-    };
   };
 
-  # ========================================================================
-  # Users
-  # ========================================================================
+  networking.firewall.enable = true;
+  networking.firewall.trustedInterfaces = [ "virbr0" ];
+  networking.firewall.allowedTCPPorts = [ 24800 ];
 
   users.users.${userName} = {
     isNormalUser = true; # (non-root)
     description = userDescription;
     extraGroups = userGroups;
   };
-
-  # ========================================================================
-  # Time & Locale
-  # ========================================================================
 
   time.timeZone = timeZone;
 
@@ -121,91 +92,58 @@ in
     };
   };
 
-  # ========================================================================
-  # Hardware
-  # ========================================================================
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  hardware.graphics.enable = true;
 
-  hardware = {
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-    };
-    graphics.enable = true;
+  virtualisation.docker.enable = true;
+  virtualisation.docker.daemon.settings = {
+    bip = "192.168.30.1/24";
+    "default-address-pools" = [
+      {
+        base = "10.10.0.0/16";
+        size = 24;
+      }
+    ];
   };
 
-  # ========================================================================
-  # Virtualization
-  # ========================================================================
+  #virtualisation.virtualbox = {
+  #host = {
+  #enable = true;
+  #enableExtensionPack = true;
+  #};
+  #};
 
-  virtualisation = {
-    docker.enable = true;
-    docker.daemon.settings = {
-      bip = "192.168.30.1/24";
-      "default-address-pools" = [
-        {
-          base = "10.10.0.0/16";
-          size = 24;
-        }
-      ];
-    };
-    #virtualbox = {
-    #host = {
-    #enable = true;
-    #enableExtensionPack = true;
-    #};
-    #};
+  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.onBoot = "ignore";
+  virtualisation.libvirtd.onShutdown = "suspend";
 
-    # sudo virsh net-start default
-    # sudo virsh net-autostart default
-    libvirtd = {
-      enable = true;
-      onBoot = "ignore";
-      onShutdown = "suspend";
-    };
-    #spiceUSBRedirection.enable = true;
-  };
+  # sudo virsh net-start default
+  # sudo virsh net-autostart default
+  #virtualisation.spiceUSBRedirection.enable = true;
 
-  # ========================================================================
-  # Security
-  # ========================================================================
+  security.polkit.enable = true;
+  security.sudo.wheelNeedsPassword = false;
 
-  security = {
-    polkit.enable = true;
-    sudo.wheelNeedsPassword = false;
-  };
+  services.power-profiles-daemon.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
+  services.gnome.core-apps.enable = false;
+  services.gnome.core-developer-tools.enable = false;
+  services.gnome.games.enable = false;
 
-  # ========================================================================
-  # Services
-  # ========================================================================
+  services.pipewire.enable = true;
+  services.pipewire.alsa.enable = true;
+  services.pipewire.alsa.support32Bit = true;
+  services.pipewire.pulse.enable = true;
+  services.pipewire.wireplumber.enable = true;
 
-  services = {
-    power-profiles-daemon.enable = true;
-    # GNOME stuff
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-    gnome.core-apps.enable = false;
-    gnome.core-developer-tools.enable = false;
-    gnome.games.enable = false;
+  services.flatpak.enable = true;
+  services.openssh.enable = true;
 
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      wireplumber.enable = true;
-    };
-    # Disable touchscreen
-    udev.extraRules = ''
-      ACTION=="add", ENV{ID_INPUT_TOUCHSCREEN}=="1", ATTRS{name}=="ELAN901C:00 04F3:2CBF", ENV{LIBINPUT_IGNORE_DEVICE}="1"
-    '';
-
-    flatpak.enable = true;
-    openssh.enable = true;
-  };
-
-  # ========================================================================
-  # Environment & Packages
-  # ========================================================================
+  services.udev.extraRules = ''
+    ACTION=="add", ENV{ID_INPUT_TOUCHSCREEN}=="1", ATTRS{name}=="ELAN901C:00 04F3:2CBF", ENV{LIBINPUT_IGNORE_DEVICE}="1"
+  '';
 
   environment.systemPackages = corePackages ++ gnomeExtensions;
   environment.gnome.excludePackages = with pkgs; [
@@ -213,38 +151,16 @@ in
     gnome-user-docs
   ];
 
-  # ========================================================================
-  # Nix Configuration
-  # ========================================================================
-
   nixpkgs.config.allowUnfree = true;
 
-  nix = {
-    settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      auto-optimise-store = true;
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 3d";
-    };
-  };
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.auto-optimise-store = true;
+  nix.gc.automatic = true;
+  nix.gc.dates = "weekly";
+  nix.gc.options = "--delete-older-than 3d";
 
-  # ========================================================================
-  # Systemd
-  # ========================================================================
-
-  # This is required to avoid the following error when using virt-manager:
-  # virt-secret-init-encryption.service: Unable to locate executable '/usr/bin/sh': No such file or directory
+  # Fixes virt-manager error: Unable to locate executable '/usr/bin/sh'
   systemd.services.virt-secret-init-encryption.enable = false;
-
-  # ========================================================================
-  # Fonts
-  # ========================================================================
 
   fonts.packages = systemFonts;
 

@@ -1,10 +1,6 @@
 {
   description = "GNOME on NixOS";
 
-  # ============================================================================
-  # INPUTS
-  # ============================================================================
-
   inputs = {
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-unstable";
@@ -16,17 +12,13 @@
     };
   };
 
-  # ============================================================================
-  # OUTPUTS
-  # ============================================================================
-
   outputs = { self, nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
       hostname = "nixos";
       username = "quesadx";
     in
-   
+
     {
       nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
         inherit system;
