@@ -114,9 +114,9 @@ in
   home.packages = userPackages;
 
   services.ssh-agent.enable = true;
-
   xdg.configFile = configSources;
 
+  # shell extras
   programs.starship.enable = true;
   programs.zsh.enable = true;
   # bash home-manager configuration
@@ -164,7 +164,7 @@ in
   };
   # firefox home-manager configuration
   programs.firefox.enable = true;
-  programs.firefox.profiles.${username} = {
+  programs.firefox.profiles.${username} = { # ${} expressions can only be used once per attribute set
     isDefault = true;
     settings = {
       "browser.search.region" = "CR";
