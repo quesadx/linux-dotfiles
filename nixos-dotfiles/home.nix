@@ -53,6 +53,7 @@ let
     mysql-workbench
     mongodb-compass
     cisco-packet-tracer_9
+    spotify
   ];
 
   gnome-extensions-enabled = [
@@ -140,8 +141,17 @@ in
   # helix home-manager configuration
   programs.helix.enable = true;
   programs.helix.settings.theme = "monokai";
-  programs.helix.extraPackages = with pkgs; [ nixd nixfmt ];
-  programs.helix.languages.language = [ { name = "nix"; auto-format = true; formatter.command = "nixfmt"; } ];
+  programs.helix.extraPackages = with pkgs; [
+    nixd
+    nixfmt
+  ];
+  programs.helix.languages.language = [
+    {
+      name = "nix";
+      auto-format = true;
+      formatter.command = "nixfmt";
+    }
+  ];
   # vscode home-manager configuration
   programs.vscode.enable = true;
   programs.vscode.profiles.default.extensions = vscode-extensions-enabled;
@@ -164,7 +174,8 @@ in
   };
   # firefox home-manager configuration
   programs.firefox.enable = true;
-  programs.firefox.profiles.${username} = { # ${} expressions can only be used once per attribute set
+  programs.firefox.profiles.${username} = {
+    # ${} expressions can only be used once per attribute set
     isDefault = true;
     settings = {
       "browser.search.region" = "CR";
@@ -182,7 +193,10 @@ in
   dconf.settings."org/gnome/shell/extensions/caffeine".enable-fullscreen = false;
   dconf.settings."org/gnome/desktop/input-sources".show-all-sources = true;
   dconf.settings."org/gnome/desktop/input-sources".sources = [
-    (lib.gvariant.mkTuple [ "xkb" "us+altgr-intl" ])
+    (lib.gvariant.mkTuple [
+      "xkb"
+      "us+altgr-intl"
+    ])
   ];
   dconf.settings."org/gnome/desktop/wm/keybindings".maximize = [ "<Super>F" ];
   dconf.settings."org/gnome/desktop/wm/keybindings".minimize = [ "<Super>D" ];
@@ -194,9 +208,12 @@ in
   dconf.settings."org/gnome/settings-daemon/plugins/media-keys".custom-keybindings = [
     "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
   ];
-  dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".binding = "<Super>t";
-  dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".command = "kgx";
-  dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".name = "gnome-console";
+  dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".binding =
+    "<Super>t";
+  dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".command =
+    "kgx";
+  dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".name =
+    "gnome-console";
   dconf.settings."org/gnome/desktop/peripherals/mouse".accel-profile = "flat";
   dconf.settings."org/gnome/desktop/sound".event-sounds = false;
 
