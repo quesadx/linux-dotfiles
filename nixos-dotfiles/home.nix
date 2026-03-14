@@ -26,6 +26,7 @@ let
   };
 
   userPackages = with pkgs; [
+    claude-code
     direnv
     nix-direnv
     file-roller
@@ -52,7 +53,7 @@ let
     dbeaver-bin
     mysql-workbench
     mongodb-compass
-    cisco-packet-tracer_9
+    # cisco-packet-tracer_9
     spotify
   ];
 
@@ -88,6 +89,7 @@ let
     shardulm94.trailing-spaces
     oderwat.indent-rainbow
     ms-azuretools.vscode-containers
+    anthropic.claude-code
   ];
 
   firefoxExtensions = {
@@ -141,9 +143,15 @@ in
   # helix home-manager configuration
   programs.helix.enable = true;
   programs.helix.settings.theme = "monokai";
+  programs.helix.settings.editor.line-number = "relative";
+  programs.helix.settings.editor.lsp.display-messages = true;
+  programs.helix.settings.editor.indent-guides.render = true;
+  programs.helix.settings.editor.file-picker.hidden = false;
   programs.helix.extraPackages = with pkgs; [
     nixd
     nixfmt
+    wl-clipboard
+    xclip
   ];
   programs.helix.languages.language = [
     {
