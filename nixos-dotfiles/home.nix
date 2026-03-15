@@ -30,6 +30,7 @@ let
   };
 
   userPackages = with pkgs; [
+    nautilus
     claude-code
     direnv
     nix-direnv
@@ -43,7 +44,6 @@ let
     gnome-text-editor
     gnome-font-viewer
     gnome-console
-    nautilus
     adwaita-icon-theme
     glib
     gtk3
@@ -59,6 +59,8 @@ let
     mongodb-compass
     # cisco-packet-tracer_9
     spotify
+    tmux
+    alacritty
   ];
 
   gnome-extensions-enabled = [
@@ -94,6 +96,7 @@ let
     oderwat.indent-rainbow
     ms-azuretools.vscode-containers
     anthropic.claude-code
+    cweijan.vscode-database-client2
   ];
 
   firefoxExtensions = {
@@ -147,10 +150,10 @@ in
   # helix home-manager configuration
   programs.helix.enable = true;
   programs.helix.settings.theme = "monokai_soda";
-  programs.helix.settings.editor.line-number = "relative";
+  # programs.helix.settings.editor.line-number = "relative";
   programs.helix.settings.editor.lsp.display-messages = true;
-  programs.helix.settings.editor.indent-guides.render = true;
-  programs.helix.settings.editor.file-picker.hidden = false;
+  # programs.helix.settings.editor.indent-guides.render = true;
+  # programs.helix.settings.editor.file-picker.hidden = false;
   programs.helix.extraPackages = with pkgs; [
     nixd
     nixfmt
@@ -182,9 +185,9 @@ in
     "workbench.activityBar.location" = "top";
     "workbench.sideBar.location" = "right";
     "editor.defaultFormatter" = "esbenp.prettier-vscode";
-    # "workbench.colorTheme" = "Monokai Dimmed";
+    "workbench.colorTheme" = "Monokai Dimmed";
     "files.autoSave" = "onFocusChange";
-    "editor.minimap.autohide" = "mouseover";
+    "editor.minimap.enabled" = false;
     "window.commandCenter" = false;
     "workbench.iconTheme" = "material-icon-theme";
     "workbench.editor.scrollToSwitchTabs" = true;
@@ -232,6 +235,7 @@ in
   dconf.settings."org/gnome/settings-daemon/plugins/media-keys".custom-keybindings = [
     "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
   ];
+  # Custom keybinding to launch terminal with Super+t
   dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".binding =
     "<Super>t";
   dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".command =
