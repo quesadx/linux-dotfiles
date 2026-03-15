@@ -23,6 +23,10 @@ let
     gp = "git push";
     nrt = "cd ~/dotfiles/nixos-dotfiles && sudo nixos-rebuild test --flake .#nixos";
     nrs = "cd ~/dotfiles && git add . && cd nixos-dotfiles && sudo nixos-rebuild switch --flake .#nixos";
+    dcu = "docker compose up";
+    dcud = "docker compose up -d";
+    dcd = "docker compose down";
+    dcdv = "docker compose down -v";
   };
 
   userPackages = with pkgs; [
@@ -142,7 +146,7 @@ in
   programs.ssh.matchBlocks."*".addKeysToAgent = "yes";
   # helix home-manager configuration
   programs.helix.enable = true;
-  programs.helix.settings.theme = "monokai";
+  programs.helix.settings.theme = "monokai_soda";
   programs.helix.settings.editor.line-number = "relative";
   programs.helix.settings.editor.lsp.display-messages = true;
   programs.helix.settings.editor.indent-guides.render = true;
@@ -152,12 +156,23 @@ in
     nixfmt
     wl-clipboard
     xclip
+    nodePackages.typescript-language-server
   ];
   programs.helix.languages.language = [
     {
       name = "nix";
       auto-format = true;
       formatter.command = "nixfmt";
+    }
+    {
+      name = "typescript";
+      auto-format = true;
+      language-servers = [ "typescript-language-server" ];
+    }
+    {
+      name = "javascript";
+      auto-format = true;
+      language-servers = [ "typescript-language-server" ];
     }
   ];
   # vscode home-manager configuration
@@ -167,7 +182,7 @@ in
     "workbench.activityBar.location" = "top";
     "workbench.sideBar.location" = "right";
     "editor.defaultFormatter" = "esbenp.prettier-vscode";
-    "workbench.colorTheme" = "Monokai";
+    # "workbench.colorTheme" = "Monokai Dimmed";
     "files.autoSave" = "onFocusChange";
     "editor.minimap.autohide" = "mouseover";
     "window.commandCenter" = false;
@@ -179,6 +194,7 @@ in
     "git.enableSmartCommit" = true;
     "explorer.confirmDelete" = false;
     "git.autofetch" = true;
+    "explorer.confirmDragAndDrop" = false;
   };
   # firefox home-manager configuration
   programs.firefox.enable = true;
