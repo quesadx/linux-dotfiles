@@ -49,6 +49,7 @@ let
     noto-fonts
     noto-fonts-color-emoji
     font-awesome
+    nerd-fonts.jetbrains-mono
   ];
 
 in
@@ -91,7 +92,7 @@ in
     };
   };
 
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth.enable = false;
   hardware.bluetooth.powerOnBoot = true;
   hardware.graphics.enable = true;
 
@@ -129,6 +130,25 @@ in
   services.flatpak.enable = true;
   services.openssh.enable = true;
 
+  services.kanata = {
+    enable = true;
+    keyboards = {
+      default = {
+        config = ''
+          (defsrc
+            caps
+          )
+          (defalias
+            capsec (tap-hold 100 100 esc lctl)
+          )
+          (deflayer base
+            @capsec
+          )
+        '';
+      };
+    };
+  };
+
   services.udev.extraRules = ''
     ACTION=="add", ENV{ID_INPUT_TOUCHSCREEN}=="1", ATTRS{name}=="ELAN901C:00 04F3:2CBF", ENV{LIBINPUT_IGNORE_DEVICE}="1"
   '';
@@ -141,7 +161,10 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nix.settings.auto-optimise-store = true;
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";

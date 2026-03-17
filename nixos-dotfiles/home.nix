@@ -61,6 +61,9 @@ let
     spotify
     tmux
     alacritty
+    # xcape
+    neovim
+    openclaw
   ];
 
   gnome-extensions-enabled = [
@@ -97,6 +100,7 @@ let
     ms-azuretools.vscode-containers
     anthropic.claude-code
     cweijan.vscode-database-client2
+    github.vscode-github-actions
   ];
 
   firefoxExtensions = {
@@ -126,6 +130,50 @@ in
   services.ssh-agent.enable = true;
   xdg.configFile = configSources;
 
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+
+    extraPackages = with pkgs; [
+      ripgrep
+      fd
+      # LSP
+      lua-language-server
+      nil # Nix LSP
+      nodePackages.typescript-language-server
+    ];
+
+    extraConfig = ''
+      set number
+      set relativenumber
+    '';
+
+    extraLuaConfig = ''
+      vim.opt.termguicolors = true
+      vim.opt.expandtab = true
+      vim.opt.shiftwidth = 2
+    '';
+
+    plugins = with pkgs.vimPlugins; [
+      plenary-nvim
+      vim-surround
+      vim-commentary
+      {
+        plugin = nvim-tree-lua;
+	type = "lua";
+	config = ''
+	  require("nvim-tree").setup({
+	    view = { width = 30 },
+	    renderer = { group_empty = true },
+	  })
+	'';
+      }
+    ];
+
+  };
+
   # shell extras
   programs.starship.enable = true;
   programs.zsh.enable = true;
@@ -150,10 +198,7 @@ in
   # helix home-manager configuration
   programs.helix.enable = true;
   programs.helix.settings.theme = "monokai_soda";
-  # programs.helix.settings.editor.line-number = "relative";
   programs.helix.settings.editor.lsp.display-messages = true;
-  # programs.helix.settings.editor.indent-guides.render = true;
-  # programs.helix.settings.editor.file-picker.hidden = false;
   programs.helix.extraPackages = with pkgs; [
     nixd
     nixfmt
@@ -178,6 +223,7 @@ in
       language-servers = [ "typescript-language-server" ];
     }
   ];
+  programs.emacs.enable = true;
   # vscode home-manager configuration
   programs.vscode.enable = true;
   programs.vscode.profiles.default.extensions = vscode-extensions-enabled;
@@ -198,6 +244,7 @@ in
     "explorer.confirmDelete" = false;
     "git.autofetch" = true;
     "explorer.confirmDragAndDrop" = false;
+    "workbench.startupEditor" = "none";
   };
   # firefox home-manager configuration
   programs.firefox.enable = true;
