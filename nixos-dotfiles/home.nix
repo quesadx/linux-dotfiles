@@ -63,7 +63,7 @@ let
     alacritty
     # xcape
     neovim
-    openclaw
+    # openclaw
   ];
 
   gnome-extensions-enabled = [
