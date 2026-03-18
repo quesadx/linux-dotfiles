@@ -62,8 +62,10 @@ let
     tmux
     alacritty
     # xcape
-    neovim
+    # neovim
     # openclaw
+    calcure
+    gnome-calendar
   ];
 
   gnome-extensions-enabled = [
@@ -162,13 +164,13 @@ in
       vim-commentary
       {
         plugin = nvim-tree-lua;
-	type = "lua";
-	config = ''
-	  require("nvim-tree").setup({
-	    view = { width = 30 },
-	    renderer = { group_empty = true },
-	  })
-	'';
+        type = "lua";
+        config = ''
+          	  require("nvim-tree").setup({
+          	    view = { width = 30 },
+          	    renderer = { group_empty = true },
+          	  })
+          	'';
       }
     ];
 
