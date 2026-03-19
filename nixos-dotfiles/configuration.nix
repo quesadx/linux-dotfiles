@@ -5,7 +5,7 @@
 }:
 
 # ============================================================================
-# VARIABLES - Centralized configuration values for easy maintenance
+# VARIABLES - Centralized configuration values
 # ============================================================================
 
 let
@@ -41,11 +41,9 @@ let
 
   gnomeExtensions = with pkgs.gnomeExtensions; [
     alphabetical-app-grid # Alphabetical app drawer
-    auto-accent-colour # Dynamic accent color
     caffeine # Prevent screen lock
     clipboard-history # Clipboard manager
     luminus-desktop # Status bar enhancements
-    top-bar-organizer # Customize GNOME top bar
     appindicator # Legacy system tray support
   ];
 
