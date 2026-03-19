@@ -75,9 +75,9 @@ in
   };
 
   # Firewall: Allow virbr0 (KVM bridge) and Synergy
-  networking.firewall.enable = true;
-  networking.firewall.trustedInterfaces = [ "virbr0" ]; # KVM virtual bridge
-  networking.firewall.allowedTCPPorts = [ 24800 ]; # Synergy port
+  # networking.firewall.enable = true;
+  # networking.firewall.trustedInterfaces = [ "virbr0" ]; # KVM virtual bridge
+  # networking.firewall.allowedTCPPorts = [ 24800 ]; # Synergy port
 
   # ---------- USERS ----------
   users.users.${userName} = {

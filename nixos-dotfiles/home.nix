@@ -78,6 +78,7 @@ let
     claude-code
     direnv
     nix-direnv # CodeAI, environment management
+    wireshark
     # Commented out packages (available if needed)
     # cisco-packet-tracer_9 xcape neovim openclaw
   ];
