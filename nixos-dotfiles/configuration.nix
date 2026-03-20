@@ -102,7 +102,7 @@ in
   };
 
   # ---------- HARDWARE ----------
-  hardware.bluetooth.enable = false;        # Disabled
+  hardware.bluetooth.enable = true;        # Disabled
   hardware.bluetooth.powerOnBoot = true;    # (kept in case needed)
   hardware.graphics.enable = true;          # GPU support
 
