@@ -154,10 +154,10 @@ in
       default = {
         config = ''
           (defsrc
-            caps                               ; Remap Caps Lock
+            caps
           )
           (defalias
-            capsec (tap-hold 100 100 esc lctl) ; Tap=Escape, Hold=Control
+            capsec (tap-hold 100 100 esc lctl)
           )
           (deflayer base
             @capsec
@@ -197,3 +197,5 @@ in
   fonts.packages = systemFonts;                   # Install system fonts
 
   system.stateVersion = "25.11";                 # NixOS version (don't change lightly)
+
+}

@@ -140,9 +140,6 @@ in
   services.ssh-agent.enable = true;   # SSH key management
   xdg.configFile = configSources;     # Link config files from ../. config/
 
-  programs.firefox.enable = true;
-
-
   # ---------- EDITOR: NEOVIM ----------
   programs.neovim = {
     enable = true;
@@ -171,23 +168,6 @@ in
       vim.opt.expandtab = true        " Use spaces instead of tabs
       vim.opt.shiftwidth = 2          " Indent width
     '';
-
-    # Vim plugins
-    plugins = with pkgs.vimPlugins; [
-      plenary-nvim                          " Lua utility library
-      vim-surround                          " Edit surrounding text
-      vim-commentary                        " Comment/uncomment lines
-      {
-        plugin = nvim-tree-lua;             " File tree sidebar
-        type = "lua";
-        config = ''
-          require("nvim-tree").setup({
-            view = { width = 30 },
-            renderer = { group_empty = true },
-          })
-        '';  # nvim-tree config end
-      }
-    ];  # plugins end
   };  # neovim end
 
   # ---------- SHELL: ZSH & BASH ----------
