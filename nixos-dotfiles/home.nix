@@ -282,6 +282,15 @@ in
     "git.autofetch" = true; # Auto-fetch from remote
   };
 
+  # VS Code keybindings for Caps Lock to Escape (for vim.vim extension)
+  programs.vscode.profiles.default.keybindings = [
+    {
+      key = "capslock";
+      command = "extension.vim_escape";
+      when = "textInputFocus && vim.active";
+    }
+  ];
+
   # ---------- BROWSER: FIREFOX ----------
   programs.firefox.enable = true; # Mozilla Firefox
   programs.firefox.profiles.${username} = {
