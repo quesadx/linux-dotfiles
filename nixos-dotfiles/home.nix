@@ -67,13 +67,13 @@ let
     onlyoffice-desktopeditors # Config editor, Office suite
     obsidian
     dbeaver-bin
-    mysql-workbench # Knowledge base, DB tools
+    mysql-workbench # DB tools
     mongodb-compass
     spotify
     tmux
-    alacritty # Database, music, terminal
     calcure
     gnome-calendar # Calendar/scheduling
+    zed-editor
     # Development tools
     claude-code
     direnv
@@ -126,6 +126,7 @@ let
     # AI & productivity
     anthropic.claude-code # Claude AI assistant
     pkief.material-icon-theme # Material icon theme
+    vscodevim.vim # Vim emulation
   ];
 
   # Firefox extensions (auto-installed)
@@ -312,6 +313,8 @@ in
       "us+altgr-intl" # US layout with AltGr international characters
     ])
   ];
+  # CAPS Lock to Escape
+  dconf.settings."org/gnome/desktop/input-sources".xkb-options = [ "caps:escape" ]; # Caps Lock -> Escape
   # Window manager keybindings (Super = Windows key)
   dconf.settings."org/gnome/desktop/wm/keybindings".maximize = [ "<Super>F" ]; # Super+F to maximize
   dconf.settings."org/gnome/desktop/wm/keybindings".minimize = [ "<Super>D" ]; # Super+D to minimize

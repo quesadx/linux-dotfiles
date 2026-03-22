@@ -147,26 +147,6 @@ in
   services.flatpak.enable = true;        # Sandboxed application support
   services.openssh.enable = true;        # SSH server
 
-  # Keyboard remapping (Caps Lock -> Escape/Control)
-  services.kanata = {
-    enable = true;
-    keyboards = {
-      default = {
-        config = ''
-          (defsrc
-            caps
-          )
-          (defalias
-            capsec (tap-hold 100 100 esc lctl)
-          )
-          (deflayer base
-            @capsec
-          )
-        '';
-      };
-    };
-  };
-
   # Disable touchscreen (ELAN901C:00) - specific to hardware
   services.udev.extraRules = ''
     ACTION=="add", ENV{ID_INPUT_TOUCHSCREEN}=="1", ATTRS{name}=="ELAN901C:00 04F3:2CBF", ENV{LIBINPUT_IGNORE_DEVICE}="1"
