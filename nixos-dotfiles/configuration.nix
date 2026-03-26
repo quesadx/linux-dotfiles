@@ -35,17 +35,6 @@ let
     dnsmasq                  # DNS/DHCP server
   ];
 
-  gnomeExtensions = with pkgs.gnomeExtensions; [
-    alphabetical-app-grid     # Alphabetical app drawer
-    auto-accent-colour        # Dynamic accent color
-    caffeine                  # Prevent screen lock
-    clipboard-history         # Clipboard manager
-    luminus-desktop           # Status bar enhancements
-    top-bar-organizer         # Customize GNOME top bar
-    appindicator              # Legacy system tray support
-    screen-vibrancy-saturation-extension
-  ];
-
   systemFonts = with pkgs; [
     ibm-plex                    # Professional sans-serif
     noto-fonts noto-fonts-color-emoji  # Unicode coverage
@@ -126,16 +115,13 @@ in
   # ---------- SECURITY ----------
   security.polkit.enable = true;               # PolicyKit for privilege escalation
   security.sudo.wheelNeedsPassword = false;    # Wheel group members don't need password
+  security.pam.services.login.enableGnomeKeyring = true;
 
   # ---------- SERVICES ----------
   services.power-profiles-daemon.enable = true;  # Power management
 
-  # GNOME Desktop Environment
-  services.displayManager.gdm.enable = true;     # GNOME Display Manager
-  services.desktopManager.gnome.enable = true;   # GNOME Desktop
-  services.gnome.core-apps.enable = false;       # Minimal GNOME (no bloat)
-  services.gnome.core-developer-tools.enable = false;
-  services.gnome.games.enable = false;
+  # GNOME keyring to store secrests for applications
+  services.gnome.gnome-keyring.enable = true;
 
   # Audio (PipeWire - modern audio server replacing PulseAudio)
   services.pipewire.enable = true;
@@ -154,15 +140,19 @@ in
   '';
 
   # ---------- ENVIRONMENT ----------
-  environment.systemPackages = corePackages ++ gnomeExtensions;
-  environment.gnome.excludePackages = with pkgs; [
-    gnome-tour         # Skip GNOME welcome tour
-    gnome-user-docs    # Exclude offline documentation
+  environment.systemPackages = corePackages;
+  environment.pathsToLink = [
+    "/share/applications"
+    "/share/xdg-desktop-portal"
   ];
 
-  nixpkgs.config.allowUnfree = true;  # Allow proprietary software
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
 
   # ---------- NIX SETTINGS ----------
+  nixpkgs.config.allowUnfree = true;  # Allow proprietary software
   nix.settings.experimental-features = [
     "nix-command"  # New nix CLI
     "flakes"       # Flakes support
