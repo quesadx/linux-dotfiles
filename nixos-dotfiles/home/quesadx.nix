@@ -136,7 +136,7 @@ let
 
   # Config file sources
   configSources = {
-    "fastfetch".source = ../.config/fastfetch; # System info tool config
+    "fastfetch".source = ../../.config/fastfetch; # System info tool config
   };
 
 in
@@ -146,7 +146,7 @@ in
 # ============================================================================
 
 {
-  imports = [ ./modules/desktop-gnome-user.nix ];
+  imports = [ ../modules/desktop-gnome-user.nix ];
 
   # Home Manager metadata
   programs.home-manager.enable = true; # Enable Home Manager as NixOS module
