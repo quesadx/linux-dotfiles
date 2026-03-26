@@ -35,17 +35,6 @@ let
     dnsmasq                  # DNS/DHCP server
   ];
 
-  gnomeExtensions = with pkgs.gnomeExtensions; [
-    alphabetical-app-grid     # Alphabetical app drawer
-    auto-accent-colour        # Dynamic accent color
-    caffeine                  # Prevent screen lock
-    clipboard-history         # Clipboard manager
-    luminus-desktop           # Status bar enhancements
-    top-bar-organizer         # Customize GNOME top bar
-    appindicator              # Legacy system tray support
-    screen-vibrancy-saturation-extension
-  ];
-
   systemFonts = with pkgs; [
     ibm-plex                    # Professional sans-serif
     noto-fonts noto-fonts-color-emoji  # Unicode coverage
@@ -60,7 +49,10 @@ in
 # ============================================================================
 
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./modules/desktop-gnome.nix
+  ];
 
   # ---------- BOOT CONFIGURATION ----------
   boot.loader.systemd-boot.enable = true;  # Use systemd-boot instead of GRUB
@@ -130,13 +122,6 @@ in
   # ---------- SERVICES ----------
   services.power-profiles-daemon.enable = true;  # Power management
 
-  # GNOME Desktop Environment
-  services.displayManager.gdm.enable = true;     # GNOME Display Manager
-  services.desktopManager.gnome.enable = true;   # GNOME Desktop
-  services.gnome.core-apps.enable = false;       # Minimal GNOME (no bloat)
-  services.gnome.core-developer-tools.enable = false;
-  services.gnome.games.enable = false;
-
   # Audio (PipeWire - modern audio server replacing PulseAudio)
   services.pipewire.enable = true;
   services.pipewire.alsa.enable = true;       # ALSA compatibility
@@ -154,12 +139,7 @@ in
   '';
 
   # ---------- ENVIRONMENT ----------
-  environment.systemPackages = corePackages ++ gnomeExtensions;
-  environment.gnome.excludePackages = with pkgs; [
-    gnome-tour         # Skip GNOME welcome tour
-    gnome-user-docs    # Exclude offline documentation
-  ];
-
+  environment.systemPackages = corePackages;
   nixpkgs.config.allowUnfree = true;  # Allow proprietary software
 
   # ---------- NIX SETTINGS ----------
