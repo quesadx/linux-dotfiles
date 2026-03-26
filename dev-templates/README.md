@@ -2,6 +2,13 @@
 
 These are flake templates for project-specific development shells.
 
+## Style expectations
+
+- Keep flakes minimal: only `buildInputs` for dependencies/tools.
+- Avoid noisy `shellHook` output (`echo`, banners, status lines).
+- Avoid convenience aliases in `shellHook`; let users define local scripts if desired.
+- Use `shellHook` only for required environment setup (e.g., `JAVA_HOME` or library paths).
+
 ## Usage
 
 ### Starting a new project

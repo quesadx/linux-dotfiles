@@ -43,6 +43,7 @@ let
     luminus-desktop           # Status bar enhancements
     top-bar-organizer         # Customize GNOME top bar
     appindicator              # Legacy system tray support
+    screen-vibrancy-saturation-extension
   ];
 
   systemFonts = with pkgs; [

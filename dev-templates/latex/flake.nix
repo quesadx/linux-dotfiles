@@ -14,10 +14,6 @@
         buildInputs = with pkgs; [
           texlive.combined.scheme-medium
         ];
-
-        shellHook = ''
-          echo "LaTeX Development Environment ready!"
-        '';
       };
     };
 }

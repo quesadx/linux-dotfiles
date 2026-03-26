@@ -15,12 +15,6 @@
           nodejs_25
           nodePackages.pnpm
         ];
-
-        shellHook = ''
-          echo "Web Development Environment"
-          alias dev="pnpm run dev"
-          alias build="pnpm run build"
-        '';
       };
     };
 }

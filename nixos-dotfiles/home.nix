@@ -80,6 +80,7 @@ let
     nix-direnv # CodeAI, environment management
     # Commented out packages (available if needed)
     # cisco-packet-tracer_9 xcape neovim openclaw
+    postman
     wireshark
   ];
 
@@ -127,6 +128,7 @@ let
     anthropic.claude-code # Claude AI assistant
     pkief.material-icon-theme # Material icon theme
     vscodevim.vim # Vim emulation
+    prisma.prisma # Prisma syntax hightlighting, formatting & more
   ];
 
   # Firefox extensions (auto-installed)
@@ -187,14 +189,7 @@ in
       set number                 " Show line numbers
       set relativenumber         " Show relative line numbers
     '';
-
-    # Lua config
-    extraLuaConfig = ''
-      vim.opt.termguicolors = true    " Enable 24-bit color
-      vim.opt.expandtab = true        " Use spaces instead of tabs
-      vim.opt.shiftwidth = 2          " Indent width
-    '';
-  }; # neovim end
+  };
 
   # ---------- SHELL: ZSH & BASH ----------
   programs.starship.enable = true; # Minimal shell prompt
@@ -280,6 +275,7 @@ in
     "git.openRepositoryInParentFolders" = "always"; # Find git repos in parents
     "git.enableSmartCommit" = true; # Smart commit behavior
     "git.autofetch" = true; # Auto-fetch from remote
+    "chat.viewSessions.orientation" = "stacked"; # Make chat sessions be stacked and not split-view
   };
 
   # VS Code keybindings for Caps Lock to Escape (for vim.vim extension)
