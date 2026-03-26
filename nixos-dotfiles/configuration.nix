@@ -31,8 +31,8 @@ let
     # System utilities and virtualization
     vim wget curl             # CLI tools
     qemu virtio-win          # QEMU/KVM virtualization
-    virt-manager steam-run   # VM management and Steam runtime
-    dnsmasq                  # DNS/DHCP server
+    steam-run   # VM management and Steam runtime
+    dnsmasq                  # DNS/DHCP server needed to use virt-manager: virsh net-start default && virsh net-autostart default
   ];
 
   systemFonts = with pkgs; [
@@ -112,9 +112,7 @@ in
   };
 
   virtualisation.libvirtd.enable = true;     # Enable KVM/QEMU
-  virtualisation.libvirtd.onBoot = "ignore";  # Don't auto-start VMs
-  virtualisation.libvirtd.onShutdown = "suspend"; # Suspend VMs on shutdown
-
+  programs.virt-manager.enable = true;
   # ---------- SECURITY ----------
   security.polkit.enable = true;               # PolicyKit for privilege escalation
   security.sudo.wheelNeedsPassword = false;    # Wheel group members don't need password
@@ -153,10 +151,7 @@ in
   nix.gc.options = "--delete-older-than 3d"; # Keep 3 days of generations
 
   # ---------- SYSTEM ----------
-  systemd.services.virt-secret-init-encryption.enable = false;  # Disable encryption init
-
   fonts.packages = systemFonts;                   # Install system fonts
-
   system.stateVersion = "25.11";                 # NixOS version (don't change lightly)
 
 }
