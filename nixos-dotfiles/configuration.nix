@@ -24,15 +24,12 @@ let
     "scanner"
     "docker"
     "kvm"
-    "libvirtd"
   ];
 
   corePackages = with pkgs; [
     # System utilities and virtualization
     vim wget curl             # CLI tools
-    qemu virtio-win          # QEMU/KVM virtualization
     steam-run   # VM management and Steam runtime
-    dnsmasq                  # DNS/DHCP server needed to use virt-manager: virsh net-start default && virsh net-autostart default
   ];
 
   systemFonts = with pkgs; [
@@ -53,6 +50,9 @@ in
     ./hardware-configuration.nix
     ./modules/desktop-gnome.nix
   ];
+
+  # ---------------- KERNEL ----------------
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   # ---------- BOOT CONFIGURATION ----------
   boot.loader.systemd-boot.enable = true;  # Use systemd-boot instead of GRUB
@@ -111,8 +111,6 @@ in
     ];
   };
 
-  virtualisation.libvirtd.enable = true;     # Enable KVM/QEMU
-  programs.virt-manager.enable = true;
   # ---------- SECURITY ----------
   security.polkit.enable = true;               # PolicyKit for privilege escalation
   security.sudo.wheelNeedsPassword = false;    # Wheel group members don't need password
@@ -152,6 +150,6 @@ in
 
   # ---------- SYSTEM ----------
   fonts.packages = systemFonts;                   # Install system fonts
-  system.stateVersion = "25.11";                 # NixOS version (don't change lightly)
+  system.stateVersion = "26.05";                 # NixOS version (don't change lightly)
 
 }

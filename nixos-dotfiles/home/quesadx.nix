@@ -165,20 +165,28 @@ in
     defaultEditor = true; # Set as default editor
     viAlias = true; # vi command alias
     vimAlias = true; # vim command alias
-
-    # LSP and static analysis tools
     extraPackages = with pkgs; [
-      ripgrep # Fast file search
-      fd # Fast directory search
-      lua-language-server # Lua LSP
-      nil # Nix LSP
-      nodePackages.typescript-language-server # TypeScript/JavaScript LSP
+      # LSP servers
+      nodePackages.typescript-language-server # TS/JS
+      nodePackages.vscode-json-languageserver # JSON
+      marksman # Markdown
+      jdt-language-server # Java
+      clang-tools # C/C++
+      nodePackages.bash-language-server # Bash
+      nixd # Nix
     ];
-
-    # Vim config
-    extraConfig = ''
-      set number                 " Show line numbers
-      set relativenumber         " Show relative line numbers
+    plugins = with pkgs.vimPlugins; [
+      nvim-lspconfig
+    ];
+    initLua = ''
+      local lspconfig = require('lspconfig')
+      local servers = {
+        'tsserver', 'jsonls', 'marksman', 'jdtls',
+        'clangd', 'pylsp', 'bashls', 'nixd'
+      }
+      for _, server in ipairs(servers) do
+        lspconfig[server].setup({})
+      end
     '';
   };
 
@@ -211,11 +219,18 @@ in
   programs.helix.settings.theme = "monokai_soda";
   programs.helix.settings.editor.lsp.display-messages = true; # Show LSP messages
   programs.helix.extraPackages = with pkgs; [
+    # LSPs
     nixd
-    nixfmt # Nix formatter & LSP
+    nixfmt
+    nodePackages.typescript-language-server # TS/JS
+    nodePackages.vscode-json-languageserver # JSON
+    marksman # Markdown
+    jdt-language-server # Java
+    clang-tools # C/C++
+    nodePackages.bash-language-server # Bash
+    # Utilities
     wl-clipboard
-    xclip # Clipboard support
-    nodePackages.typescript-language-server # TypeScript LSP
+    xclip
   ];
 
   # Language-specific settings in Helix
@@ -223,7 +238,8 @@ in
     {
       name = "nix";
       auto-format = true;
-      formatter.command = "nixfmt"; # Auto-format Nix files
+      formatter.command = "nixfmt";
+      language-servers = [ "nixd" ];
     }
     {
       name = "typescript";
@@ -234,6 +250,38 @@ in
       name = "javascript";
       auto-format = true;
       language-servers = [ "typescript-language-server" ];
+    }
+    {
+      name = "json";
+      auto-format = true;
+      language-servers = [ "vscode-json-languageserver" ];
+    }
+    {
+      name = "markdown";
+      language-servers = [ "marksman" ];
+    }
+    {
+      name = "java";
+      language-servers = [ "jdt-language-server" ];
+    }
+    {
+      name = "c";
+      auto-format = true;
+      language-servers = [ "clangd" ];
+    }
+    {
+      name = "cpp";
+      auto-format = true;
+      language-servers = [ "clangd" ];
+    }
+    {
+      name = "python";
+      auto-format = true;
+      language-servers = [ "pylsp" ];
+    }
+    {
+      name = "bash";
+      language-servers = [ "bash-language-server" ];
     }
   ];
 
