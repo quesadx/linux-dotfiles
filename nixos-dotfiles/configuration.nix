@@ -54,6 +54,12 @@ in
   # ---------------- KERNEL ----------------
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
+  # ---------- SWAP CONFIGURATION ----------
+  zramSwap.enable = true; # Creates a zram block device and uses it as a swap device
+  zramSwap.memoryPercent = 75; # Use 75% of available RAM for zram swap (adjust as needed)
+  zramSwap.algorithm = "lz4"; # Fast compression algorithm
+  systemd.oomd.enable = true; # Enable OOMD to manage out-of-memory situations effectively
+
   # ---------- BOOT CONFIGURATION ----------
   boot.loader.systemd-boot.enable = true;  # Use systemd-boot instead of GRUB
   boot.loader.efi.canTouchEfiVariables = true;
@@ -117,6 +123,7 @@ in
 
   # ---------- SERVICES ----------
   services.power-profiles-daemon.enable = true;  # Power management
+  services.fwupd.enable = true;
 
   # Audio (PipeWire - modern audio server replacing PulseAudio)
   services.pipewire.enable = true;

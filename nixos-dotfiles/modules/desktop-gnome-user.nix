@@ -47,6 +47,8 @@
   dconf.settings."org/gnome/desktop/wm/keybindings".maximize = [ "<Super>F" ]; # Super+F to maximize
   dconf.settings."org/gnome/desktop/wm/keybindings".minimize = [ "<Super>D" ]; # Super+D to minimize
   dconf.settings."org/gnome/desktop/wm/keybindings".close = [ "<Super>Q" ]; # Super+Q to close
+  dconf.settings."org/gnome/desktop/wm/keybindings".switch-to-workspace-left = [ "<Super>h" ]; # Super+H to move workspace left
+  dconf.settings."org/gnome/desktop/wm/keybindings".switch-to-workspace-right = [ "<Super>l" ]; # Super+L to move workspace right
 
   # Power & system settings
   dconf.settings."org/gnome/settings-daemon/plugins/power".power-button-action = "nothing"; # Power button does nothing

@@ -63,25 +63,23 @@ let
     papers
     showtime
     rnote # System info, note-taking
-    dconf-editor
-    onlyoffice-desktopeditors # Config editor, Office suite
+    dconf-editor # Config editor
+    onlyoffice-desktopeditors # Office suite
     obsidian
     dbeaver-bin
     mysql-workbench # DB tools
     mongodb-compass
     spotify
-    tmux
-    calcure
     gnome-calendar # Calendar/scheduling
     zed-editor
     # Development tools
     claude-code
     direnv
     nix-direnv # CodeAI, environment management
+    wireshark
+    postman
     # Commented out packages (available if needed)
     # cisco-packet-tracer_9 xcape neovim openclaw
-    postman
-    wireshark
   ];
 
   # VS Code extensions
@@ -95,28 +93,28 @@ let
     vscjava.vscode-java-pack # Java
     james-yu.latex-workshop # LaTeX
     bbenoist.nix # Nix syntax
-    yoavbls.pretty-ts-errors # TypeScript errors
+    # yoavbls.pretty-ts-errors # TypeScript errors
     # Git & project tools
-    eamodio.gitlens # Git integration
-    github.vscode-github-actions # GitHub Actions
-    cweijan.vscode-database-client2 # Database client
+    # eamodio.gitlens # Git integration
+    # github.vscode-github-actions # GitHub Actions
+    # cweijan.vscode-database-client2 # Database client
     # Development utilities
     ms-vscode.live-server # Live preview
     christian-kohler.path-intellisense # Path autocompletion
     christian-kohler.npm-intellisense # npm autocompletion
     mikestead.dotenv # .env support
-    dbaeumer.vscode-eslint # ESLint
-    usernamehw.errorlens # Inline error display
+    # dbaeumer.vscode-eslint # ESLint
+    # usernamehw.errorlens # Inline error display
     formulahendry.auto-rename-tag # Auto tag rename
     formulahendry.auto-close-tag # Auto close HTML tags
     shardulm94.trailing-spaces # Highlight trailing spaces
-    oderwat.indent-rainbow # Rainbow indentation
-    ms-azuretools.vscode-containers # Container support
+    #oderwat.indent-rainbow # Rainbow indentation
+    # ms-azuretools.vscode-containers # Container support
     mongodb.mongodb-vscode # MongoDB utility
     # AI & productivity
-    anthropic.claude-code # Claude AI assistant
+    # anthropic.claude-code # Claude AI assistant
     pkief.material-icon-theme # Material icon theme
-    vscodevim.vim # Vim emulation
+    # vscodevim.vim # Vim emulation
     prisma.prisma # Prisma syntax hightlighting, formatting & more
   ];
 
@@ -165,29 +163,6 @@ in
     defaultEditor = true; # Set as default editor
     viAlias = true; # vi command alias
     vimAlias = true; # vim command alias
-    extraPackages = with pkgs; [
-      # LSP servers
-      nodePackages.typescript-language-server # TS/JS
-      nodePackages.vscode-json-languageserver # JSON
-      marksman # Markdown
-      jdt-language-server # Java
-      clang-tools # C/C++
-      nodePackages.bash-language-server # Bash
-      nixd # Nix
-    ];
-    plugins = with pkgs.vimPlugins; [
-      nvim-lspconfig
-    ];
-    initLua = ''
-      local lspconfig = require('lspconfig')
-      local servers = {
-        'tsserver', 'jsonls', 'marksman', 'jdtls',
-        'clangd', 'pylsp', 'bashls', 'nixd'
-      }
-      for _, server in ipairs(servers) do
-        lspconfig[server].setup({})
-      end
-    '';
   };
 
   # ---------- SHELL: ZSH & BASH ----------
@@ -284,9 +259,6 @@ in
       language-servers = [ "bash-language-server" ];
     }
   ];
-
-  # ---------- OTHER EDITORS ----------
-  programs.emacs.enable = true; # GNU Emacs
 
   # ---------- EDITOR: VS CODE ----------
   programs.vscode.enable = true; # Microsoft Visual Studio Code
