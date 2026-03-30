@@ -1,58 +1,78 @@
-# Development Environment Templates
+# Development Environment Flake Library
 
-These are flake templates for project-specific development shells.
+This folder is a small library of focused `flake.nix` templates.
+Pick the template closest to your project context and copy it as your project `flake.nix`.
 
-## Style expectations
+## Design Rules
 
-- Keep flakes minimal: only `buildInputs` for dependencies/tools.
-- Avoid noisy `shellHook` output (`echo`, banners, status lines).
-- Avoid convenience aliases in `shellHook`; let users define local scripts if desired.
-- Use `shellHook` only for required environment setup (e.g., `JAVA_HOME` or library paths).
+- Keep templates minimal and explicit.
+- Use `shellHook` only when required for environment variables.
+- Avoid aliases, banners, and noisy shell output.
+- Prefer one clear use case per template.
+
+## Template Catalog
+
+### C++
+
+- `cpp/flake.nix`: general native development (GCC + CMake + debugging).
+- `cpp/cmake-ninja/flake.nix`: modern CMake with Ninja and ccache.
+- `cpp/clang-llvm/flake.nix`: Clang/LLVM toolchain with LLDB and clang-tools.
+
+### Java
+
+- `java/flake.nix`: Maven + JDK 21 with JavaFX support.
+- `java/gradle/flake.nix`: Gradle + JDK 21.
+- `java/spring/flake.nix`: Spring service baseline (JDK 21 + Gradle + Maven + curl/jq).
+
+### Python
+
+- `python/flake.nix`: general Python app/dev tooling.
+- `python/fastapi/flake.nix`: FastAPI backend development.
+- `python/data-science/flake.nix`: notebooks and common data-science stack.
+
+### Web
+
+- `web/flake.nix`: Node + pnpm + TypeScript baseline.
+- `web/react-vite/flake.nix`: React and Vite workflow.
+- `web/nextjs/flake.nix`: Next.js baseline.
+- `web/api-prisma/flake.nix`: Node API with Prisma/OpenSSL native deps.
+- `web/gestion-del-fin/flake.nix`: existing project-specific API stack template.
+
+### LaTeX
+
+- `latex/flake.nix`: medium TeX Live distribution.
+- `latex/full/flake.nix`: full TeX Live + `latexmk` + `biber`.
 
 ## Usage
 
-### Starting a new project
+### 1) Create and enter project
 
 ```bash
-# 1. Create your project directory
-mkdir ~/my-new-project
-cd ~/my-new-project
+mkdir ~/my-project
+cd ~/my-project
+```
 
-# 2. Copy the template you need
-cp ~/dotfiles/dev-templates/cpp/flake.nix .
-# OR
-cp ~/dotfiles/dev-templates/java/flake.nix .
-# OR
-cp ~/dotfiles/dev-templates/python/flake.nix .
-# OR
-cp ~/dotfiles/dev-templates/web/flake.nix .
+### 2) Copy template
 
-# 3. Enable automatic environment activation
+```bash
+cp ~/dotfiles/dev-templates/python/fastapi/flake.nix ./flake.nix
+```
+
+### 3) Optional direnv activation
+
+```bash
 echo "use flake" > .envrc
 direnv allow
-
-# That's it! The environment auto-loads when you enter the directory
 ```
 
-## Available Templates
-
-- **cpp/** - C++ with GCC, CMake, GDB
-- **java/** - Java 21 + JavaFX + Maven
-- **python/** - Python 3.12 + venv + common packages
-- **web/** - Node.js 22 + pnpm + TypeScript
-
-## Manual activation (without direnv)
+### 4) Manual activation
 
 ```bash
-# Enter the development shell
 nix develop
-
-# Exit the shell
-exit
 ```
 
-## Tips
+## Recommended Conventions
 
-- Commit `flake.nix` and `flake.lock` to your git repo
-- DON'T commit `.direnv/` or `.envrc` (add to .gitignore)
-- Customize the flake.nix for each project's specific needs
+- Commit `flake.nix` and `flake.lock`.
+- Ignore `.direnv/`.
+- Start from the closest template, then add only project-required packages.

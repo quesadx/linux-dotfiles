@@ -1,20 +1,19 @@
 {
-  description = "Web template: project-specific API stack (OpenSSL + Prisma)";
+  description = "Web template: Node API + Prisma";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
-  outputs =
-    { self, nixpkgs }:
+  outputs = { self, nixpkgs }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
+    in {
       devShells.${system}.default = pkgs.mkShell {
         buildInputs = with pkgs; [
-          nodejs_20
+          nodejs
+          nodePackages.pnpm
           openssl
           pkg-config
           prisma-engines_7

@@ -1,5 +1,5 @@
 {
-  description = "Java template: Maven + JavaFX";
+  description = "Python template: Data science";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -9,18 +9,17 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      jdk = pkgs.jdk21.override { enableJavaFX = true; };
     in {
       devShells.${system}.default = pkgs.mkShell {
         buildInputs = with pkgs; [
-          jdk
-          maven
-          javaPackages.openjfx21
+          python3
+          python3Packages.jupyterlab
+          python3Packages.numpy
+          python3Packages.pandas
+          python3Packages.matplotlib
+          python3Packages.seaborn
+          python3Packages.scikit-learn
         ];
-
-        shellHook = ''
-          export JAVA_HOME="${jdk}"
-        '';
       };
     };
 }

@@ -1,5 +1,5 @@
 {
-  description = "Java template: Maven + JavaFX";
+  description = "Web template: Next.js";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -9,18 +9,13 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      jdk = pkgs.jdk21.override { enableJavaFX = true; };
     in {
       devShells.${system}.default = pkgs.mkShell {
         buildInputs = with pkgs; [
-          jdk
-          maven
-          javaPackages.openjfx21
+          nodejs
+          nodePackages.pnpm
+          nodePackages.typescript
         ];
-
-        shellHook = ''
-          export JAVA_HOME="${jdk}"
-        '';
       };
     };
 }

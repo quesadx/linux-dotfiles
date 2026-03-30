@@ -1,5 +1,5 @@
 {
-  description = "Web Development Environment: Node.js";
+  description = "Web template: Node + pnpm + TypeScript";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -12,8 +12,9 @@
     in {
       devShells.${system}.default = pkgs.mkShell {
         buildInputs = with pkgs; [
-          nodejs_25
+          nodejs
           nodePackages.pnpm
+          nodePackages.typescript
         ];
       };
     };

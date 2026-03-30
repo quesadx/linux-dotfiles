@@ -1,5 +1,5 @@
 {
-  description = "C++ Development Environment";
+  description = "C++ template: general native development";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";

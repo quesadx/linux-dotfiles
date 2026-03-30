@@ -1,5 +1,5 @@
 {
-  description = "Java template: Maven + JavaFX";
+  description = "LaTeX template: full distribution";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -9,18 +9,13 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      jdk = pkgs.jdk21.override { enableJavaFX = true; };
     in {
       devShells.${system}.default = pkgs.mkShell {
         buildInputs = with pkgs; [
-          jdk
-          maven
-          javaPackages.openjfx21
+          texlive.combined.scheme-full
+          biber
+          latexmk
         ];
-
-        shellHook = ''
-          export JAVA_HOME="${jdk}"
-        '';
       };
     };
 }

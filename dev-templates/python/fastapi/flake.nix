@@ -1,5 +1,5 @@
 {
-  description = "Java template: Maven + JavaFX";
+  description = "Python template: FastAPI";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -9,18 +9,17 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      jdk = pkgs.jdk21.override { enableJavaFX = true; };
     in {
       devShells.${system}.default = pkgs.mkShell {
         buildInputs = with pkgs; [
-          jdk
-          maven
-          javaPackages.openjfx21
+          python3
+          uv
+          python3Packages.fastapi
+          python3Packages.uvicorn
+          python3Packages.pytest
+          python3Packages.httpx
+          python3Packages.ruff
         ];
-
-        shellHook = ''
-          export JAVA_HOME="${jdk}"
-        '';
       };
     };
 }

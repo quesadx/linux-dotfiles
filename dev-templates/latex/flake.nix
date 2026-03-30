@@ -1,5 +1,5 @@
 {
-  description = "LaTeX development environment";
+  description = "LaTeX template: medium distribution";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
