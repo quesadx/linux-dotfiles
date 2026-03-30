@@ -22,14 +22,13 @@
 
   outputs = { self, nixpkgs, home-manager, ... }:
     let
-      system = "x86_64-linux"; # Architecture
-      hostname = "nixos";       # Machine name
-      username = "quesadx";     # Primary user
+      shared = import ./lib/shared.nix;
     in
 
     {
-      nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
-        inherit system;
+      nixosConfigurations.${shared.hostname} = nixpkgs.lib.nixosSystem {
+        inherit (shared) system;
+        specialArgs = { inherit shared; };
 
         modules = [
           ./configuration.nix  # System-level configuration
@@ -37,7 +36,8 @@
           home-manager.nixosModules.home-manager {  # User environment
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.${username} = import ./home/quesadx.nix;
+            home-manager.extraSpecialArgs = { inherit shared; };
+            home-manager.users.${shared.username} = import ./home/${shared.username}.nix;
           }
         ];
       };

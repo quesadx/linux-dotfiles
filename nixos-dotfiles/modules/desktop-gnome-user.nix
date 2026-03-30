@@ -10,68 +10,73 @@
   # ---------- GNOME CONFIGURATION ----------
   dconf.enable = true; # GNOME settings (dconf) management
 
-  # GNOME Shell extensions
-  dconf.settings."org/gnome/shell".enabled-extensions = [
-    "AlphabeticalAppGrid@stuarthayhurst" # Alphabetical app grid
-    "appindicatorsupport@rgcjonas.gmail.com" # System tray
-    "auto-accent-colour@Wartybix" # Dynamic accent colors
-    "caffeine@patapon.info" # Prevent screen lock
-    "clipboard-history@alexsaveau.dev" # Clipboard history
-    "luminus-desktop@dikasp.gitlab" # Status bar tweaks
-    "top-bar-organizer@julian.gse.jsts.xyz" # Customize top bar
-  ];
+  dconf.settings = {
+    # GNOME Shell extensions
+    "org/gnome/shell".enabled-extensions = [
+      "AlphabeticalAppGrid@stuarthayhurst" # Alphabetical app grid
+      "appindicatorsupport@rgcjonas.gmail.com" # System tray
+      "auto-accent-colour@Wartybix" # Dynamic accent colors
+      "caffeine@patapon.info" # Prevent screen lock
+      "clipboard-history@alexsaveau.dev" # Clipboard history
+      "luminus-desktop@dikasp.gitlab" # Status bar tweaks
+      "top-bar-organizer@julian.gse.jsts.xyz" # Customize top bar
+    ];
 
-  # Extension: Alphabetical App Grid
-  dconf.settings."org/gnome/shell/extensions/alphabetical-app-grid".folder-order-position = "start";
+    # Extension: Alphabetical App Grid
+    "org/gnome/shell/extensions/alphabetical-app-grid".folder-order-position = "start";
 
-  # Extension: AppIndicator (System Tray)
-  dconf.settings."org/gnome/shell/extensions/appindicator".legacy-tray-enabled = false;
+    # Extension: AppIndicator (System Tray)
+    "org/gnome/shell/extensions/appindicator".legacy-tray-enabled = false;
 
-  # Extension: Caffeine (Prevent lock)
-  dconf.settings."org/gnome/shell/extensions/caffeine".restore-state = true; # Restore after sleep
-  dconf.settings."org/gnome/shell/extensions/caffeine".enable-fullscreen = false; # Off in fullscreen
+    # Extension: Caffeine (Prevent lock)
+    "org/gnome/shell/extensions/caffeine" = {
+      restore-state = true; # Restore after sleep
+      enable-fullscreen = false; # Off in fullscreen
+    };
 
-  # Input method settings
-  dconf.settings."org/gnome/desktop/input-sources".show-all-sources = true; # Show all keyboard layouts
-  dconf.settings."org/gnome/desktop/input-sources".sources = [
-    (lib.gvariant.mkTuple [
-      "xkb" # Keyboard type
-      "us+altgr-intl" # US layout with AltGr international characters
-    ])
-  ];
+    # Input method settings
+    "org/gnome/desktop/input-sources" = {
+      show-all-sources = true; # Show all keyboard layouts
+      sources = [
+        (lib.gvariant.mkTuple [
+          "xkb" # Keyboard type
+          "us+altgr-intl" # US layout with AltGr international characters
+        ])
+      ];
+      xkb-options = [ "caps:escape" ]; # Caps Lock -> Escape
+    };
 
-  # CAPS Lock to Escape
-  dconf.settings."org/gnome/desktop/input-sources".xkb-options = [ "caps:escape" ]; # Caps Lock -> Escape
+    # Window manager keybindings (Super = Windows key)
+    "org/gnome/desktop/wm/keybindings" = {
+      maximize = [ "<Super>F" ]; # Super+F to maximize
+      minimize = [ "<Super>D" ]; # Super+D to minimize
+      close = [ "<Super>Q" ]; # Super+Q to close
+      switch-to-workspace-left = [ "<Super>h" ]; # Super+H to move workspace left
+      switch-to-workspace-right = [ "<Super>l" ]; # Super+L to move workspace right
+    };
 
-  # Window manager keybindings (Super = Windows key)
-  dconf.settings."org/gnome/desktop/wm/keybindings".maximize = [ "<Super>F" ]; # Super+F to maximize
-  dconf.settings."org/gnome/desktop/wm/keybindings".minimize = [ "<Super>D" ]; # Super+D to minimize
-  dconf.settings."org/gnome/desktop/wm/keybindings".close = [ "<Super>Q" ]; # Super+Q to close
-  dconf.settings."org/gnome/desktop/wm/keybindings".switch-to-workspace-left = [ "<Super>h" ]; # Super+H to move workspace left
-  dconf.settings."org/gnome/desktop/wm/keybindings".switch-to-workspace-right = [ "<Super>l" ]; # Super+L to move workspace right
+    # Power & system settings
+    "org/gnome/settings-daemon/plugins/power".power-button-action = "nothing"; # Power button does nothing
 
-  # Power & system settings
-  dconf.settings."org/gnome/settings-daemon/plugins/power".power-button-action = "nothing"; # Power button does nothing
+    # Media key bindings (for folder/browser/settings access)
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      home = [ "<Super>e" ]; # Super+E = File manager
+      www = [ "<Super>b" ]; # Super+B = Browser
+      control-center = [ "<Super>i" ]; # Super+I = Settings
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+      ];
+    };
 
-  # Media key bindings (for folder/browser/settings access)
-  dconf.settings."org/gnome/settings-daemon/plugins/media-keys".home = [ "<Super>e" ]; # Super+E = File manager
-  dconf.settings."org/gnome/settings-daemon/plugins/media-keys".www = [ "<Super>b" ]; # Super+B = Browser
-  dconf.settings."org/gnome/settings-daemon/plugins/media-keys".control-center = [ "<Super>i" ]; # Super+I = Settings
+    # custom0: Super+T = Launch Terminal
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      binding = "<Super>t";
+      command = "kgx";
+      name = "gnome-console";
+    };
 
-  # Custom media keybinding (terminal launcher)
-  dconf.settings."org/gnome/settings-daemon/plugins/media-keys".custom-keybindings = [
-    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-  ];
-
-  # custom0: Super+T = Launch Terminal
-  dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".binding =
-    "<Super>t";
-  dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".command =
-    "kgx";
-  dconf.settings."org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0".name =
-    "gnome-console";
-
-  # Mouse & accessibility
-  dconf.settings."org/gnome/desktop/peripherals/mouse".accel-profile = "flat"; # No mouse acceleration
-  dconf.settings."org/gnome/desktop/sound".event-sounds = false; # Disable system sounds
+    # Mouse & accessibility
+    "org/gnome/desktop/peripherals/mouse".accel-profile = "flat"; # No mouse acceleration
+    "org/gnome/desktop/sound".event-sounds = false; # Disable system sounds
+  };
 }

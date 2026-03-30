@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  shared,
   ...
 }:
 
@@ -9,11 +10,7 @@
 # ============================================================================
 
 let
-  userName = "quesadx";
-  userDescription = "Matteo Quesada";
-  timeZone = "America/Costa_Rica";
-  locale = "en_US.UTF-8";             # Display language
-  regionalLocale = "es_CR.UTF-8";     # Regional format (numbers, dates, etc.)
+  inherit (shared) username userDescription hostname timeZone locale regionalLocale;
 
   userGroups = [
     "networkmanager"
@@ -66,7 +63,7 @@ in
 
   # ---------- NETWORKING ----------
   networking = {
-    hostName = "nixos";
+    hostName = hostname;
     networkmanager.enable = true;  # Use NetworkManager for system networking
   };
 
@@ -76,7 +73,7 @@ in
   networking.firewall.allowedTCPPorts = [ 24800 ];       # Synergy port
 
   # ---------- USERS ----------
-  users.users.${userName} = {
+  users.users.${username} = {
     isNormalUser = true;
     description = userDescription;
     extraGroups = userGroups;  # Add user to specified groups

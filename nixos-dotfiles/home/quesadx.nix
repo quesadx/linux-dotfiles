@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  shared,
   ...
 }:
 
@@ -10,8 +11,8 @@
 # ============================================================================
 
 let
-  username = "quesadx";
-  homeDir = "/home/quesadx";
+  username = shared.username;
+  homeDir = "/home/${username}";
 
   # Git user information
   gitUser = {
