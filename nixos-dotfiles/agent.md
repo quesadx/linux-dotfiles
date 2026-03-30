@@ -1,31 +1,43 @@
 # AGENT.md
 
-This repository contains my personal NixOS configuration (flake-based) and home manager profiles.
+## Quick Context
+- Repo type: personal flake-based NixOS + Home Manager dotfiles.
+- Desktop target: GNOME.
+- Source of truth: this repo only.
 
-Root files:
-- `flake.nix` (system + home flake outputs)
-- `configuration.nix` (top-level host configuration)
-- `hardware-configuration.nix`
-- `home/quesadx.nix` (home-manager settings)
-- `modules/desktop-gnome.nix`, `modules/desktop-gnome-user.nix`
+## High-Signal File Map
+- `flake.nix`: flake inputs/outputs, host wiring.
+- `configuration.nix`: system-level host config.
+- `home/quesadx.nix`: user-level Home Manager config.
+- `modules/desktop-gnome.nix`: GNOME system module.
+- `modules/desktop-gnome-user.nix`: GNOME user module.
+- `hardware-configuration.nix`: hardware-specific (edit only when needed).
 
-Workflow:
-1. Treat this repository as single source of truth for system state.
-2. Implement changes by editing Nix files, then rebuild with `sudo nixos-rebuild switch --flake .#<hostname>` (or `home-manager switch` for user bits) in this repo path.
-3. Do not suggest manual imperative changes (e.g., `apt install`, `pip install --user`, direct `/etc` edits) unless there is a clear temporary troubleshooting note and the permanent fix is in Nix.
+## Non-Negotiables
+- Keep everything declarative and reproducible.
+- Prefer editing existing Nix files over introducing new abstraction.
+- Keep style simple: explicit attrsets, minimal indirection.
+- Do not add secrets or machine-ephemeral state to tracked files.
+- Do not propose imperative system drift (`apt`, manual `/etc` edits, etc.) as final solution.
 
-Agent-level constraints:
-- Prefer explicit Nix expressions and minimal dependencies.
-- Keep config consistent with existing style (simple attribute sets, avoid complex `mkIf`/`lib.concatMap` unless needed).
-- Avoid exposing secrets; if a secret is required, reference a stable secret-management fallback (e.g. `builtins.readFile ../secrets/whatever` pattern) and note `not committed`.
-- For commands, use `nix flake show`, `nixos-rebuild`, `home-manager`, `nix build` semantics.
+## Preferred Change Style
+- Small, explicit diffs.
+- Reuse existing option names and structure.
+- Avoid complex `lib` patterns unless clearly necessary.
+- If a secret is required, reference a non-committed file pattern (for example `builtins.readFile ../secrets/<name>`), and state it is not committed.
 
-Assume the system target is NixOS with GNOME desktop as configured in this repo.
-Use the repository structure and option names already present.
+## Commands To Use
+- Inspect/evaluate: `nix flake show`, `nix build`.
+- Apply system changes: `sudo nixos-rebuild switch --flake .#<hostname>`.
+- Apply user-only changes: `home-manager switch`.
 
-Goals:
-- Keep the system reproducible and declarative.
-- Keep the configuration simple, readable and aligned with existing file organization.
-- Prefer minimal explicit configuration over complex abstraction layers.
+## Agent Execution Checklist
+1. Read the relevant file(s) first; preserve existing structure.
+2. Implement the smallest correct declarative change.
+3. Validate with `nix flake show` (or relevant build command).
+4. Report what changed and why, briefly.
 
-No secrets or machine-specific ephemeral state in repo content unless scoped to local inclusion files not tracked.
+## Goal Priority
+1. Correctness and reproducibility.
+2. Readability and maintainability.
+3. Minimal complexity.
