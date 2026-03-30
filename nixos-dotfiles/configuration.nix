@@ -18,7 +18,6 @@ let
     "video"
     "render"
     "audio"
-    "scanner"
     "docker"
     "kvm"
   ];
