@@ -71,7 +71,6 @@ let
     mysql-workbench # DB tools
     mongodb-compass
     spotify
-    gnome-calendar # Calendar/scheduling
     zed-editor
     # Development tools
     claude-code
