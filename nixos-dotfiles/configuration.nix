@@ -149,7 +149,7 @@ in
   nix.settings.auto-optimise-store = true;                              # Deduplicate store files
   nix.gc.automatic = true;                                              # Automatic garbage collection
   nix.gc.dates = "weekly";
-  nix.gc.options = "--delete-older-than 3d";                            # Keep 3 days of generations
+  nix.gc.options = "--delete-older-than 5d";                            # Keep 3 days of generations
 
   # ---------- SYSTEM ----------
   fonts.packages = systemFonts;                                         # Install system fonts
