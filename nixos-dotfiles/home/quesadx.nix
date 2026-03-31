@@ -192,7 +192,13 @@ in
   # ---------- EDITOR: HELIX ----------
   programs.helix.enable = true;                                         # Modern terminal editor
   programs.helix.settings.theme = "base16_default";
-  programs.helix.settings.editor.lsp.display-messages = true;           # Show LSP messages
+  programs.helix.settings.editor = {
+    lsp.display-messages = true;                                        # Show LSP messages
+    lsp.display-inlay-hints = true;                                     # Show typescript inlay hints
+    auto-info = true;                                                   # Show auto-documentation
+    completion-timeout = 50;                                            # Show completion hints faster
+    idle-timeout = 50;                                                  # Show hover docs faster
+  };
   programs.helix.extraPackages = with pkgs; [
     # LSPs
     nixd
@@ -209,6 +215,27 @@ in
   ];
 
   # Language-specific settings in Helix
+  programs.helix.languages.language-server.typescript-language-server.config = {
+    typescript.inlayHints = {
+      includeInlayEnumMemberValueHints = true;
+      includeInlayFunctionLikeReturnTypeHints = true;
+      includeInlayFunctionParameterTypeHints = true;
+      includeInlayParameterNameHints = "all";
+      includeInlayParameterNameHintsWhenArgumentMatchesName = true;
+      includeInlayPropertyDeclarationTypeHints = true;
+      includeInlayVariableTypeHints = true;
+    };
+    javascript.inlayHints = {
+      includeInlayEnumMemberValueHints = true;
+      includeInlayFunctionLikeReturnTypeHints = true;
+      includeInlayFunctionParameterTypeHints = true;
+      includeInlayParameterNameHints = "all";
+      includeInlayParameterNameHintsWhenArgumentMatchesName = true;
+      includeInlayPropertyDeclarationTypeHints = true;
+      includeInlayVariableTypeHints = true;
+    };
+  };
+
   programs.helix.languages.language = [
     {
       name = "nix";
