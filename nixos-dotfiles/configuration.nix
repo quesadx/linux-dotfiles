@@ -26,6 +26,7 @@ let
     # System utilities and virtualization
     vim wget curl                                                       # CLI tools
     steam-run                                                           # VM management and Steam runtime
+    tldr                                                                # Community-driven man pages
   ];
 
   systemFonts = with pkgs; [

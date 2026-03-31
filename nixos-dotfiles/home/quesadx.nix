@@ -191,7 +191,7 @@ in
 
   # ---------- EDITOR: HELIX ----------
   programs.helix.enable = true;                                         # Modern terminal editor
-  programs.helix.settings.theme = "monokai_soda";
+  programs.helix.settings.theme = "base16_default";
   programs.helix.settings.editor.lsp.display-messages = true;           # Show LSP messages
   programs.helix.extraPackages = with pkgs; [
     # LSPs
