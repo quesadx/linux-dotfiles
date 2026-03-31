@@ -189,6 +189,9 @@ in
   programs.ssh.enableDefaultConfig = false;                             # Manual SSH config
   programs.ssh.matchBlocks."*".addKeysToAgent = "yes";                  # Auto-add keys
 
+  # ---------- EDITOR: FRESH ----------
+  programs.fresh-editor.enable = true;                                         # Fresh terminal file manager
+
   # ---------- EDITOR: HELIX ----------
   programs.helix.enable = true;                                         # Modern terminal editor
   programs.helix.settings.theme = "base16_default";
