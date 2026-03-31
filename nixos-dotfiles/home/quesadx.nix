@@ -195,9 +195,8 @@ in
   programs.helix.settings.editor = {
     lsp.display-messages = true;                                        # Show LSP messages
     lsp.display-inlay-hints = true;                                     # Show typescript inlay hints
-    auto-info = true;                                                   # Show auto-documentation
-    completion-timeout = 50;                                            # Show completion hints faster
-    idle-timeout = 50;                                                  # Show hover docs faster
+    auto-info = false;                                                  # Disable automatic signature/doc popups
+    completion-timeout = 50;                                            # Keep completion hints fast
   };
   programs.helix.extraPackages = with pkgs; [
     # LSPs
