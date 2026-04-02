@@ -82,7 +82,7 @@ let
 
   # ─── CONFIG FILE SOURCES ───────────────────────────────────────────────────
   configSources = {
-    "fastfetch".source = ../../.config/fastfetch;
+    # "fastfetch".source = ../../.config/fastfetch;
     "sway".source = ../../.config/sway;
     "waybar".source = ../../.config/waybar;
     "foot".source = ../../.config/foot;
