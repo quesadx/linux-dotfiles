@@ -44,7 +44,7 @@ let
     dbeaver-bin mysql-workbench mongodb-compass wireshark postman zed-editor
     claude-code direnv nix-direnv
     fastfetch
-    alacritty foot wmenu waybar swayidle swaylock swaybg wl-clipboard pulsemixer btop
+    alacritty foot wmenu waybar swayidle swaylock swaybg wl-clipboard pulsemixer btop yazi # xfce.thunar xfce.thunar-volman gvfs
   ];
 
   # ─── VS CODE EXTENSIONS ────────────────────────────────────────────────────
@@ -107,7 +107,10 @@ in
 
   # ─── SYSTEM SERVICES ───────────────────────────────────────────────────────
   services.ssh-agent.enable = true;
-  services.kanshi.enable = true;
+  services.kanshi.enable = true; # Display configuration daemon for Wayland
+  services.udiskie.enable = true; # Automounting of external drives
+  # services.gvfs.enable = true;
+  # services.tumbler.enable = true; # thumbnail previews
   xdg.configFile = configSources;
 
   # ─── EDITOR: NEOVIM ────────────────────────────────────────────────────────
