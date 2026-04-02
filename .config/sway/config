@@ -1,7 +1,3 @@
-# sway config — see man 5 sway
-
-# include ~/.config/sway/outputs
-
 set $mod Mod4
 set $left h
 set $down j
@@ -17,7 +13,7 @@ exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 
 # autostart
-exec swaybg -i ~/dotfiles/wallpapers/gruvbox_nixos.jpg -m fill
+exec swaybg -i ~/dotfiles/wallpapers/sway.png -m fill
 exec waybar
 
 # appearance
@@ -36,10 +32,10 @@ floating_modifier $mod normal
 
 # --- keybinds ---
 bindsym $mod+Return exec $term
-bindsym $mod+Shift+f exec $file_manager
-bindsym $mod+Shift+b exec $browser
+bindsym $mod+f exec $file_manager
+bindsym $mod+b exec $browser
 bindsym $mod+d exec $menu
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+e exec swaymsg exit
 
@@ -47,15 +43,15 @@ bindsym $mod+minus move scratchpad
 bindsym $mod+equal scratchpad show
 
 bindsym $mod+f fullscreen
-bindsym $mod+Shift+space floating toggle
-bindsym $mod+space focus mode_toggle
+bindsym $mod+space floating toggle
+# bindsym $mod+space focus mode_toggle
 bindsym $mod+p focus parent
 bindsym $mod+c focus child
 
 bindsym $mod+semicolon splitv
 bindsym $mod+apostrophe splith
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
 # focus
