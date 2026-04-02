@@ -39,7 +39,8 @@
     "on-click": "foot btop"
   },
   "memory": {
-    "format": "memory: {}%"
+    "format": "memory: {}%",
+    "on-click": "foot btop"
   },
   "temperature": {
     "critical-threshold": 80,

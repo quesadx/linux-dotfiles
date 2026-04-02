@@ -26,6 +26,7 @@ let
     vim wget curl   # CLI tools
     steam-run       # VM management and Steam runtime
     tldr            # Community-driven man pages
+    wdisplays       # Display configuration utility for Wayland (GUI)
   ];
 
   # ─── SYSTEM FONTS ────────────────────────────────────────────────────────
@@ -113,6 +114,7 @@ in
 
   # ─── SECURITY ────────────────────────────────────────────────────────────
   security.polkit.enable = true;
+  security.rtkit.enable = true;
   security.sudo.wheelNeedsPassword = false;
 
   # ─── CORE SERVICES ────────────────────────────────────────────────────────

@@ -44,7 +44,7 @@ let
     dbeaver-bin mysql-workbench mongodb-compass wireshark postman zed-editor
     claude-code direnv nix-direnv
     fastfetch
-    alacritty foot wmenu waybar swayidle swaylock swaybg wl-clipboard pulsemixer
+    alacritty foot wmenu waybar swayidle swaylock swaybg wl-clipboard pulsemixer btop
   ];
 
   # ─── VS CODE EXTENSIONS ────────────────────────────────────────────────────
@@ -86,6 +86,7 @@ let
     "sway".source = ../../.config/sway;
     "waybar".source = ../../.config/waybar;
     "foot".source = ../../.config/foot;
+    "kanshi".source = ../../.config/kanshi;
   };
 
 in
@@ -106,6 +107,7 @@ in
 
   # ─── SYSTEM SERVICES ───────────────────────────────────────────────────────
   services.ssh-agent.enable = true;
+  services.kanshi.enable = true;
   xdg.configFile = configSources;
 
   # ─── EDITOR: NEOVIM ────────────────────────────────────────────────────────
