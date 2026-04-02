@@ -136,6 +136,7 @@ let
   configSources = {
     "fastfetch".source = ../../.config/fastfetch;                       # System info tool config
     "sway".source = ../../.config/sway;                                 # Sway window manager config
+    "waybar".source = ../../.config/waybar;                               # Waybar status bar config
   };
 
 in
@@ -145,7 +146,9 @@ in
 # ============================================================================
 
 {
-  imports = [ ../modules/desktop-gnome-user.nix ];
+  imports = [ 
+    #../modules/desktop-gnome-user.nix 
+  ];
 
   # Home Manager metadata
   programs.home-manager.enable = true;                                  # Enable Home Manager as NixOS module

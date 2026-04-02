@@ -20,10 +20,10 @@
     swayidle                                                            # Idle management (screen locking, etc.)
     swaylock                                                              # Screen locker for Sway
     swaybg                                                                # Set desktop background in Sway
-    swaystatus                                                            # Status bar for Sway
     waybar                                                                # Highly customizable status bar for Wayland
     grim                                                                # Screenshot utility for Wayland
     slurp                                                                # Select region for screenshots
+    wmenu
   ];
 
 
