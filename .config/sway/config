@@ -32,7 +32,7 @@ floating_modifier $mod normal
 
 # --- keybinds ---
 bindsym $mod+Return exec $term
-bindsym $mod+f exec $file_manager
+bindsym $mod+Shift+f exec $file_manager
 bindsym $mod+b exec $browser
 bindsym $mod+d exec $menu
 bindsym $mod+q kill
