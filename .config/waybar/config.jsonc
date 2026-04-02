@@ -58,7 +58,9 @@
   "network": {
     "format-wifi": "wifi: {essid}",
     "format-ethernet": "eth: {ipaddr}",
-    "format-disconnected": "offline"
+    "format-disconnected": "offline",
+    "on-click": "foot nmtui"
+
   },
   "pulseaudio": {
     "format": "speaker: {volume}%",
