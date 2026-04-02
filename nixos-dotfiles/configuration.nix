@@ -27,6 +27,7 @@ let
     vim wget curl                                                       # CLI tools
     steam-run                                                           # VM management and Steam runtime
     tldr                                                                # Community-driven man pages
+    wl-clipboard                                                        # Clipboard utilities for Wayland
   ];
 
   systemFonts = with pkgs; [

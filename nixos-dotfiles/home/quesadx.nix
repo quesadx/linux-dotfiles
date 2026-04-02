@@ -212,7 +212,6 @@ in
     clang-tools                                                         # C/C++
     nodePackages.bash-language-server                                   # Bash
     # Utilities
-    wl-clipboard
     xclip
   ];
 
