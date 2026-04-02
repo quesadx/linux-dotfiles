@@ -9,6 +9,7 @@
   "modules-center": [
   ],
   "modules-right": [
+    "tray",
     "pulseaudio",
     "network",
     "power-profiles-daemon",
@@ -17,8 +18,7 @@
     "temperature",
     "backlight",
     "battery",
-    "clock",
-    "tray"
+    "clock"
   ],
 
   "sway/scratchpad": {
@@ -35,7 +35,8 @@
   },
   "cpu": {
     "format": "cpu {usage}%",
-    "tooltip": false
+    "tooltip": false,
+    "on-click": "foot btop"
   },
   "memory": {
     "format": "memory: {}%"
@@ -59,13 +60,10 @@
     "format-disconnected": "offline"
   },
   "pulseaudio": {
-    "format": "speaker: {volume}% {format_source}",
-    "format-bluetooth": "bluetooth: {volume}% {format_source}",
-    "format-bluetooth-muted": "bluetooth: {format_source}",
-    "format-muted": "speaker: {format_source}",
-    "format-source": "source: {volume}% ",
-    "format-source-muted": "source: ",
-
-    "on-click": "pulsemixer"
+    "format": "speaker: {volume}%",
+    "format-bluetooth": "bluetooth: {volume}%",
+    "format-bluetooth-muted": "bluetooth: muted",
+    "format-muted": "speaker: muted",
+    "on-click": "foot pulsemixer"
   }
 }
