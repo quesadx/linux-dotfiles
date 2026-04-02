@@ -135,6 +135,7 @@ let
   # Config file sources
   configSources = {
     "fastfetch".source = ../../.config/fastfetch;                       # System info tool config
+    "sway".source = ../../.config/sway;                                 # Sway window manager config
   };
 
 in
