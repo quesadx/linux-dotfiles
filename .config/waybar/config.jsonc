@@ -38,20 +38,20 @@
     "tooltip": false
   },
   "memory": {
-    "format": "mem: {}%"
+    "format": "memory: {}%"
   },
   "temperature": {
     "critical-threshold": 80,
-    "format": "temp: {temperatureC}°C"
+    "format": "temperature: {temperatureC}°C"
   },
   "backlight": {
-    "format": "bright: {percent}%"
+    "format": "backlight: {percent}%"
   },
   "battery": {
-    "format": "bat: {capacity}%"
+    "format": "battery: {capacity}%"
   },
   "power-profiles-daemon": {
-    "format": "pwr: {profile}"
+    "format": "power: {profile}"
   },
   "network": {
     "format-wifi": "wifi: {essid}",
@@ -59,25 +59,13 @@
     "format-disconnected": "offline"
   },
   "pulseaudio": {
-    "format": "{volume}% {icon} {format_source}",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": "󰅶 {icon} {format_source}",
-    "format-muted": "󰅶 {format_source}",
-    "format-source": "{volume}% ",
-    "format-source-muted": "",
-    "format-icons": {
-      "headphone": "",
-      "hands-free": "󰂑",
-      "headset": "󰂑",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": [
-        "",
-        "",
-        ""
-      ]
-    },
-    "on-click": "pavucontrol"
+    "format": "speaker: {volume}% {format_source}",
+    "format-bluetooth": "bluetooth: {volume}% {format_source}",
+    "format-bluetooth-muted": "bluetooth: {format_source}",
+    "format-muted": "speaker: {format_source}",
+    "format-source": "source: {volume}% ",
+    "format-source-muted": "source: ",
+
+    "on-click": "pulsemixer"
   }
 }

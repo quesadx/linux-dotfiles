@@ -6,230 +6,165 @@
   ...
 }:
 
-# ============================================================================
-# VARIABLES - User packages, aliases, and configurations
-# ============================================================================
+# ─── VARIABLES ───────────────────────────────────────────────────────────
+# User packages, aliases, and configurations
 
 let
   username = shared.username;
   homeDir = "/home/${username}";
 
-  # Git user information
+  # ─── GIT CONFIGURATION ─────────────────────────────────────────────────────
   gitUser = {
-    name = "Matteo Quesada"; # GitHub: @quesadx
+    name = "Matteo Quesada";
     email = "matteo.vargas.quesada@est.una.ac.cr";
   };
 
-  # Shell aliases for common commands
+  # ─── SHELL ALIASES ────────────────────────────────────────────────────────
   bashAliases = {
-    # Listing
-    ll = "ls -l"; # Long format
-    ls = "ls -a --color=auto"; # Show hidden, color output
-    # Git shortcuts
+    ll = "ls -l";
+    ls = "ls -a --color=auto";
     gs = "git status";
     ga = "git add .";
     gc = "git commit -m";
     gp = "git push";
-    # NixOS commands
-    nrt = "cd ~/dotfiles/nixos-dotfiles && sudo nixos-rebuild test --flake .#nixos"; # Test rebuild
-    nrs = "cd ~/dotfiles && git add . && cd nixos-dotfiles && sudo nixos-rebuild switch --flake .#nixos"; # Switch & commit
-    # Docker shortcuts
+    nrt = "cd ~/dotfiles/nixos-dotfiles && sudo nixos-rebuild test --flake .#nixos";
+    nrs = "cd ~/dotfiles && git add . && cd nixos-dotfiles && sudo nixos-rebuild switch --flake .#nixos";
     dcu = "docker compose up";
-    dcud = "docker compose up -d"; # Background
+    dcud = "docker compose up -d";
     dcd = "docker compose down";
-    dcdv = "docker compose down -v"; # Remove volumes
+    dcdv = "docker compose down -v";
   };
 
-  # User packages (not in system)
+  # ─── USER PACKAGES ────────────────────────────────────────────────────────
   userPackages = with pkgs; [
-    # ─── FILE MANAGEMENT ───────────────────────────────────────────────
-    nautilus           # GUI file manager
-    file-roller        # Archive manager
-    unzip unrar p7zip  # Decompression tools
-
-    # ─── MEDIA & GNOME CORE ────────────────────────────────────────────
-    gnome-music        # Music player
-    gnome-calendar     # Calendar app
-    gnome-calculator   # Calculator utility
-    gnome-text-editor  # Text editor
-    gnome-console      # Terminal emulator
-    gnome-font-viewer  # Font manager
-    adwaita-icon-theme glib gtk3  # GNOME theming
-
-    # ─── OFFICE & PRODUCTIVITY ─────────────────────────────────────────
-    onlyoffice-desktopeditors  # Office suite
-    obsidian                   # Note-taking app
-    papers                     # Document manager
-    rnote                      # Quick note-taking
-    spotify                    # Music streaming
-    dconf-editor               # Settings editor
-
-    # ─── DATABASE & DEVELOPMENT TOOLS ──────────────────────────────────
-    dbeaver-bin       # Database GUI client
-    mysql-workbench   # MySQL client
-    mongodb-compass   # MongoDB client
-    wireshark         # Network analyzer
-    postman           # API testing
-    zed-editor        # Code editor
-    claude-code       # AI coding assistant
-    direnv nix-direnv # Environment management
-
-    # ─── UTILITIES & INFORMATION ────────────────────────────────────────
-    fastfetch  # System information
-
-    # ─── TERMINALS & WAYLAND ───────────────────────────────────────────
-    alacritty   # GPU accelerated terminal
-    foot        # Lightweight terminal
-    wmenu       # Wayland menu
-    waybar      # Wayland taskbar
-    swayidle    # Idle manager for Sway
-    swaylock    # Lock screen for Sway
-    swaybg      # Wallpaper manager
-    wl-clipboard  # Clipboard utilities for Wayland
-
-    # ─── ARCHIVED/OPTIONAL ─────────────────────────────────────────────
-    # cisco-packet-tracer_9 xcape neovim openclaw
-
+    nautilus file-roller unzip unrar p7zip
+    gnome-music gnome-calendar gnome-calculator gnome-text-editor gnome-console
+    gnome-font-viewer adwaita-icon-theme glib gtk3
+    onlyoffice-desktopeditors obsidian papers rnote spotify dconf-editor
+    dbeaver-bin mysql-workbench mongodb-compass wireshark postman zed-editor
+    claude-code direnv nix-direnv
+    fastfetch
+    alacritty foot wmenu waybar swayidle swaylock swaybg wl-clipboard pulsemixer
   ];
 
-  # VS Code extensions
+  # ─── VS CODE EXTENSIONS ────────────────────────────────────────────────────
   vscode-extensions-enabled = with pkgs.vscode-extensions; [
-    # Viewers & formatters
-    esbenp.prettier-vscode # Code formatter
-    ecmel.vscode-html-css # HTML/CSS preview
-    humao.rest-client # REST API client
-    # Language support
-    ms-python.python # Python
-    vscjava.vscode-java-pack # Java
-    james-yu.latex-workshop # LaTeX
-    bbenoist.nix # Nix syntax
-    # yoavbls.pretty-ts-errors # TypeScript errors
-    # Git & project tools
-    # eamodio.gitlens # Git integration
-    # github.vscode-github-actions # GitHub Actions
-    # cweijan.vscode-database-client2 # Database client
-    # Development utilities
-    ms-vscode.live-server # Live preview
-    christian-kohler.path-intellisense # Path autocompletion
-    christian-kohler.npm-intellisense # npm autocompletion
-    mikestead.dotenv # .env support
-    # dbaeumer.vscode-eslint # ESLint
-    # usernamehw.errorlens # Inline error display
-    formulahendry.auto-rename-tag # Auto tag rename
-    formulahendry.auto-close-tag # Auto close HTML tags
-    shardulm94.trailing-spaces # Highlight trailing spaces
-    #oderwat.indent-rainbow # Rainbow indentation
-    # ms-azuretools.vscode-containers # Container support
-    mongodb.mongodb-vscode # MongoDB utility
-    # AI & productivity
-    # anthropic.claude-code # Claude AI assistant
-    pkief.material-icon-theme # Material icon theme
-    # vscodevim.vim # Vim emulation
-    prisma.prisma # Prisma syntax hightlighting, formatting & more
+    esbenp.prettier-vscode
+    ecmel.vscode-html-css
+    humao.rest-client
+    ms-python.python
+    vscjava.vscode-java-pack
+    james-yu.latex-workshop
+    bbenoist.nix
+    ms-vscode.live-server
+    christian-kohler.path-intellisense
+    christian-kohler.npm-intellisense
+    mikestead.dotenv
+    formulahendry.auto-rename-tag
+    formulahendry.auto-close-tag
+    shardulm94.trailing-spaces
+    mongodb.mongodb-vscode
+    prisma.prisma
+    pkief.material-icon-theme
   ];
 
-  # Firefox extensions (auto-installed)
+  # ─── FIREFOX EXTENSIONS ────────────────────────────────────────────────────
   firefoxExtensions = {
     "uBlock0@raymondhill.net" = {
-      # Adblocker
       install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
       installation_mode = "force_installed";
     };
     "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
-      # Bitwarden password manager
       install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
       installation_mode = "force_installed";
     };
   };
 
-  # Config file sources
+  # ─── CONFIG FILE SOURCES ───────────────────────────────────────────────────
   configSources = {
-    "fastfetch".source = ../../.config/fastfetch; # System info tool config
-    "sway".source = ../../.config/sway; # Sway window manager config
-    "waybar".source = ../../.config/waybar; # Waybar status bar config
+    "fastfetch".source = ../../.config/fastfetch;
+    "sway".source = ../../.config/sway;
+    "waybar".source = ../../.config/waybar;
+    "foot".source = ../../.config/foot;
   };
 
 in
 
-# ============================================================================
-# HOME MANAGER CONFIGURATION
-# ============================================================================
+# ─── HOME MANAGER CONFIGURATION ────────────────────────────────────────────
 
 {
   imports = [
     #../modules/desktop-gnome-user.nix
   ];
 
-  # Home Manager metadata
-  programs.home-manager.enable = true; # Enable Home Manager as NixOS module
+  # ─── HOME MANAGER METADATA ─────────────────────────────────────────────────
+  programs.home-manager.enable = true;
   home.username = username;
   home.homeDirectory = homeDir;
   home.stateVersion = "26.05";
   home.packages = userPackages;
 
-  # ---------- SYSTEM SERVICES ----------
-  services.ssh-agent.enable = true; # SSH key management
-  xdg.configFile = configSources; # Link config files from ../. config/
+  # ─── SYSTEM SERVICES ───────────────────────────────────────────────────────
+  services.ssh-agent.enable = true;
+  xdg.configFile = configSources;
 
-  # ---------- EDITOR: NEOVIM ----------
+  # ─── EDITOR: NEOVIM ────────────────────────────────────────────────────────
   programs.neovim = {
     enable = true;
-    defaultEditor = true; # Set as default editor
-    viAlias = true; # vi command alias
-    vimAlias = true; # vim command alias
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
   };
 
-  # ---------- SHELL: ZSH & BASH ----------
-  programs.starship.enable = true; # Minimal shell prompt
+  # ─── SHELL: ZSH & BASH ─────────────────────────────────────────────────────
+  programs.starship.enable = true;
   programs.zsh.enable = true;
   programs.bash.enable = true;
-  programs.bash.shellAliases = bashAliases; # Sourced automatically
+  programs.bash.shellAliases = bashAliases;
 
-  # ---------- VERSION CONTROL: GIT ----------
+  # ─── VERSION CONTROL: GIT ──────────────────────────────────────────────────
   programs.git.enable = true;
-  programs.git.package = pkgs.gitFull; # Full git with extras
+  programs.git.package = pkgs.gitFull;
   programs.git.settings.user = gitUser;
   programs.git.settings.init.defaultBranch = "main";
-  programs.git.settings.pull.rebase = true; # Rebase on pull
-  programs.git.settings.credential.helper = "libsecret"; # Keyring storage
+  programs.git.settings.pull.rebase = true;
+  programs.git.settings.credential.helper = "libsecret";
 
-  # ---------- ENVIRONMENT: DIRENV ----------
-  programs.direnv.enable = true; # .envrc auto-loading
+  # ─── ENVIRONMENT MANAGEMENT: DIRENV ────────────────────────────────────────
+  programs.direnv.enable = true;
   programs.direnv.enableBashIntegration = true;
-  programs.direnv.nix-direnv.enable = true; # Nix environment support
+  programs.direnv.nix-direnv.enable = true;
 
-  # ---------- SSH CONFIGURATION ----------
+  # ─── SSH CONFIGURATION ─────────────────────────────────────────────────────
   programs.ssh.enable = true;
-  programs.ssh.enableDefaultConfig = false; # Manual SSH config
-  programs.ssh.matchBlocks."*".addKeysToAgent = "yes"; # Auto-add keys
+  programs.ssh.enableDefaultConfig = false;
+  programs.ssh.matchBlocks."*".addKeysToAgent = "yes";
 
-  # ---------- EDITOR: FRESH ----------
-  programs.fresh-editor.enable = true; # Fresh terminal file manager
+  # ─── EDITOR: FRESH ────────────────────────────────────────────────────────
+  programs.fresh-editor.enable = true;
 
-  # ---------- EDITOR: HELIX ----------
-  programs.helix.enable = true; # Modern terminal editor
+  # ─── EDITOR: HELIX ────────────────────────────────────────────────────────
+  programs.helix.enable = true;
   programs.helix.settings.theme = "base16_default";
   programs.helix.settings.editor = {
-    lsp.display-messages = true; # Show LSP messages
-    lsp.display-inlay-hints = true; # Show typescript inlay hints
-    auto-info = false; # Disable automatic signature/doc popups
-    completion-timeout = 50; # Keep completion hints fast
+    lsp.display-messages = true;
+    lsp.display-inlay-hints = true;
+    auto-info = false;
+    completion-timeout = 50;
   };
+
   programs.helix.extraPackages = with pkgs; [
-    # LSPs
-    nixd
-    nixfmt
-    nodePackages.typescript-language-server # TS/JS
-    nodePackages.vscode-json-languageserver # JSON
-    marksman # Markdown
-    jdt-language-server # Java
-    clang-tools # C/C++
-    nodePackages.bash-language-server # Bash
-    # Utilities
+    nixd nixfmt
+    nodePackages.typescript-language-server
+    nodePackages.vscode-json-languageserver
+    marksman
+    jdt-language-server
+    clang-tools
+    nodePackages.bash-language-server
     xclip
   ];
 
-  # Language-specific settings in Helix
+  # Helix TypeScript language server config
   programs.helix.languages.language-server.typescript-language-server.config = {
     typescript.inlayHints = {
       includeInlayEnumMemberValueHints = true;
@@ -251,87 +186,44 @@ in
     };
   };
 
+  # Helix language-specific configurations
   programs.helix.languages.language = [
-    {
-      name = "nix";
-      auto-format = true;
-      formatter.command = "nixfmt";
-      language-servers = [ "nixd" ];
-    }
-    {
-      name = "typescript";
-      auto-format = true;
-      language-servers = [ "typescript-language-server" ];
-    }
-    {
-      name = "javascript";
-      auto-format = true;
-      language-servers = [ "typescript-language-server" ];
-    }
-    {
-      name = "json";
-      auto-format = true;
-      language-servers = [ "vscode-json-languageserver" ];
-    }
-    {
-      name = "markdown";
-      language-servers = [ "marksman" ];
-    }
-    {
-      name = "java";
-      language-servers = [ "jdt-language-server" ];
-    }
-    {
-      name = "c";
-      auto-format = true;
-      language-servers = [ "clangd" ];
-    }
-    {
-      name = "cpp";
-      auto-format = true;
-      language-servers = [ "clangd" ];
-    }
-    {
-      name = "python";
-      auto-format = true;
-      language-servers = [ "pylsp" ];
-    }
-    {
-      name = "bash";
-      language-servers = [ "bash-language-server" ];
-    }
+    { name = "nix"; auto-format = true; formatter.command = "nixfmt"; language-servers = [ "nixd" ]; }
+    { name = "typescript"; auto-format = true; language-servers = [ "typescript-language-server" ]; }
+    { name = "javascript"; auto-format = true; language-servers = [ "typescript-language-server" ]; }
+    { name = "json"; auto-format = true; language-servers = [ "vscode-json-languageserver" ]; }
+    { name = "markdown"; language-servers = [ "marksman" ]; }
+    { name = "java"; language-servers = [ "jdt-language-server" ]; }
+    { name = "c"; auto-format = true; language-servers = [ "clangd" ]; }
+    { name = "cpp"; auto-format = true; language-servers = [ "clangd" ]; }
+    { name = "python"; auto-format = true; language-servers = [ "pylsp" ]; }
+    { name = "bash"; language-servers = [ "bash-language-server" ]; }
   ];
 
-  # ---------- EDITOR: VS CODE ----------
-  programs.vscode.enable = true; # Microsoft Visual Studio Code
+  # ─── EDITOR: VS CODE ───────────────────────────────────────────────────────
+  programs.vscode.enable = true;
   programs.vscode.profiles.default.extensions = vscode-extensions-enabled;
   programs.vscode.profiles.default.userSettings = {
-    # Appearance
-    "workbench.activityBar.location" = "top"; # Activity bar position
-    "workbench.sideBar.location" = "right"; # Sidebar position
-    "workbench.colorTheme" = "Monokai Dimmed"; # Color theme
-    "workbench.iconTheme" = "material-icon-theme"; # Icon theme
-    "editor.minimap.enabled" = false; # Disable minimap
-    "window.commandCenter" = false; # Disable command center
-    # Editing
-    "editor.defaultFormatter" = "esbenp.prettier-vscode"; # Default formatter
-    "files.autoSave" = "onFocusChange"; # Auto-save on focus lose
-    "editor.linkedEditing" = true; # Edit opening/closing tags
-    # Tabs
-    "workbench.editor.scrollToSwitchTabs" = true; # Scroll to switch tabs
-    "workbench.editor.wrapTabs" = true; # Wrap tabs if needed
-    # UI
-    "explorer.confirmDelete" = false; # No delete confirmation
-    "explorer.confirmDragAndDrop" = false; # No drag & drop confirm
-    "workbench.startupEditor" = "none"; # Don't open files on startup
-    # Git
-    "git.openRepositoryInParentFolders" = "always"; # Find git repos in parents
-    "git.enableSmartCommit" = true; # Smart commit behavior
-    "git.autofetch" = true; # Auto-fetch from remote
-    "chat.viewSessions.orientation" = "stacked"; # Make chat sessions be stacked and not split-view
+    "workbench.activityBar.location" = "top";
+    "workbench.sideBar.location" = "right";
+    "workbench.colorTheme" = "Monokai Dimmed";
+    "workbench.iconTheme" = "material-icon-theme";
+    "editor.minimap.enabled" = false;
+    "window.commandCenter" = false;
+    "editor.defaultFormatter" = "esbenp.prettier-vscode";
+    "files.autoSave" = "onFocusChange";
+    "editor.linkedEditing" = true;
+    "workbench.editor.scrollToSwitchTabs" = true;
+    "workbench.editor.wrapTabs" = true;
+    "explorer.confirmDelete" = false;
+    "explorer.confirmDragAndDrop" = false;
+    "workbench.startupEditor" = "none";
+    "git.openRepositoryInParentFolders" = "always";
+    "git.enableSmartCommit" = true;
+    "git.autofetch" = true;
+    "chat.viewSessions.orientation" = "stacked";
   };
 
-  # VS Code keybindings for Caps Lock to Escape (for vim.vim extension)
   programs.vscode.profiles.default.keybindings = [
     {
       key = "capslock";
@@ -340,18 +232,15 @@ in
     }
   ];
 
-  # ---------- BROWSER: FIREFOX ----------
-  programs.firefox.enable = true; # Mozilla Firefox
+  # ─── BROWSER: FIREFOX ──────────────────────────────────────────────────────
+  programs.firefox.enable = true;
   programs.firefox.profiles.${username} = {
-    isDefault = true; # Set as default profile
+    isDefault = true;
     settings = {
-      "browser.search.region" = "CR"; # Search region
-      "browser.search.isUS" = false; # Non-US search
-      "distribution.id" = "nixos"; # Distribution ID
+      "browser.search.region" = "CR";
+      "browser.search.isUS" = false;
+      "distribution.id" = "nixos";
     };
   };
-  programs.firefox.policies.ExtensionSettings = firefoxExtensions; # Install extensions
-
-  # ---------- OTHER CONFIGURATION ----------
-
+  programs.firefox.policies.ExtensionSettings = firefoxExtensions;
 }
