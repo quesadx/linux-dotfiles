@@ -4,7 +4,7 @@ set $down j
 set $up k
 set $right l
 set $term foot
-set $menu wmenu-show
+set $menu wmenu-run
 set $browser firefox
 set $file_manager dolphin
 

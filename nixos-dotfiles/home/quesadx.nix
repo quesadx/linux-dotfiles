@@ -42,51 +42,54 @@ let
 
   # User packages (not in system)
   userPackages = with pkgs; [
-    # File management
-    nautilus
-    file-roller
-    unzip
-    unrar
-    p7zip # GUI file manager, archive tools
-    # GNOME ap
-    gnome-photos
-    gnome-music
-    gnome-calendar # Media apps
-    gnome-calculator
-    gnome-text-editor # Utilities
-    gnome-font-viewer
-    gnome-console # System apps
-    adwaita-icon-theme
-    glib
-    gtk3 # GNOME theming
-    # Accessory & productivity
-    fastfetch
-    papers
-    showtime
-    rnote # System info, note-taking
-    dconf-editor # Config editor
-    onlyoffice-desktopeditors # Office suite
-    obsidian
-    dbeaver-bin
-    mysql-workbench # DB tools
-    mongodb-compass
-    spotify
-    zed-editor
-    # Development tools
-    claude-code
-    direnv
-    nix-direnv # CodeAI, environment management
-    wireshark
-    postman
-    # Commented out packages (available if needed)
+    # ─── FILE MANAGEMENT ───────────────────────────────────────────────
+    nautilus           # GUI file manager
+    file-roller        # Archive manager
+    unzip unrar p7zip  # Decompression tools
+
+    # ─── MEDIA & GNOME CORE ────────────────────────────────────────────
+    gnome-music        # Music player
+    gnome-calendar     # Calendar app
+    gnome-calculator   # Calculator utility
+    gnome-text-editor  # Text editor
+    gnome-console      # Terminal emulator
+    gnome-font-viewer  # Font manager
+    adwaita-icon-theme glib gtk3  # GNOME theming
+
+    # ─── OFFICE & PRODUCTIVITY ─────────────────────────────────────────
+    onlyoffice-desktopeditors  # Office suite
+    obsidian                   # Note-taking app
+    papers                     # Document manager
+    rnote                      # Quick note-taking
+    spotify                    # Music streaming
+    dconf-editor               # Settings editor
+
+    # ─── DATABASE & DEVELOPMENT TOOLS ──────────────────────────────────
+    dbeaver-bin       # Database GUI client
+    mysql-workbench   # MySQL client
+    mongodb-compass   # MongoDB client
+    wireshark         # Network analyzer
+    postman           # API testing
+    zed-editor        # Code editor
+    claude-code       # AI coding assistant
+    direnv nix-direnv # Environment management
+
+    # ─── UTILITIES & INFORMATION ────────────────────────────────────────
+    fastfetch  # System information
+
+    # ─── TERMINALS & WAYLAND ───────────────────────────────────────────
+    alacritty   # GPU accelerated terminal
+    foot        # Lightweight terminal
+    wmenu       # Wayland menu
+    waybar      # Wayland taskbar
+    swayidle    # Idle manager for Sway
+    swaylock    # Lock screen for Sway
+    swaybg      # Wallpaper manager
+    wl-clipboard  # Clipboard utilities for Wayland
+
+    # ─── ARCHIVED/OPTIONAL ─────────────────────────────────────────────
     # cisco-packet-tracer_9 xcape neovim openclaw
-    alacritty
-    foot
-    swayidle
-    swaylock
-    swaybg
-    waybar
-    wmenu
+
   ];
 
   # VS Code extensions

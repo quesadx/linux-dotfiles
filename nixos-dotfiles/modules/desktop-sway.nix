@@ -9,20 +9,14 @@
 {
   # ---------- SWAY DEPENDENCIES ----------
   services.gnome.gnome-keyring.enable = true;
+  security.pam.services.login.enableGnomeKeyring = true;
 
   # ---------- SWAY SERVICES ----------
   programs.sway.enable = true; # Sway Window Manager
   programs.sway.wrapperFeatures.gtk = true; # Enable XWayland for legacy app support
-  programs.sway.extraPackages = with pkgs; [
-    # Sway utilities and tools
-    # foot                                                                # Wayland terminal emulator
-    # swayidle                                                            # Idle management (screen locking, etc.)
-    # swaylock                                                              # Screen locker for Sway
-    # swaybg                                                                # Set desktop background in Sway
-    # waybar                                                                # Highly customizable status bar for Wayland
+  programs.sway.extraPackages = with pkgs; [d
     grim # Screenshot utility for Wayland
     slurp # Select region for screenshots
-    # wmenu
   ];
 
 }
