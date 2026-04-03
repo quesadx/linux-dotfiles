@@ -161,6 +161,16 @@ in
   services.flatpak.enable = true;
   services.openssh.enable = false;
 
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+        user = "greeter";
+      };
+    };
+  };
+
   # ─── AUDIO (PipeWire) ─────────────────────────────────────────────────────
   services.pipewire.enable = true;
   services.pipewire.alsa.enable = true;
