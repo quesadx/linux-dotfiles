@@ -50,7 +50,8 @@
     "format": "backlight: {percent}%"
   },
   "battery": {
-    "format": "battery: {capacity}%"
+    "format": "battery: {capacity}%",
+    "on-click": "foot auto-cpufreq --stats"
   },
   "power-profiles-daemon": {
     "format": "power: {profile}"

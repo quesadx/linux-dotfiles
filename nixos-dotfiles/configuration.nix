@@ -10,31 +10,44 @@
 # ============================================================================
 
 let
-  inherit (shared) username userDescription hostname timeZone locale regionalLocale;
+  inherit (shared)
+    username
+    userDescription
+    hostname
+    timeZone
+    locale
+    regionalLocale
+    ;
 
   # ─── USER GROUPS ──────────────────────────────────────────────────────────
   userGroups = [
-    "networkmanager"  # Networking
-    "wheel"           # Sudo access
-    "video" "render"  # GPU access
-    "audio"           # Audio access
-    "docker" "kvm"   # Virtualization
+    "networkmanager" # Networking
+    "wheel" # Sudo access
+    "video"
+    "render" # GPU access
+    "audio" # Audio access
+    "docker"
+    "kvm" # Virtualization
   ];
 
   # ─── CORE PACKAGES ────────────────────────────────────────────────────────
   corePackages = with pkgs; [
-    vim wget curl   # CLI tools
-    steam-run       # VM management and Steam runtime
-    tldr            # Community-driven man pages
-    wdisplays       # Display configuration utility for Wayland (GUI)
+    vim
+    wget
+    curl # CLI tools
+    steam-run # VM management and Steam runtime
+    tldr # Community-driven man pages
+    wdisplays # Display configuration utility for Wayland (GUI)
+    brightnessctl # Display backlight control utility
   ];
 
   # ─── SYSTEM FONTS ────────────────────────────────────────────────────────
   systemFonts = with pkgs; [
-    ibm-plex                    # Professional sans-serif
-    noto-fonts noto-fonts-color-emoji  # Unicode coverage
-    font-awesome                # Icon font
-    nerd-fonts.jetbrains-mono   # Monospace with ligatures
+    ibm-plex # Professional sans-serif
+    noto-fonts
+    noto-fonts-color-emoji # Unicode coverage
+    font-awesome # Icon font
+    nerd-fonts.jetbrains-mono # Monospace with ligatures
   ];
 
 in
@@ -49,6 +62,14 @@ in
 
   # ─── BOOT & KERNEL ────────────────────────────────────────────────────────
   boot.kernelPackages = pkgs.linuxPackages_zen;
+
+  boot.kernelParams = [
+  "i915.enable_psr=1"        # Panel Self Refresh — big battery win on Intel iGPU
+  "i915.enable_fbc=1"        # Framebuffer compression
+  "i915.enable_dc=2"         # Deep power states for display engine (try 2, fallback to 1 if issues)
+  "nvme.noacpi=1"            # If you have NVMe — prevents ACPI conflicts
+  "pcie_aspm=force"          # Aggressive PCIe power saving
+];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -65,10 +86,12 @@ in
     networkmanager.enable = true;
   };
 
+  systemd.services.NetworkManager-wait-online.enable = false;
+
   # Firewall configuration
   networking.firewall.enable = true;
-  networking.firewall.trustedInterfaces = [ "virbr0" ];      # KVM bridge
-  networking.firewall.allowedTCPPorts = [ 24800 ];           # Synergy port
+  networking.firewall.trustedInterfaces = [ "virbr0" ]; # KVM bridge
+  networking.firewall.allowedTCPPorts = [ 24800 ]; # Synergy port
 
   # ─── USERS & GROUPS ───────────────────────────────────────────────────────
   users.users.${username} = {
@@ -117,11 +140,26 @@ in
   security.rtkit.enable = true;
   security.sudo.wheelNeedsPassword = false;
 
-  # ─── CORE SERVICES ────────────────────────────────────────────────────────
-  services.power-profiles-daemon.enable = true;
+  # ─── POWER SERVICES ──────────────────────────────────────────────────────
+  services.power-profiles-daemon.enable = false; # Disable to prevent conflicts
+  services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.settings = {
+    battery = {
+      governor = "powersave";
+      energy_performance_preference = "power";
+      turbo = "never"; # disable turbo on battery
+    };
+    charger = {
+      governor = "performance";
+      energy_performance_preference = "balance_performance";
+      turbo = "auto";
+    };
+  };
+
+  # ─── CORE SERVICES ───────────────────────────────────────────────────────
   services.fwupd.enable = true;
   services.flatpak.enable = true;
-  services.openssh.enable = true;
+  services.openssh.enable = false;
 
   # ─── AUDIO (PipeWire) ─────────────────────────────────────────────────────
   services.pipewire.enable = true;
@@ -140,14 +178,17 @@ in
   nixpkgs.config.allowUnfree = true;
 
   # ─── NIX SETTINGS ────────────────────────────────────────────────────────
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nix.settings.auto-optimise-store = true;
-  nix.gc.automatic = true;                                              # Automatic garbage collection
+  nix.gc.automatic = true; # Automatic garbage collection
   nix.gc.dates = "weekly";
-  nix.gc.options = "--delete-older-than 5d";                            # Keep 3 days of generations
+  nix.gc.options = "--delete-older-than 5d"; # Keep 3 days of generations
 
   # ---------- SYSTEM ----------
-  fonts.packages = systemFonts;                                         # Install system fonts
-  system.stateVersion = "26.05";                                        # NixOS version (don't change lightly)
+  fonts.packages = systemFonts; # Install system fonts
+  system.stateVersion = "26.05"; # NixOS version (don't change lightly)
 
 }

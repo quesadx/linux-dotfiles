@@ -33,6 +33,11 @@ let
     dcud = "docker compose up -d";
     dcd = "docker compose down";
     dcdv = "docker compose down -v";
+
+    powersave = "sudo auto-cpufreq --force=powersave";    # battery saver
+    balanced = "sudo auto-cpufreq --force=balanced";     # default smart mode
+    performance = "sudo auto-cpufreq --force=performance";  # full power
+    reset = "sudo auto-cpufreq --force=reset";        # back to automatic
   };
 
   # ─── USER PACKAGES ────────────────────────────────────────────────────────
@@ -43,7 +48,7 @@ let
     onlyoffice-desktopeditors obsidian papers rnote spotify dconf-editor
     dbeaver-bin mysql-workbench mongodb-compass wireshark postman zed-editor
     claude-code direnv nix-direnv
-    fastfetch
+    fastfetch powertop intel-gpu-tools
     alacritty foot wmenu waybar swayidle swaylock swaybg wl-clipboard pulsemixer btop yazi # xfce.thunar xfce.thunar-volman gvfs
   ];
 
