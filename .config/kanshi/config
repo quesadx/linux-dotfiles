@@ -1,3 +1,8 @@
 profile laptop_only {
     output eDP-1 enable mode 1920x1200 position 0,0
 }
+
+profile laptop_with_portable_monitor {
+    output DP-2 enable mode 1920x1080 position 0,0
+    output eDP-1 enable mode 1920x1200 position 1920,0
+}

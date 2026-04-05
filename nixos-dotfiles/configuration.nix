@@ -64,14 +64,14 @@ in
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
   boot.kernelParams = [
-  "i915.enable_psr=1"        # Panel Self Refresh — big battery win on Intel iGPU
-  "i915.enable_fbc=1"        # Framebuffer compression
-  "i915.enable_dc=2"         # Deep power states for display engine (try 2, fallback to 1 if issues)
-  "nvme.noacpi=1"            # If you have NVMe — prevents ACPI conflicts
-  "pcie_aspm=force"          # Aggressive PCIe power saving
-];
+    "i915.enable_psr=1" # Panel Self Refresh — big battery win on Intel iGPU
+    "i915.enable_fbc=1" # Framebuffer compression
+    "i915.enable_dc=1" # Deep power states for display engine (try 2, fallback to 1 if issues)
+    "nvme.noacpi=1" # If you have NVMe — prevents ACPI conflicts
+  ];
 
   boot.loader.systemd-boot.enable = true;
+  boot.loader.timeout = 0; # skip menu entirely, boot immediately
   boot.loader.efi.canTouchEfiVariables = true;
 
   # ─── MEMORY & SWAP ────────────────────────────────────────────────────────
@@ -141,20 +141,7 @@ in
   security.sudo.wheelNeedsPassword = false;
 
   # ─── POWER SERVICES ──────────────────────────────────────────────────────
-  services.power-profiles-daemon.enable = false; # Disable to prevent conflicts
-  services.auto-cpufreq.enable = true;
-  services.auto-cpufreq.settings = {
-    battery = {
-      governor = "powersave";
-      energy_performance_preference = "power";
-      turbo = "never"; # disable turbo on battery
-    };
-    charger = {
-      governor = "performance";
-      energy_performance_preference = "balance_performance";
-      turbo = "auto";
-    };
-  };
+  services.power-profiles-daemon.enable = true; # Disable to prevent conflicts
 
   # ─── CORE SERVICES ───────────────────────────────────────────────────────
   services.fwupd.enable = true;
@@ -165,7 +152,7 @@ in
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway";
         user = "greeter";
       };
     };

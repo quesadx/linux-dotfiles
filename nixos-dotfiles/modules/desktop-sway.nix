@@ -11,10 +11,7 @@
 
   # ─── SWAY SERVICES ────────────────────────────────────────────────────────
   programs.sway.enable = true;
-  programs.sway.wrapperFeatures.gtk = true;  # Enable XWayland for legacy apps
-  programs.sway.extraPackages = with pkgs; [
-    grim   # Screenshot utility for Wayland
-    slurp  # Select region for screenshots
-  ];
+  # wayland.windowManager.sway.systemd.variables = [ "--all" ];
+  programs.sway.wrapperFeatures.gtk = true; # Enable XWayland for legacy apps
 
 }

@@ -1,13 +1,15 @@
 {
   "position": "bottom",
   "height": 30,
+  "output": [
+    "eDP-1"
+  ],
   "spacing": 4,
   "modules-left": [
     "sway/workspaces",
     "sway/scratchpad"
   ],
-  "modules-center": [
-  ],
+  "modules-center": [],
   "modules-right": [
     "tray",
     "pulseaudio",
@@ -20,7 +22,6 @@
     "battery",
     "clock"
   ],
-
   "sway/scratchpad": {
     "format": "scratchpad {count}",
     "show-empty": false,
@@ -50,18 +51,16 @@
     "format": "backlight: {percent}%"
   },
   "battery": {
-    "format": "battery: {capacity}%",
-    "on-click": "foot auto-cpufreq --stats"
+    "format": "battery: {capacity}%"
   },
   "power-profiles-daemon": {
-    "format": "power: {profile}"
+    "format": "power-profile: {profile}"
   },
   "network": {
     "format-wifi": "wifi: {essid}",
     "format-ethernet": "eth: {ipaddr}",
     "format-disconnected": "offline",
     "on-click": "foot nmtui"
-
   },
   "pulseaudio": {
     "format": "speaker: {volume}%",

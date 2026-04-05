@@ -23,33 +23,69 @@ let
   bashAliases = {
     ll = "ls -l";
     ls = "ls -a --color=auto";
+    # Git aliases
     gs = "git status";
     ga = "git add .";
     gc = "git commit -m";
     gp = "git push";
+    # NixOS rebuild aliases
     nrt = "cd ~/dotfiles/nixos-dotfiles && sudo nixos-rebuild test --flake .#nixos";
     nrs = "cd ~/dotfiles && git add . && cd nixos-dotfiles && sudo nixos-rebuild switch --flake .#nixos";
+    # Docker Compose aliases
     dcu = "docker compose up";
     dcud = "docker compose up -d";
     dcd = "docker compose down";
     dcdv = "docker compose down -v";
-
-    powersave = "sudo auto-cpufreq --force=powersave";    # battery saver
-    balanced = "sudo auto-cpufreq --force=balanced";     # default smart mode
-    performance = "sudo auto-cpufreq --force=performance";  # full power
-    reset = "sudo auto-cpufreq --force=reset";        # back to automatic
+    # Power profile management using auto-cpufreq
+    powersave = "sudo auto-cpufreq --force=powersave && notify-send -t 8000 'Power profile changed to powersave'"; # battery saver
+    balanced = "sudo auto-cpufreq --force=reset && notify-send -t 8000 'Power profile changed to auto'"; # default smart mode
+    performance = "sudo auto-cpufreq --force=performance && notify-send -t 8000 'Power profile changed to performance'"; # full power
   };
 
   # ─── USER PACKAGES ────────────────────────────────────────────────────────
   userPackages = with pkgs; [
-    nautilus file-roller unzip unrar p7zip
-    gnome-music gnome-calendar gnome-calculator gnome-text-editor gnome-console
-    gnome-font-viewer adwaita-icon-theme glib gtk3
-    onlyoffice-desktopeditors obsidian papers rnote spotify dconf-editor
-    dbeaver-bin mysql-workbench mongodb-compass wireshark postman zed-editor
-    claude-code direnv nix-direnv
-    fastfetch powertop intel-gpu-tools
-    alacritty foot wmenu waybar swayidle swaylock swaybg wl-clipboard pulsemixer btop yazi # xfce.thunar xfce.thunar-volman gvfs
+    file-roller
+    unzip
+    unrar
+    p7zip
+    # gnome-music gnome-calendar gnome-calculator gnome-text-editor gnome-console gnome-font-viewer nautilus
+    adwaita-icon-theme
+    glib
+    gtk3
+    onlyoffice-desktopeditors
+    obsidian
+    papers
+    rnote
+    spotify
+    dconf-editor
+    dbeaver-bin
+    mysql-workbench
+    mongodb-compass
+    wireshark
+    postman
+    zed-editor
+    claude-code
+    direnv
+    nix-direnv
+    fastfetch
+    powertop
+    intel-gpu-tools
+    alacritty
+    foot
+    wmenu
+    waybar
+    swayidle
+    swaylock
+    libnotify
+    mako
+    grim
+    slurp
+    wl-clipboard
+    cliphist
+    swaybg
+    pulsemixer
+    btop
+    yazi # xfce.thunar xfce.thunar-volman gvfs
   ];
 
   # ─── VS CODE EXTENSIONS ────────────────────────────────────────────────────
@@ -164,7 +200,8 @@ in
   };
 
   programs.helix.extraPackages = with pkgs; [
-    nixd nixfmt
+    nixd
+    nixfmt
     nodePackages.typescript-language-server
     nodePackages.vscode-json-languageserver
     marksman
@@ -198,16 +235,54 @@ in
 
   # Helix language-specific configurations
   programs.helix.languages.language = [
-    { name = "nix"; auto-format = true; formatter.command = "nixfmt"; language-servers = [ "nixd" ]; }
-    { name = "typescript"; auto-format = true; language-servers = [ "typescript-language-server" ]; }
-    { name = "javascript"; auto-format = true; language-servers = [ "typescript-language-server" ]; }
-    { name = "json"; auto-format = true; language-servers = [ "vscode-json-languageserver" ]; }
-    { name = "markdown"; language-servers = [ "marksman" ]; }
-    { name = "java"; language-servers = [ "jdt-language-server" ]; }
-    { name = "c"; auto-format = true; language-servers = [ "clangd" ]; }
-    { name = "cpp"; auto-format = true; language-servers = [ "clangd" ]; }
-    { name = "python"; auto-format = true; language-servers = [ "pylsp" ]; }
-    { name = "bash"; language-servers = [ "bash-language-server" ]; }
+    {
+      name = "nix";
+      auto-format = true;
+      formatter.command = "nixfmt";
+      language-servers = [ "nixd" ];
+    }
+    {
+      name = "typescript";
+      auto-format = true;
+      language-servers = [ "typescript-language-server" ];
+    }
+    {
+      name = "javascript";
+      auto-format = true;
+      language-servers = [ "typescript-language-server" ];
+    }
+    {
+      name = "json";
+      auto-format = true;
+      language-servers = [ "vscode-json-languageserver" ];
+    }
+    {
+      name = "markdown";
+      language-servers = [ "marksman" ];
+    }
+    {
+      name = "java";
+      language-servers = [ "jdt-language-server" ];
+    }
+    {
+      name = "c";
+      auto-format = true;
+      language-servers = [ "clangd" ];
+    }
+    {
+      name = "cpp";
+      auto-format = true;
+      language-servers = [ "clangd" ];
+    }
+    {
+      name = "python";
+      auto-format = true;
+      language-servers = [ "pylsp" ];
+    }
+    {
+      name = "bash";
+      language-servers = [ "bash-language-server" ];
+    }
   ];
 
   # ─── EDITOR: VS CODE ───────────────────────────────────────────────────────
