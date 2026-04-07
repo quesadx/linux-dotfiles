@@ -203,12 +203,12 @@ in
   programs.helix.extraPackages = with pkgs; [
     nixd
     nixfmt
-    nodePackages.typescript-language-server
-    nodePackages.vscode-json-languageserver
+    typescript-language-server
+    vscode-json-languageserver
     marksman
     jdt-language-server
     clang-tools
-    nodePackages.bash-language-server
+    bash-language-server
     xclip
   ];
 
