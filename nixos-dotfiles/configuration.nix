@@ -40,6 +40,7 @@ let
     wdisplays # Display configuration utility for Wayland (GUI)
     brightnessctl # Display backlight control utility
     bluetuith # Bluetooth TUI
+    libsecret # For GNOME Keyring integration
   ];
 
   # ─── SYSTEM FONTS ────────────────────────────────────────────────────────
@@ -140,6 +141,7 @@ in
   security.polkit.enable = true;
   security.rtkit.enable = true;
   security.sudo.wheelNeedsPassword = false;
+  security.pam.services.login.enableGnomeKeyring = true;
 
   # ─── POWER SERVICES ──────────────────────────────────────────────────────
   services.power-profiles-daemon.enable = true; # Disable to prevent conflicts
@@ -149,17 +151,7 @@ in
   services.flatpak.enable = true;
   services.openssh.enable = false;
   services.gnome.gnome-keyring.enable = true;
-  security.pam.services.login.enableGnomeKeyring = true;
-
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway";
-        user = "greeter";
-      };
-    };
-  };
+  services.greetd.enable = false;
 
   # ─── AUDIO (PipeWire) ─────────────────────────────────────────────────────
   services.pipewire.enable = true;

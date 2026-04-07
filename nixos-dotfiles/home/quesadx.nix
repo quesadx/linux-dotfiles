@@ -149,6 +149,7 @@ in
 
   # ─── SYSTEM SERVICES ───────────────────────────────────────────────────────
   services.ssh-agent.enable = true;
+  services.gnome-keyring.enable = true;                  # Start GNOME Keyring daemon
   services.kanshi.enable = true; # Display configuration daemon for Wayland
   services.udiskie.enable = true; # Automounting of external drives
   # services.gvfs.enable = true;
