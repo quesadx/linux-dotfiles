@@ -5,6 +5,7 @@
     "eDP-1"
   ],
   "spacing": 4,
+  "layer": "top",
   "modules-left": [
     "sway/workspaces",
     "sway/scratchpad"

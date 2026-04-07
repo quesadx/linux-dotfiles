@@ -4,9 +4,10 @@
 }
 
 window#waybar {
-    background-color: #285577;
-    border: 1px solid #4c7899;
-    color: #ffffff;
+    background-color: #2D2B55;
+    border: 1px solid #4B4892;
+    color: #C7C4FF;
+    opacity: 0.92;
 }
 
 window#waybar.hidden {
@@ -16,11 +17,11 @@ window#waybar.hidden {
 button {
     box-shadow: inset 0 -3px transparent;
     padding: 0 1px;
-    color: #ffffff;
+    color: #C7C4FF;
 }
 
 button:hover {
-    background-color: #4c7899;
+    background-color: #4B4892;
 }
 
 /* Module container styling */
@@ -36,7 +37,9 @@ button:hover {
 #tray,
 #scratchpad,
 #power-profiles-daemon {
-    background-color: #4c7899;
+    border-top: 1px solid #4B4892;
+    border-bottom: 1px solid #4B4892;
+    background-color: #3A3866;
     padding: 0 8px;
 }
 
@@ -46,18 +49,18 @@ button:hover {
     border-radius: 0;
 }
 
-#workspaces button:hover {
-    background-color: rgba(76, 120, 153, 0.5);
+#workspaces button.hover {
+    background-color: rgba(75, 72, 146, 0.5);
 }
 
 #workspaces button.focused,
 #workspaces button.active {
-    background-color: #4c7899;
-    box-shadow: inset 0 -3px #ffffff;
+    background-color: #91B4FF;
+    color: #1E1E3F;
 }
 
 #workspaces button.urgent {
-    background-color: #f53c3c;
+    background-color: #FF628C;
 }
 
 #window {
@@ -78,18 +81,18 @@ button:hover {
 
 /* Critical states only */
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
+    background-color: #FF628C;
     animation: blink 0.5s steps(12) infinite alternate;
 }
 
 @keyframes blink {
-    to { background-color: #d32f2f; }
+    to { background-color: #FF9DFF; }
 }
 
 #network.disconnected {
-    background-color: #f53c3c;
+    background-color: #FF628C;
 }
 
 #temperature.critical {
-    background-color: #f53c3c;
+    background-color: #FF628C;
 }

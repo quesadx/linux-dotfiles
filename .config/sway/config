@@ -14,7 +14,7 @@ exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 exec wl-paste --watch cliphist store
 exec mako
-exec swaybg -i ~/dotfiles/wallpapers/sway.png -m fill
+exec swaybg -i ~/dotfiles/wallpapers/purple.jpg -m fill
 exec foot fastfetch
 exec waybar
 exec kanshi
@@ -42,6 +42,14 @@ bindsym $mod+d exec $menu
 bindsym $mod+q kill
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+e exec swaymsg exit
+
+# Shades of Purple color scheme for window decorations
+client.focused          #91B4FF #3A3866 #C7C4FF #91B4FF #91B4FF
+client.focused_inactive #A599E9 #2D2B55 #A599E9 #4B4892 #2D2B55
+client.unfocused        #4B4892 #1E1E3F #A599E9 #2D2B55 #1E1E3F
+client.urgent           #FF628C #FF628C #FFFFFF #FF9DFF #FF628C
+client.placeholder      #1E1E3F #1E1E3F #C7C4FF #1E1E3F #1E1E3F
+client.background       #1E1E3F
 
 bindsym $mod+minus move scratchpad
 bindsym $mod+equal scratchpad show

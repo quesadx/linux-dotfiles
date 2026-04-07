@@ -1,14 +1,29 @@
-DRACULA COLOR PALETTE
+SHADES OF PURPLE COLOR PALETTE
+Status: ACTIVE - Applied to Sway, Waybar, and Foot terminal
 
-Background     #282A36   Main background
-Current Line   #6272A4   Comments, disabled code
-Selection      #44475A   Text selection
-Foreground     #F8F8F2   Default text
-Comment        #6272A4   Comments, disabled code
-Red            #FF5555   Errors, warnings, deletion
-Orange         #FFB86C   Numbers, constants, booleans
-Yellow         #F1FA8C   Strings, text content
-Green          #50FA7B   Functions, methods, inherited classes
-Cyan           #8BE9FD   Classes, types, support, regex
-Purple         #BD93F9   Instance reserved words, constants
-Pink           #FF79C6   Keywords, storage types
+BACKGROUND & SURFACES
+Background     #1E1E3F   base00  Background principal
+Elevated       #2D2B55   base01  Background elevado
+Surface        #3A3866   base02  Surface
+Borders        #4B4892   base03  Borders / separators
+
+TEXT
+Secondary      #A599E9   base04  Texto secundario
+Primary        #C7C4FF   base05  Texto principal
+Highlight      #FAD000   base06  Texto resaltado
+White          #FFFFFF   base07  Blanco puro
+
+COLORS
+Red/Pink       #FF628C   base08  Rojo/rosa
+Orange         #FF9D00   base09  Naranja
+Yellow         #FAD000   base0A  Amarillo
+Green          #A5FF90   base0B  Verde
+Cyan           #9EFFFF   base0C  Cian
+Blue           #91B4FF   base0D  Azul
+Purple         #B362FF   base0E  Púrpura (accent principal)
+Magenta        #FF9DFF   base0F  Magenta
+
+IMPLEMENTATION
+Sway config:        Window decorations & borders (alpha: 0.92)
+Waybar CSS:         Panel, modules, workspaces (alpha: 0.92)
+Foot terminal:      ANSI colors & text (alpha: 0.92)
