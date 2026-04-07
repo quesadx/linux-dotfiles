@@ -3,6 +3,8 @@ set $left h
 set $down j
 set $up k
 set $right l
+
+font "IBM Plex Sans" 10
 set $term foot
 set $menu wmenu-run
 set $browser firefox
@@ -13,12 +15,13 @@ exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSO
 exec wl-paste --watch cliphist store
 exec mako
 exec swaybg -i ~/dotfiles/wallpapers/sway.png -m fill
+exec foot fastfetch
 exec waybar
 exec kanshi
 
 gaps inner 4
 gaps outer 2
-
+smart_borders on
 
 input "type:keyboard" {
     xkb_layout us

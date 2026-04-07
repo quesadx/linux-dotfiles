@@ -1,5 +1,5 @@
 * {
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-family: FontAwesome, "IBM Plex Sans", Roboto, Helvetica, Arial, sans-serif;
     font-size: 13px;
 }
 
@@ -30,6 +30,7 @@ button:hover {
 #temperature,
 #backlight,
 #network,
+#bluetooth,
 #pulseaudio,
 #clock,
 #tray,

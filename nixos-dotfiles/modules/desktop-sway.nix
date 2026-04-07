@@ -5,10 +5,6 @@
 { config, pkgs, ... }:
 
 {
-  # ─── SWAY DEPENDENCIES ────────────────────────────────────────────────────
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.login.enableGnomeKeyring = true;
-
   # ─── SWAY SERVICES ────────────────────────────────────────────────────────
   programs.sway.enable = true;
   # wayland.windowManager.sway.systemd.variables = [ "--all" ];

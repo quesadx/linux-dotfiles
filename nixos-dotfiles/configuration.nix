@@ -39,6 +39,7 @@ let
     tldr # Community-driven man pages
     wdisplays # Display configuration utility for Wayland (GUI)
     brightnessctl # Display backlight control utility
+    bluetuith # Bluetooth TUI
   ];
 
   # ─── SYSTEM FONTS ────────────────────────────────────────────────────────
@@ -147,6 +148,8 @@ in
   services.fwupd.enable = true;
   services.flatpak.enable = true;
   services.openssh.enable = false;
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.login.enableGnomeKeyring = true;
 
   services.greetd = {
     enable = true;

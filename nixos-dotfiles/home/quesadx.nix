@@ -86,6 +86,7 @@ let
     pulsemixer
     btop
     yazi # xfce.thunar xfce.thunar-volman gvfs
+    sov
   ];
 
   # ─── VS CODE EXTENSIONS ────────────────────────────────────────────────────
