@@ -41,6 +41,7 @@ let
     brightnessctl # Display backlight control utility
     bluetuith # Bluetooth TUI
     libsecret # For GNOME Keyring integration
+    libinput # For input device management (e.g. touchscreens)
   ];
 
   # ─── SYSTEM FONTS ────────────────────────────────────────────────────────
@@ -55,7 +56,6 @@ let
 in
 
 # ─── SYSTEM CONFIGURATION ────────────────────────────────────────────────
-
 {
   imports = [
     ./hardware-configuration.nix
@@ -64,13 +64,6 @@ in
 
   # ─── BOOT & KERNEL ────────────────────────────────────────────────────────
   boot.kernelPackages = pkgs.linuxPackages_zen;
-
-  boot.kernelParams = [
-    "i915.enable_psr=1" # Panel Self Refresh — big battery win on Intel iGPU
-    "i915.enable_fbc=1" # Framebuffer compression
-    "i915.enable_dc=1" # Deep power states for display engine (try 2, fallback to 1 if issues)
-    "nvme.noacpi=1" # If you have NVMe — prevents ACPI conflicts
-  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.timeout = 0; # skip menu entirely, boot immediately
@@ -124,6 +117,8 @@ in
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   hardware.graphics.enable = true;
+  hardware.opentabletdriver.enable = true; # Used to handle Huion tablet stuff
+  hardware.uinput.enable = true; # For virtual input devices (e.g. wdisplays)
 
   # ─── VIRTUALIZATION ───────────────────────────────────────────────────────
   virtualisation.docker.enable = true;
@@ -151,7 +146,6 @@ in
   services.flatpak.enable = true;
   services.openssh.enable = false;
   services.gnome.gnome-keyring.enable = true;
-  services.greetd.enable = false;
 
   # ─── AUDIO (PipeWire) ─────────────────────────────────────────────────────
   services.pipewire.enable = true;

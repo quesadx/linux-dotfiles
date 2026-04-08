@@ -4,9 +4,9 @@ set $down j
 set $up k
 set $right l
 
-font "IBM Plex Sans" 10
+font "IBM Plex Mono" 10
 set $term foot
-set $menu wmenu-run
+set $menu tofi-drun | xargs swaymsg exec --
 set $browser firefox
 set $file_manager foot yazi
 
@@ -22,11 +22,20 @@ exec kanshi
 gaps inner 4
 gaps outer 2
 smart_borders on
+default_border pixel 1
 
 input "type:keyboard" {
     xkb_layout us
     xkb_variant intl
     xkb_options caps:escape
+}
+
+input "9580:100:HUION_Huion_Tablet_RTE-100" {
+    map_to_output eDP-1
+}
+
+input "type:tablet_tool" {
+    map_to_output eDP-1
 }
 
 bindgesture swipe:3:right workspace prev

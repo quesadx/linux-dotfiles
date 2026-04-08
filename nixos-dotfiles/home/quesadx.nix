@@ -72,7 +72,6 @@ let
     intel-gpu-tools
     alacritty
     foot
-    wmenu
     waybar
     swayidle
     swaylock
@@ -87,6 +86,8 @@ let
     btop
     yazi # xfce.thunar xfce.thunar-volman gvfs
     sov
+    tofi
+    opentabletdriver
   ];
 
   # ─── VS CODE EXTENSIONS ────────────────────────────────────────────────────
@@ -129,6 +130,7 @@ let
     "waybar".source = ../../.config/waybar;
     "foot".source = ../../.config/foot;
     "kanshi".source = ../../.config/kanshi;
+    "tofi".source = ../../.config/tofi;
   };
 
 in
@@ -149,7 +151,7 @@ in
 
   # ─── SYSTEM SERVICES ───────────────────────────────────────────────────────
   services.ssh-agent.enable = true;
-  services.gnome-keyring.enable = true;                  # Start GNOME Keyring daemon
+  services.gnome-keyring.enable = true; # Start GNOME Keyring daemon
   services.kanshi.enable = true; # Display configuration daemon for Wayland
   services.udiskie.enable = true; # Automounting of external drives
   # services.gvfs.enable = true;
@@ -293,7 +295,7 @@ in
   programs.vscode.profiles.default.userSettings = {
     "workbench.activityBar.location" = "top";
     "workbench.sideBar.location" = "right";
-    "workbench.colorTheme" = "Monokai Dimmed";
+    "workbench.colorTheme" = "Modern Purple Theme Dark";
     "workbench.iconTheme" = "material-icon-theme";
     "editor.minimap.enabled" = false;
     "window.commandCenter" = false;
@@ -309,6 +311,7 @@ in
     "git.enableSmartCommit" = true;
     "git.autofetch" = true;
     "chat.viewSessions.orientation" = "stacked";
+    "editor.fontFamily" = "'IBM Plex Mono', monospace";
   };
 
   programs.vscode.profiles.default.keybindings = [

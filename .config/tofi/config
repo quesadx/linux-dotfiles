@@ -1,0 +1,25 @@
+# Tofi configuration
+
+background-color = #1E1E3F
+border-color = #4B4892
+text-color = #C7C4FF
+selection-background = #3A3866
+selection-color = #91B4FF
+
+font = "IBM Plex Mono"
+font-size = 14
+
+width = 400
+height = 300
+border-width = 2
+outline-width = 0
+
+anchor = "center"
+result-spacing = 8
+padding-top = 12
+padding-bottom = 12
+padding-left = 16
+padding-right = 16
+
+fuzzy-match = true
+history = true
