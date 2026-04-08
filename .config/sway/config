@@ -12,7 +12,6 @@ set $file_manager foot yazi
 
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
-exec_always systemctl --user restart shikane.service
 exec wl-paste --watch cliphist store
 exec mako
 exec swaybg -i ~/dotfiles/wallpapers/purple_noice.png -m fill
