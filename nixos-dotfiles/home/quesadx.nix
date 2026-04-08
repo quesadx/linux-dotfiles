@@ -88,6 +88,7 @@ let
     sov
     tofi
     xournalpp
+    thunar
   ];
 
   # ─── VS CODE EXTENSIONS ────────────────────────────────────────────────────
@@ -130,6 +131,7 @@ let
     "waybar".source = ../../.config/waybar;
     "foot".source = ../../.config/foot;
     "kanshi".source = ../../.config/kanshi;
+    "shikane".source = ../../.config/shikane;
     "tofi".source = ../../.config/tofi;
   };
 
@@ -152,10 +154,9 @@ in
   # ─── SYSTEM SERVICES ───────────────────────────────────────────────────────
   services.ssh-agent.enable = true;
   services.gnome-keyring.enable = true; # Start GNOME Keyring daemon
-  services.kanshi.enable = true; # Display configuration daemon for Wayland
+  # services.kanshi.enable = true; # Display configuration daemon for Wayland
+  services.shikane.enable = true;
   services.udiskie.enable = true; # Automounting of external drives
-  # services.gvfs.enable = true;
-  # services.tumbler.enable = true; # thumbnail previews
   xdg.configFile = configSources;
 
   # ─── EDITOR: NEOVIM ────────────────────────────────────────────────────────

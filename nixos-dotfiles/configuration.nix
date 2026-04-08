@@ -147,6 +147,8 @@ in
   services.flatpak.enable = true;
   services.openssh.enable = false;
   services.gnome.gnome-keyring.enable = true;
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
 
   # ─── AUDIO (PipeWire) ─────────────────────────────────────────────────────
   services.pipewire.enable = true;
