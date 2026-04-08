@@ -30,11 +30,13 @@ input "type:keyboard" {
     xkb_options caps:escape
 }
 
-input "9580:100:HUION_Huion_Tablet_RTE-100" {
+# Huion tablet mapping and mode for drawing on the laptop display.
+input "type:tablet_tool" {
     map_to_output eDP-1
+    tool_mode * absolute
 }
 
-input "type:tablet_tool" {
+input "type:tablet_pad" {
     map_to_output eDP-1
 }
 

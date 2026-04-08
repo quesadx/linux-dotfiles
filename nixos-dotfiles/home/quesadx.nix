@@ -87,7 +87,7 @@ let
     yazi # xfce.thunar xfce.thunar-volman gvfs
     sov
     tofi
-    opentabletdriver
+    xournalpp
   ];
 
   # ─── VS CODE EXTENSIONS ────────────────────────────────────────────────────

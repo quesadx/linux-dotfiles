@@ -41,7 +41,6 @@ let
     brightnessctl # Display backlight control utility
     bluetuith # Bluetooth TUI
     libsecret # For GNOME Keyring integration
-    libinput # For input device management (e.g. touchscreens)
   ];
 
   # ─── SYSTEM FONTS ────────────────────────────────────────────────────────
@@ -117,8 +116,10 @@ in
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   hardware.graphics.enable = true;
-  hardware.opentabletdriver.enable = true; # Used to handle Huion tablet stuff
+  # Use native kernel/libinput tablet handling for Sway.
+  hardware.opentabletdriver.enable = false;
   hardware.uinput.enable = true; # For virtual input devices (e.g. wdisplays)
+  services.xserver.wacom.enable = true;
 
   # ─── VIRTUALIZATION ───────────────────────────────────────────────────────
   virtualisation.docker.enable = true;
