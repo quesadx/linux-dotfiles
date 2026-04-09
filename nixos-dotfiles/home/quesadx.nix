@@ -36,10 +36,9 @@ let
     dcud = "docker compose up -d";
     dcd = "docker compose down";
     dcdv = "docker compose down -v";
-    # Power profile management using auto-cpufreq
-    powersave = "sudo auto-cpufreq --force=powersave && notify-send -t 8000 'Power profile changed to powersave'"; # battery saver
-    balanced = "sudo auto-cpufreq --force=reset && notify-send -t 8000 'Power profile changed to auto'"; # default smart mode
-    performance = "sudo auto-cpufreq --force=performance && notify-send -t 8000 'Power profile changed to performance'"; # full power
+
+    # calcurse aliass to read from /home/quesadx/vault/calcurse/
+    calcurse = "calcurse -D /home/${username}/vault/calcurse/";
   };
 
   # ─── USER PACKAGES ────────────────────────────────────────────────────────
@@ -89,6 +88,8 @@ let
     tofi
     xournalpp
     thunar
+    calcurse
+    zsh-powerlevel10k
   ];
 
   # ─── VS CODE EXTENSIONS ────────────────────────────────────────────────────
@@ -131,6 +132,7 @@ let
     "waybar".source = ../../.config/waybar;
     "foot".source = ../../.config/foot;
     "tofi".source = ../../.config/tofi;
+    "khal".source = ../../.config/khal;
   };
 
 in
@@ -148,12 +150,18 @@ in
   home.homeDirectory = homeDir;
   home.stateVersion = "26.05";
   home.packages = userPackages;
+  home.sessionVariables = {
+    SHELL = "${pkgs.zsh}/bin/zsh";
+  };
+  home.file.".p10k.zsh".source = ./.p10k.zsh;
 
   # ─── SYSTEM SERVICES ───────────────────────────────────────────────────────
   services.ssh-agent.enable = true;
   services.gnome-keyring.enable = true; # Start GNOME Keyring daemon
   services.udiskie.enable = true; # Automounting of external drives
   xdg.configFile = configSources;
+  wayland.windowManager.sway.systemd.variables = [ "--all" ];
+
 
   # ─── EDITOR: NEOVIM ────────────────────────────────────────────────────────
   programs.neovim = {
@@ -164,8 +172,23 @@ in
   };
 
   # ─── SHELL: ZSH & BASH ─────────────────────────────────────────────────────
-  programs.starship.enable = true;
-  programs.zsh.enable = true;
+  # programs.starship.enable = false;
+  programs.zsh = {
+    enable = true;
+
+  # With Oh-My-Zsh:
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "git"         # also requires `programs.git.enable = true;`
+      ];
+    };
+    initExtra = ''
+    source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+    [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+  '';
+  };
+
   programs.bash.enable = true;
   programs.bash.shellAliases = bashAliases;
 

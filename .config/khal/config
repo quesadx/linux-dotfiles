@@ -1,0 +1,13 @@
+[calendars]
+
+[[classes]]
+# Usa una sola carpeta para todas las clases, sin subcarpetas redundantes.
+path = /home/quesadx/vault/calendars/classes/
+type = calendar
+color = light blue
+
+[[assignments]]
+# Mantiene las entregas en un solo calendario de tareas.
+path = /home/quesadx/vault/calendars/assignments/
+type = calendar
+color = light red

@@ -7,7 +7,6 @@
 {
   # ─── SWAY SERVICES ────────────────────────────────────────────────────────
   programs.sway.enable = true;
-  # wayland.windowManager.sway.systemd.variables = [ "--all" ];
   programs.sway.wrapperFeatures.gtk = true; # Enable XWayland for legacy apps
 
 }
