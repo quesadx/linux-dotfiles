@@ -90,6 +90,7 @@ let
     thunar
     calcurse
     zsh-powerlevel10k
+    arduino-ide
   ];
 
   # ─── VS CODE EXTENSIONS ────────────────────────────────────────────────────
@@ -161,7 +162,6 @@ in
   services.udiskie.enable = true; # Automounting of external drives
   xdg.configFile = configSources;
   wayland.windowManager.sway.systemd.variables = [ "--all" ];
-
 
   # ─── EDITOR: NEOVIM ────────────────────────────────────────────────────────
   programs.neovim = {

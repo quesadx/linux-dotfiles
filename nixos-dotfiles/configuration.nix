@@ -28,6 +28,7 @@ let
     "audio" # Audio access
     "docker"
     "kvm" # Virtualization
+    "dialout"
   ];
 
   # ─── CORE PACKAGES ────────────────────────────────────────────────────────
