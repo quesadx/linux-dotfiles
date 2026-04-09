@@ -175,7 +175,7 @@ in
   # programs.starship.enable = false;
   programs.zsh = {
     enable = true;
-
+    shellAliases = bashAliases;
   # With Oh-My-Zsh:
     oh-my-zsh = {
       enable = true;
