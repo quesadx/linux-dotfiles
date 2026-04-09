@@ -176,17 +176,20 @@ in
   programs.zsh = {
     enable = true;
     shellAliases = bashAliases;
-  # With Oh-My-Zsh:
     oh-my-zsh = {
       enable = true;
-      plugins = [
-        "git"         # also requires `programs.git.enable = true;`
-      ];
+      plugins = [ "git" ];
     };
-    initExtra = ''
-    source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-    [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-  '';
+    plugins = [
+      {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+    ];
+    initContent = ''
+      [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+    '';
   };
 
   programs.bash.enable = true;
