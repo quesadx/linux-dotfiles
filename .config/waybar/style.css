@@ -5,7 +5,7 @@
 
 window#waybar {
     background-color: #2D2B55;
-    border: 1px solid #4B4892;
+    border-top: 1px solid #4B4892;
     color: #C7C4FF;
     opacity: 0.92;
 }
@@ -15,7 +15,6 @@ window#waybar.hidden {
 }
 
 button {
-    box-shadow: inset 0 -3px transparent;
     padding: 0 1px;
     color: #C7C4FF;
 }
@@ -38,7 +37,6 @@ button:hover {
 #scratchpad,
 #power-profiles-daemon {
     border-top: 1px solid #4B4892;
-    border-bottom: 1px solid #4B4892;
     background-color: #3A3866;
     padding: 0 8px;
 }
