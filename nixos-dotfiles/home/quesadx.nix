@@ -37,10 +37,10 @@ let
     dcd = "docker compose down";
     dcdv = "docker compose down -v";
 
-    dotfiles = "cd ~/dotfiles";
+    dotfiles = "cd ~/linux-dotfiles";
 
     # calcurse aliass to read from /home/quesadx/vault/calcurse/
-    calcurse = "calcurse -D /home/${username}/vault/calcurse/";
+    calcurse = "calcurse -D /home/${username}/vault/08-calcurse/";
   };
 
   # ─── USER PACKAGES ────────────────────────────────────────────────────────
