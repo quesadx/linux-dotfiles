@@ -49,7 +49,7 @@ let
     unzip
     unrar
     p7zip
-    gnome-music gnome-calendar gnome-calculator gnome-text-editor gnome-console gnome-font-viewer nautilus
+    gnome-music gnome-calendar gnome-calculator gnome-text-editor gnome-console gnome-font-viewer nautilus loupe
     adwaita-icon-theme
     glib
     gtk3
@@ -74,7 +74,6 @@ let
     calcurse
     arduino-ide
     github-copilot-cli
-
   ];
 
   # ─── VS CODE EXTENSIONS ────────────────────────────────────────────────────
