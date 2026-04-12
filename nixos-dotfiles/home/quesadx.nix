@@ -49,14 +49,20 @@ let
     unzip
     unrar
     p7zip
-    gnome-music gnome-calendar gnome-calculator gnome-text-editor gnome-console gnome-font-viewer nautilus loupe
+    gnome-music
+    gnome-calendar
+    gnome-calculator
+    gnome-text-editor
+    gnome-console
+    gnome-font-viewer
+    nautilus
+    loupe
     adwaita-icon-theme
     glib
     gtk3
     onlyoffice-desktopeditors
     obsidian
     papers
-    spotify
     dconf-editor
     dbeaver-bin
     mysql-workbench
