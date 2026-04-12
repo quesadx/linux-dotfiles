@@ -11,15 +11,10 @@
   dconf.settings = {
     # ─── GNOME SHELL EXTENSIONS ───────────────────────────────────────────
     "org/gnome/shell".enabled-extensions = [
-      "AlphabeticalAppGrid@stuarthayhurst"      # Alphabetical app grid
       "appindicatorsupport@rgcjonas.gmail.com"  # System tray
       "caffeine@patapon.info"                   # Prevent screen lock
-      "clipboard-history@alexsaveau.dev"        # Clipboard history
       "luminus-desktop@dikasp.gitlab"           # Status bar tweaks
     ];
-
-    # ─── EXTENSION: Alphabetical App Grid ──────────────────────────────────
-    "org/gnome/shell/extensions/alphabetical-app-grid".folder-order-position = "start";
 
     # ─── EXTENSION: AppIndicator (System Tray) ────────────────────────────
     "org/gnome/shell/extensions/appindicator".legacy-tray-enabled = false;

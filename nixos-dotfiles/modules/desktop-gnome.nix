@@ -14,9 +14,7 @@
 
   # ─── GNOME EXTENSIONS ─────────────────────────────────────────────────────
   environment.systemPackages = with pkgs.gnomeExtensions; [
-    alphabetical-app-grid              # Alphabetical app drawer
     caffeine                           # Prevent screen lock
-    clipboard-history                  # Clipboard manager
     luminus-desktop                    # Status bar enhancements
     appindicator                       # Legacy system tray support
   ];
