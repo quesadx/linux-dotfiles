@@ -38,9 +38,6 @@ let
     curl # CLI tools
     steam-run # VM management and Steam runtime
     tldr # Community-driven man pages
-    wdisplays # Display configuration utility for Wayland (GUI)
-    brightnessctl # Display backlight control utility
-    bluetuith # Bluetooth TUI
     libsecret # For GNOME Keyring integration
   ];
 
@@ -117,10 +114,7 @@ in
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   hardware.graphics.enable = true;
-  # Use native kernel/libinput tablet handling for Sway.
-  hardware.opentabletdriver.enable = false;
-  hardware.uinput.enable = true; # For virtual input devices (e.g. wdisplays)
-  services.xserver.wacom.enable = true;
+  hardware.opengl.enable = true;
 
   # ─── VIRTUALIZATION ───────────────────────────────────────────────────────
   virtualisation.docker.enable = true;
@@ -138,7 +132,6 @@ in
   security.polkit.enable = true;
   security.rtkit.enable = true;
   security.sudo.wheelNeedsPassword = false;
-  security.pam.services.login.enableGnomeKeyring = true;
 
   # ─── POWER SERVICES ──────────────────────────────────────────────────────
   services.power-profiles-daemon.enable = true; # Disable to prevent conflicts
@@ -148,8 +141,6 @@ in
   services.flatpak.enable = true;
   services.openssh.enable = false;
   services.gnome.gnome-keyring.enable = true;
-  services.gvfs.enable = true;
-  services.udisks2.enable = true;
 
   # ─── AUDIO (PipeWire) ─────────────────────────────────────────────────────
   services.pipewire.enable = true;

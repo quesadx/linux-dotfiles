@@ -130,12 +130,6 @@ let
 
   # ─── CONFIG FILE SOURCES ───────────────────────────────────────────────────
   configSources = {
-    # "fastfetch".source = ../../.config/fastfetch;
-    "sway".source = ../../.config/sway;
-    "waybar".source = ../../.config/waybar;
-    "foot".source = ../../.config/foot;
-    "tofi".source = ../../.config/tofi;
-    "khal".source = ../../.config/khal;
   };
 
 in
@@ -159,10 +153,7 @@ in
 
   # ─── SYSTEM SERVICES ───────────────────────────────────────────────────────
   services.ssh-agent.enable = true;
-  services.gnome-keyring.enable = true; # Start GNOME Keyring daemon
-  services.udiskie.enable = true; # Automounting of external drives
   xdg.configFile = configSources;
-  wayland.windowManager.sway.systemd.variables = [ "--all" ];
 
   # ─── EDITOR: NEOVIM ────────────────────────────────────────────────────────
   programs.neovim = {
@@ -321,14 +312,6 @@ in
     "chat.viewSessions.orientation" = "stacked";
     "editor.fontFamily" = "'IBM Plex Mono', monospace";
   };
-
-  programs.vscode.profiles.default.keybindings = [
-    {
-      key = "capslock";
-      command = "extension.vim_escape";
-      when = "textInputFocus && vim.active";
-    }
-  ];
 
   # ─── BROWSER: FIREFOX ──────────────────────────────────────────────────────
   programs.firefox.enable = true;

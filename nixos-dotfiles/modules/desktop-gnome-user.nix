@@ -13,11 +13,9 @@
     "org/gnome/shell".enabled-extensions = [
       "AlphabeticalAppGrid@stuarthayhurst"      # Alphabetical app grid
       "appindicatorsupport@rgcjonas.gmail.com"  # System tray
-      "auto-accent-colour@Wartybix"             # Dynamic accent colors
       "caffeine@patapon.info"                   # Prevent screen lock
       "clipboard-history@alexsaveau.dev"        # Clipboard history
       "luminus-desktop@dikasp.gitlab"           # Status bar tweaks
-      "top-bar-organizer@julian.gse.jsts.xyz"   # Customize top bar
     ];
 
     # ─── EXTENSION: Alphabetical App Grid ──────────────────────────────────
