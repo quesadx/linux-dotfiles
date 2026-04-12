@@ -137,14 +137,6 @@ in
   services.ssh-agent.enable = true;
   xdg.configFile = configSources;
 
-  # ─── EDITOR: NEOVIM ────────────────────────────────────────────────────────
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-  };
-
   # ─── SHELL: ZSH & BASH ─────────────────────────────────────────────────────
   programs.starship.enable = true;
   programs.zsh.enable = true;
