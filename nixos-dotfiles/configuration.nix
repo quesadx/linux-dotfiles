@@ -56,7 +56,7 @@ in
 {
   imports = [
     ./hardware-configuration.nix
-    ./modules/desktop-sway.nix
+    ./modules/desktop-gnome.nix
   ];
 
   # ─── BOOT & KERNEL ────────────────────────────────────────────────────────
