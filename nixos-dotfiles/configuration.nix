@@ -29,6 +29,7 @@ let
     "docker"
     "kvm" # Virtualization
     "dialout"
+    "libvirtd"
   ];
 
   # ─── CORE PACKAGES ────────────────────────────────────────────────────────
@@ -39,6 +40,7 @@ let
     steam-run # VM management and Steam runtime
     tldr # Community-driven man pages
     libsecret # For GNOME Keyring integration
+    dnsmasq
   ];
 
   # ─── SYSTEM FONTS ────────────────────────────────────────────────────────
@@ -126,6 +128,11 @@ in
       }
     ];
   };
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+  # [ Note ]: Gotta run these commands to set up libvirt default network:
+  # sudo virsh net-start default
+  # sudo virsh net-autostart default
 
   # ─── SECURITY ────────────────────────────────────────────────────────────
   security.polkit.enable = true;
