@@ -91,6 +91,8 @@ let
     calcurse
     zsh-powerlevel10k
     arduino-ide
+    github-copilot-cli
+
   ];
 
   # ─── VS CODE EXTENSIONS ────────────────────────────────────────────────────
@@ -154,7 +156,6 @@ in
   home.sessionVariables = {
     SHELL = "${pkgs.zsh}/bin/zsh";
   };
-  home.file.".p10k.zsh".source = ./.p10k.zsh;
 
   # ─── SYSTEM SERVICES ───────────────────────────────────────────────────────
   services.ssh-agent.enable = true;
@@ -172,25 +173,9 @@ in
   };
 
   # ─── SHELL: ZSH & BASH ─────────────────────────────────────────────────────
-  # programs.starship.enable = false;
-  programs.zsh = {
-    enable = true;
-    shellAliases = bashAliases;
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" ];
-    };
-    plugins = [
-      {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-    ];
-    initContent = ''
-      [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-    '';
-  };
+  programs.starship.enable = true;
+  programs.zsh.enable = true;
+  programs.zsh.shellAliases = bashAliases;
 
   programs.bash.enable = true;
   programs.bash.shellAliases = bashAliases;
