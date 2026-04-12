@@ -29,8 +29,8 @@ let
     gc = "git commit -m";
     gp = "git push";
     # NixOS rebuild aliases
-    nrt = "cd ~/dotfiles/nixos-dotfiles && sudo nixos-rebuild test --flake .#nixos";
-    nrs = "cd ~/dotfiles && git add . && cd nixos-dotfiles && sudo nixos-rebuild switch --flake .#nixos";
+    nrt = "cd ~/linux-dotfiles/nixos-dotfiles && sudo nixos-rebuild test --flake .#nixos";
+    nrs = "cd ~/linux-dotfiles && git add . && cd nixos-dotfiles && sudo nixos-rebuild switch --flake .#nixos";
     # Docker Compose aliases
     dcu = "docker compose up";
     dcud = "docker compose up -d";
