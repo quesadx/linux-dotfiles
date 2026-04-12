@@ -114,7 +114,6 @@ in
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   hardware.graphics.enable = true;
-  hardware.opengl.enable = true;
 
   # ─── VIRTUALIZATION ───────────────────────────────────────────────────────
   virtualisation.docker.enable = true;

@@ -47,14 +47,13 @@ let
     unzip
     unrar
     p7zip
-    # gnome-music gnome-calendar gnome-calculator gnome-text-editor gnome-console gnome-font-viewer nautilus
+    gnome-music gnome-calendar gnome-calculator gnome-text-editor gnome-console gnome-font-viewer nautilus
     adwaita-icon-theme
     glib
     gtk3
     onlyoffice-desktopeditors
     obsidian
     papers
-    rnote
     spotify
     dconf-editor
     dbeaver-bin
@@ -67,29 +66,10 @@ let
     direnv
     nix-direnv
     fastfetch
-    powertop
-    intel-gpu-tools
-    alacritty
-    foot
-    waybar
-    swayidle
-    swaylock
-    libnotify
-    mako
-    grim
-    slurp
     wl-clipboard
-    cliphist
-    swaybg
-    pulsemixer
     btop
-    yazi # xfce.thunar xfce.thunar-volman gvfs
-    sov
-    tofi
     xournalpp
-    thunar
     calcurse
-    zsh-powerlevel10k
     arduino-ide
     github-copilot-cli
 
