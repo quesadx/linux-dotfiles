@@ -39,8 +39,8 @@ let
 
     dotfiles = "cd ~/linux-dotfiles";
 
-    # calcurse aliass to read from /home/quesadx/vault/calcurse/
-    calcurse = "calcurse -D /home/${username}/vault/08-calcurse/";
+    # calcurse aliass to read from /home/quesadx/obsidian-vault/calcurse/
+    calcurse = "calcurse -D /home/${username}/obsidian-vault/08-calcurse/";
   };
 
   # ─── USER PACKAGES ────────────────────────────────────────────────────────
@@ -273,7 +273,6 @@ in
   programs.vscode.profiles.default.userSettings = {
     "workbench.activityBar.location" = "top";
     "workbench.sideBar.location" = "right";
-    "workbench.colorTheme" = "Modern Purple Theme Dark";
     "workbench.iconTheme" = "material-icon-theme";
     "editor.minimap.enabled" = false;
     "window.commandCenter" = false;
