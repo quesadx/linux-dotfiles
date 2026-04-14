@@ -116,6 +116,7 @@ let
 
   # ─── CONFIG FILE SOURCES ───────────────────────────────────────────────────
   configSources = {
+    "fastfetch".source = ../../.config/fastfetch;
   };
 
 in
