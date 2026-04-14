@@ -61,7 +61,6 @@ let
     glib
     gtk3
     onlyoffice-desktopeditors
-    obsidian
     papers
     dconf-editor
     dbeaver-bin
