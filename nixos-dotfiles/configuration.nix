@@ -169,10 +169,11 @@ in
     "nix-command"
     "flakes"
   ];
-  nix.settings.auto-optimise-store = true;
+  nix.optimise.automatic = true;
+  nix.optimise.dates = [ "03:45" ];
   nix.gc.automatic = true; # Automatic garbage collection
   nix.gc.dates = "weekly";
-  nix.gc.options = "--delete-older-than 5d"; # Keep 3 days of generations
+  nix.gc.options = "--delete-older-than 30d";
 
   # ---------- SYSTEM ----------
   fonts.packages = systemFonts; # Install system fonts
