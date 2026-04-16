@@ -3,6 +3,7 @@
   pkgs,
   lib,
   shared,
+  host,
   ...
 }:
 
@@ -28,9 +29,9 @@ let
     ga = "git add .";
     gc = "git commit -m";
     gp = "git push";
-    # NixOS rebuild aliases
-    nrt = "cd ~/linux-dotfiles/nixos-dotfiles && sudo nixos-rebuild test --flake .#nixos";
-    nrs = "cd ~/linux-dotfiles && git add . && cd nixos-dotfiles && sudo nixos-rebuild switch --flake .#nixos";
+    # NixOS rebuild aliases (uses current host)
+    nrt = "cd ~/linux-dotfiles/nixos-dotfiles && sudo nixos-rebuild test --flake .#${host.hostname}";
+    nrs = "cd ~/linux-dotfiles && git add . && cd nixos-dotfiles && sudo nixos-rebuild switch --flake .#${host.hostname}";
     # Docker Compose aliases
     dcu = "docker compose up";
     dcud = "docker compose up -d";

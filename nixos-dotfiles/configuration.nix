@@ -2,6 +2,7 @@
   config,
   pkgs,
   shared,
+  host,
   ...
 }:
 
@@ -13,7 +14,6 @@ let
   inherit (shared)
     username
     userDescription
-    hostname
     timeZone
     locale
     regionalLocale
@@ -57,7 +57,7 @@ in
 # ─── SYSTEM CONFIGURATION ────────────────────────────────────────────────
 {
   imports = [
-    ./hardware-configuration.nix
+    host.hardwareConfig
     ./modules/desktop-gnome.nix
   ];
 
@@ -76,7 +76,7 @@ in
 
   # ─── NETWORKING ───────────────────────────────────────────────────────────
   networking = {
-    hostName = hostname;
+    hostName = host.hostname;
     networkmanager.enable = true;
   };
 

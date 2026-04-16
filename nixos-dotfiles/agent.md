@@ -2,16 +2,20 @@
 
 ## Quick Context
 - Repo type: personal flake-based NixOS + Home Manager dotfiles.
+- **Multi-host setup**: Supports desktop and thinkpad from same repo.
 - Desktop target: GNOME.
 - Source of truth: this repo only.
+- See `MULTI_HOST_SETUP.md` for detailed usage instructions.
 
 ## High-Signal File Map
 - `flake.nix`: flake inputs/outputs, host wiring.
 - `configuration.nix`: system-level host config.
 - `home/quesadx.nix`: user-level Home Manager config.
+- `hosts.nix`: per-host names, hardware config paths, and host-specific modules.
 - `modules/desktop-gnome.nix`: GNOME system module.
 - `modules/desktop-gnome-user.nix`: GNOME user module.
-- `hardware-configuration.nix`: hardware-specific (edit only when needed).
+- `hardware-configuration.desktop.nix`: desktop hardware configuration.
+- `hardware-configuration.thinkpad.nix`: ThinkPad hardware configuration placeholder.
 
 ## Non-Negotiables
 - Keep everything declarative and reproducible.
