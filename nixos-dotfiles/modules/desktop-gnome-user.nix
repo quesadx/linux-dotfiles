@@ -32,7 +32,7 @@
     # ─── INPUT SOURCES (Keyboard Layouts) ──────────────────────────────────
     "org/gnome/desktop/input-sources" = {
       show-all-sources = true;
-      # xkb-options = [ "caps:escape" ];  # Caps Lock -> Escape
+      xkb-options = [ "compose:rwin" ];  # Right Super -> Compose
     };
 
     # ─── WINDOW MANAGER KEYBINDINGS ───────────────────────────────────────
