@@ -59,7 +59,7 @@ in
   imports = [
     host.hardwareConfig
     ./modules/desktop-gnome.nix
-    ./modules/macbook-cirrus-audio.nix
+    ./modules/macbook-pro-cirrus-audio.nix
   ];
 
   # ─── BOOT & KERNEL ────────────────────────────────────────────────────────
