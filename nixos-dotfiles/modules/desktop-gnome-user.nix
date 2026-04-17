@@ -17,7 +17,7 @@
     ];
 
     "org/gnome/mutter" = {
-      experimental-features = [ "scale-monitor-framebuffer" ];
+      # experimental-features = [ "scale-monitor-framebuffer" ];
     };
 
     # ─── EXTENSION: AppIndicator (System Tray) ────────────────────────────
@@ -32,7 +32,7 @@
     # ─── INPUT SOURCES (Keyboard Layouts) ──────────────────────────────────
     "org/gnome/desktop/input-sources" = {
       show-all-sources = true;
-      xkb-options = [ "caps:escape" ];  # Caps Lock -> Escape
+      # xkb-options = [ "caps:escape" ];  # Caps Lock -> Escape
     };
 
     # ─── WINDOW MANAGER KEYBINDINGS ───────────────────────────────────────
