@@ -16,6 +16,10 @@
       "luminus-desktop@dikasp.gitlab"           # Status bar tweaks
     ];
 
+    "org/gnome/mutter" = {
+      experimental-features = [ "scale-monitor-framebuffer" ];
+    };
+
     # ─── EXTENSION: AppIndicator (System Tray) ────────────────────────────
     "org/gnome/shell/extensions/appindicator".legacy-tray-enabled = false;
 

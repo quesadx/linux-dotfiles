@@ -5,27 +5,28 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [ (modulesPath + "/hardware/network/broadcom-43xx.nix")
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/ab589045-e588-4bf8-a03e-3218aac489b8";
+    { device = "/dev/disk/by-uuid/089b9bd0-97ab-41d3-ab5f-76376675bba8";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/B6EF-0389";
+    { device = "/dev/disk/by-uuid/012D-EACF";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/fc46df98-1ab9-447d-ad89-c465f81a4773"; }
+    [ { device = "/dev/disk/by-uuid/c0e5d438-f519-4894-872c-d6471ea518da"; }
     ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
