@@ -32,9 +32,6 @@
     # ─── INPUT SOURCES (Keyboard Layouts) ──────────────────────────────────
     "org/gnome/desktop/input-sources" = {
       show-all-sources = true;
-      sources = [
-        (lib.gvariant.mkTuple [ "xkb" "us+altgr-intl" ])
-      ];
       xkb-options = [ "caps:escape" ];  # Caps Lock -> Escape
     };
 
