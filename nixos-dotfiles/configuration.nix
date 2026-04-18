@@ -66,7 +66,7 @@ in
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
   boot.loader.systemd-boot.enable = true;
-  boot.loader.timeout = 0; # skip menu entirely, boot immediately
+  boot.loader.timeout = 4;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # ─── MEMORY & SWAP ────────────────────────────────────────────────────────
