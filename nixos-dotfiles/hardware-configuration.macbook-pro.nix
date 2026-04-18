@@ -34,7 +34,6 @@
 
   services.mbpfan = {
     enable = true;
-
     settings.general = {
       min_fan1_speed = 1200;
       max_fan1_speed = 6200;
