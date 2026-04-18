@@ -17,6 +17,7 @@
     caffeine                           # Prevent screen lock
     luminus-desktop                    # Status bar enhancements
     appindicator                       # Legacy system tray support
+    touchpad-gesture-customization # Custom touchpad gestures
   ];
 
   # ─── GNOME EXCLUSIONS ─────────────────────────────────────────────────────

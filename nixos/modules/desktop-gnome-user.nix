@@ -11,9 +11,10 @@
   dconf.settings = {
     # ─── GNOME SHELL EXTENSIONS ───────────────────────────────────────────
     "org/gnome/shell".enabled-extensions = [
-      "appindicatorsupport@rgcjonas.gmail.com"  # System tray
-      "caffeine@patapon.info"                   # Prevent screen lock
-      "luminus-desktop@dikasp.gitlab"           # Status bar tweaks
+      "appindicatorsupport@rgcjonas.gmail.com"                                      # System tray
+      "caffeine@patapon.info"                                                       # Prevent screen lock
+      "luminus-desktop@dikasp.gitlab"                                               # Status bar tweaks
+      "touchpad-gesture-customization@coooolapps.com"                               # Touchpad gestures
     ];
 
     "org/gnome/mutter" = {
@@ -62,6 +63,15 @@
       binding = "<Super>t";
       command = "kgx";
       name = "gnome-console";
+    };
+
+    # ─── EXTENSION: Touchpad Gesture Customization ─────────────────────────
+    "org/gnome/shell/extensions/touchpad-gesture-customization" = {
+      horizontal-swipe-3-fingers-gesture = "WORKSPACE_SWITCHING";
+      horizontal-swipe-4-fingers-gesture = "WORKSPACE_SWITCHING";
+      vertical-swipe-4-fingers-gesture = "WINDOW_MANIPULATION";
+      pinch-3-finger-gesture = "NONE";
+      pinch-4-finger-gesture = "NONE";
     };
 
     # ─── MOUSE & ACCESSIBILITY ────────────────────────────────────────────
