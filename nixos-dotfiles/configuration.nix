@@ -163,6 +163,17 @@ in
 
   # ─── ENVIRONMENT ────────────────────────────────────────────────────────
   environment.systemPackages = corePackages;
+  environment.etc."systemd/system-sleep/disable-d3cold" = {
+  mode = "0755";
+  text = ''
+    #!/usr/bin/env bash
+    if [ "$1" = "pre" ]; then
+      for f in $(find /sys/devices/ -name d3cold_allowed); do
+        echo 0 > "$f"
+      done
+    fi
+  '';
+};
   nixpkgs.config.allowUnfree = true;
 
   # ─── NIX SETTINGS ────────────────────────────────────────────────────────
