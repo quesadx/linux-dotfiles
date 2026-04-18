@@ -30,8 +30,8 @@ let
     gc = "git commit -m";
     gp = "git push";
     # NixOS rebuild aliases (uses current host)
-    nrt = "cd ~/linux-dotfiles/nixos-dotfiles && sudo nixos-rebuild test --flake .#${host.flakeTarget}";
-    nrs = "cd ~/linux-dotfiles && git add . && cd nixos-dotfiles && sudo nixos-rebuild switch --flake .#${host.flakeTarget}";
+    nrt = "cd ~/linux-dotfiles/nixos && sudo nixos-rebuild test --flake .#${host.flakeTarget}";
+    nrs = "cd ~/linux-dotfiles && git add . && cd nixos && sudo nixos-rebuild switch --flake .#${host.flakeTarget}";
     # Docker Compose aliases
     dcu = "docker compose up";
     dcud = "docker compose up -d";
@@ -117,7 +117,7 @@ let
 
   # ─── CONFIG FILE SOURCES ───────────────────────────────────────────────────
   configSources = {
-    "fastfetch".source = ../../.config/fastfetch;
+    "fastfetch".source = ../../config/active/fastfetch;
   };
 
 in

@@ -55,7 +55,7 @@ cd ~/my-project
 ### 2) Copy template
 
 ```bash
-cp ~/dotfiles/dev-templates/python/fastapi/flake.nix ./flake.nix
+cp ~/linux-dotfiles/templates/python/fastapi/flake.nix ./flake.nix
 ```
 
 ### 3) Optional direnv activation

@@ -36,9 +36,9 @@
     enable = true;
     settings.general = {
       min_fan1_speed = 1200;
-      max_fan1_speed = 6200;
-      low_temp  = 75;
-      high_temp = 85;
+      max_fan1_speed = 4500;
+      low_temp  = 65;
+      high_temp = 75;
       max_temp  = 90;
     };
   };
