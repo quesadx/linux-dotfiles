@@ -10,9 +10,18 @@
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "coretemp" "applesmc"];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.kernelParams = [
+    "button.lid_init_state=open"
+    "nvme_core.default_ps_max_latency_us=0"
+    "nvme.noacpi=1"
+    "pci=noaer"
+    "i915.enable_dc=0"
+    "i915.enable_fbc=0"
+    "i915.enable_psr=0"
+  ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/089b9bd0-97ab-41d3-ab5f-76376675bba8";
@@ -31,4 +40,16 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  services.mbpfan = {
+    enable = true;
+
+    settings.general = {
+      min_fan1_speed = 1200;
+      max_fan1_speed = 6200;
+      low_temp  = 75;
+      high_temp = 85;
+      max_temp  = 90;
+    };
+  };
 }
