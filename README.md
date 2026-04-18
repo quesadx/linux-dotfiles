@@ -35,6 +35,6 @@ The NixOS flake is contained in `nixos-dotfiles/`.
 
 Apply the NixOS configuration from that directory:
 ```bash
-cd nixos-dotfiles
-sudo nixos-rebuild switch --flake .#hostname
+cd nixos
+sudo nixos-rebuild switch --flake .#hostname # thinkpad | macbook-pro | desktop
 ```
