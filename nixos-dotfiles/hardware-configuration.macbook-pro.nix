@@ -13,15 +13,6 @@
   boot.initrd.kernelModules = [ "coretemp" "applesmc"];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  boot.kernelParams = [
-    "button.lid_init_state=open"
-    "nvme_core.default_ps_max_latency_us=0"
-    "nvme.noacpi=1"
-    "pci=noaer"
-    "i915.enable_dc=0"
-    "i915.enable_fbc=0"
-    "i915.enable_psr=0"
-  ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/089b9bd0-97ab-41d3-ab5f-76376675bba8";
