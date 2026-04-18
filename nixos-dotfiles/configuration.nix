@@ -71,7 +71,7 @@ in
 
   # ─── MEMORY & SWAP ────────────────────────────────────────────────────────
   zramSwap.enable = true;
-  zramSwap.memoryPercent = 75;
+  zramSwap.memoryPercent = 25; # Use 25% of RAM for swap
   zramSwap.algorithm = "lz4";
   systemd.oomd.enable = true;
 

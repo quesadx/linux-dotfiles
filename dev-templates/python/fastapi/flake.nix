@@ -15,10 +15,6 @@
           python3
           uv
           python3Packages.fastapi
-          python3Packages.uvicorn
-          python3Packages.pytest
-          python3Packages.httpx
-          python3Packages.ruff
         ];
       };
     };
