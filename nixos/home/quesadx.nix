@@ -126,7 +126,7 @@ in
 
 {
   imports = [
-    ../modules/desktop-gnome-user.nix
+    ../modules/home/desktop-gnome-user.nix
   ];
 
   # ─── HOME MANAGER METADATA ─────────────────────────────────────────────────

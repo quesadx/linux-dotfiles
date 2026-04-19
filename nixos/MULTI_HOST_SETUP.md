@@ -7,8 +7,8 @@ This setup now supports managing multiple NixOS machines from a single dotfiles 
 ### New Files
 
 - **`hosts.nix`**: Central host registry mapping each machine to its hostname, hardware config, and nixos-hardware modules
-- **`hardware-configuration.desktop.nix`**: Generated hardware config for i5-9400 desktop
-- **`hardware-configuration.thinkpad.nix`**: Placeholder for ThinkPad X13 Gen 2 hardware config
+- **`hardware/hardware-configuration.desktop.nix`**: Generated hardware config for i5-9400 desktop
+- **`hardware/hardware-configuration.thinkpad.nix`**: Placeholder for ThinkPad X13 Gen 2 hardware config
 
 ### Updated Files
 
@@ -51,9 +51,9 @@ Generate the hardware config on the ThinkPad:
 sudo nixos-generate-config --root /mnt
 # Copy to your dotfiles repo:
 cp /mnt/etc/nixos/hardware-configuration.nix \
-   ~/linux-dotfiles/nixos-dotfiles/hardware-configuration.thinkpad.nix
+   ~/linux-dotfiles/nixos/hardware/hardware-configuration.thinkpad.nix
 # Commit and push
-git add hardware-configuration.thinkpad.nix && git commit -m "Add ThinkPad hardware config"
+git add hardware/hardware-configuration.thinkpad.nix && git commit -m "Add ThinkPad hardware config"
 ```
 
 Then rebuild:
@@ -70,23 +70,23 @@ nrs  # uses alias; automatically targets thinkpad
    ```nix
    my-machine = {
      hostname = "my-machine";
-     hardwareConfig = ./hardware-configuration.my-machine.nix;
+       hardwareConfig = ./hardware/hardware-configuration.my-machine.nix;
      hardwareModules = [];  # add nixos-hardware modules if needed
    };
    ```
 
-2. Create `hardware-configuration.my-machine.nix`:
+2. Create `hardware/hardware-configuration.my-machine.nix`:
 
    ```bash
    # Run on the target machine
    sudo nixos-generate-config --root /mnt
-   cp /mnt/etc/nixos/hardware-configuration.nix ~/linux-dotfiles/nixos-dotfiles/hardware-configuration.my-machine.nix
+   cp /mnt/etc/nixos/hardware-configuration.nix ~/linux-dotfiles/nixos/hardware/hardware-configuration.my-machine.nix
    ```
 
 3. Commit and use:
 
    ```bash
-   git add hosts.nix hardware-configuration.my-machine.nix
+   git add hosts.nix hardware/hardware-configuration.my-machine.nix
    sudo nixos-rebuild switch --flake .#my-machine
    ```
 
@@ -95,7 +95,7 @@ nrs  # uses alias; automatically targets thinkpad
 All three machines share:
 - User configuration (`home/quesadx.nix`)
 - System packages and services (`configuration.nix`)
-- GNOME desktop setup (`modules/desktop-gnome.nix`)
+- GNOME desktop setup (`modules/system/desktop-gnome.nix`)
 - Locale, timezone, and user groups
 
 Per-host differences are **hardware config only**. To add host-specific system settings in the future:

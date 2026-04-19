@@ -32,11 +32,22 @@ let
     "libvirtd"
   ];
 
+  isLaptop = host.flakeTarget == "thinkpad" || host.flakeTarget == "macbook-pro";
+  isThinkpad = host.flakeTarget == "thinkpad";
+
   # ─── CORE PACKAGES ────────────────────────────────────────────────────────
   corePackages = with pkgs; [
     vim
     wget
     curl # CLI tools
+    jq
+    yq-go
+    ripgrep
+    fd
+    tree
+    lsof
+    pciutils
+    usbutils
     steam-run # VM management and Steam runtime
     tldr # Community-driven man pages
     libsecret # For GNOME Keyring integration
@@ -58,8 +69,8 @@ in
 {
   imports = [
     host.hardwareConfig
-    ./modules/desktop-gnome.nix
-    ./modules/macbook-pro-cirrus-audio.nix
+    ./modules/system/desktop-gnome.nix
+    ./modules/system/macbook-pro-cirrus-audio.nix
   ];
 
   # ─── BOOT & KERNEL ────────────────────────────────────────────────────────
@@ -74,6 +85,9 @@ in
   zramSwap.memoryPercent = 25; # Use 25% of RAM for swap
   zramSwap.algorithm = "lz4";
   systemd.oomd.enable = true;
+
+  boot.tmp.useTmpfs = true;
+  boot.tmp.tmpfsSize = "30%";
 
   # ─── NETWORKING ───────────────────────────────────────────────────────────
   networking = {
@@ -115,8 +129,11 @@ in
 
   # ─── HARDWARE ─────────────────────────────────────────────────────────────
   hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth.powerOnBoot = if isLaptop then false else true;
   hardware.graphics.enable = true;
+
+  # ─── LAPTOP POWER MANAGEMENT ─────────────────────────────────────────────
+  services.thermald.enable = isLaptop;
 
   # ─── VIRTUALIZATION ───────────────────────────────────────────────────────
   virtualisation.docker.enable = true;
@@ -141,7 +158,8 @@ in
   security.sudo.wheelNeedsPassword = false;
 
   # ─── POWER SERVICES ──────────────────────────────────────────────────────
-  services.power-profiles-daemon.enable = true; # Disable to prevent conflicts
+  # Always use power-profiles-daemon; avoid mixing TLP and maintain performance.
+  services.power-profiles-daemon.enable = true;
 
   # ─── CORE SERVICES ───────────────────────────────────────────────────────
   services.fwupd.enable = true;
@@ -157,9 +175,9 @@ in
   services.pipewire.wireplumber.enable = true;
 
   # ─── HARDWARE-SPECIFIC UDEV RULES ───────────────────────────────────────
-  services.udev.extraRules = ''
+  services.udev.extraRules = if isThinkpad then ''
     ACTION=="add", ENV{ID_INPUT_TOUCHSCREEN}=="1", ATTRS{name}=="ELAN901C:00 04F3:2CBF", ENV{LIBINPUT_IGNORE_DEVICE}="1"
-  '';
+  '' else "";
 
   # ─── ENVIRONMENT ────────────────────────────────────────────────────────
   environment.systemPackages = corePackages;

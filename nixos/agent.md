@@ -12,10 +12,11 @@
 - `configuration.nix`: system-level host config.
 - `home/quesadx.nix`: user-level Home Manager config.
 - `hosts.nix`: per-host names, hardware config paths, and host-specific modules.
-- `modules/desktop-gnome.nix`: GNOME system module.
-- `modules/desktop-gnome-user.nix`: GNOME user module.
-- `hardware-configuration.desktop.nix`: desktop hardware configuration.
-- `hardware-configuration.thinkpad.nix`: ThinkPad hardware configuration placeholder.
+- `modules/system/desktop-gnome.nix`: GNOME system module.
+- `modules/home/desktop-gnome-user.nix`: GNOME user module.
+- `modules/hosts/host-macbook-pro.nix`: MacBook Pro host-specific overrides.
+- `hardware/hardware-configuration.desktop.nix`: desktop hardware configuration.
+- `hardware/hardware-configuration.thinkpad.nix`: ThinkPad hardware configuration.
 
 ## Non-Negotiables
 - Keep everything declarative and reproducible.
