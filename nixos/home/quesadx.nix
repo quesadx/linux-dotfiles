@@ -54,7 +54,11 @@ let
     gnome-calendar
     gnome-calculator
     gnome-text-editor
-    gnome-console
+    foot
+    wofi
+    waybar
+    mako
+    alacritty
     gnome-font-viewer
     nautilus
     loupe
@@ -118,6 +122,9 @@ let
   # ─── CONFIG FILE SOURCES ───────────────────────────────────────────────────
   configSources = {
     "fastfetch".source = ../../config/active/fastfetch;
+    "niri".source = ../../config/active/niri;
+    "foot".source = ../../config/active/foot;
+    "waybar".source = ../../config/active/waybar;
   };
 
 in
@@ -126,7 +133,7 @@ in
 
 {
   imports = [
-    ../modules/home/desktop-gnome-user.nix
+    ../modules/home/desktop-niri-user.nix
   ];
 
   # ─── HOME MANAGER METADATA ─────────────────────────────────────────────────

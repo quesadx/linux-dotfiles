@@ -69,7 +69,7 @@ in
 {
   imports = [
     host.hardwareConfig
-    ./modules/system/desktop-gnome.nix
+    ./modules/system/desktop-niri.nix
     ./modules/system/macbook-pro-cirrus-audio.nix
   ];
 
