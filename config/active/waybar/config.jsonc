@@ -1,28 +1,20 @@
 {
   "position": "bottom",
-  "height": 30,
-  "output": [
-    "eDP-1"
-  ],
-  "spacing": 4,
+  "height": 28,
+  "spacing": 0,
   "layer": "top",
-  "modules-left": [
-    "sway/workspaces",
-    "sway/scratchpad"
+  "modules-left": [],
+  "modules-center": [
+    "clock"
   ],
-  "modules-center": [],
   "modules-right": [
-    "tray",
     "pulseaudio",
     "network",
-    "bluetooth",
-    "power-profiles-daemon",
     "cpu",
     "memory",
-    "temperature",
     "backlight",
     "battery",
-    "clock"
+    "tray"
   ],
   "sway/scratchpad": {
     "format": "scratchpad {count}",
@@ -31,52 +23,42 @@
     "tooltip-format": "{app}: {title}"
   },
   "tray": {
-    "spacing": 10
+    "spacing": 0
   },
   "clock": {
-    "format": "{:%H:%M}"
+    "format": "{:%H:%M}",
+    "tooltip": false
   },
   "cpu": {
     "format": "cpu {usage}%",
     "tooltip": false,
-    "on-click": "foot btop"
+    "on-click": "foot btop",
+    "interval": 2
   },
   "memory": {
-    "format": "memory: {}%",
-    "on-click": "foot btop"
-  },
-  "temperature": {
-    "critical-threshold": 80,
-    "format": "temperature: {temperatureC}°C"
+    "format": "memory {percentage}%",
+    "on-click": "foot btop",
+    "interval": 2
   },
   "backlight": {
-    "format": "backlight: {percent}%"
+    "format": "BL: {percent}%",
+    "tooltip": false
   },
   "battery": {
-    "format": "battery: {capacity}%"
-  },
-  "power-profiles-daemon": {
-    "format": "power-profile: {profile}"
+    "format": "BAT: {capacity}%",
+    "tooltip": false
   },
   "network": {
-    "format-wifi": "wifi: {essid}",
-    "format-ethernet": "eth: {ipaddr}",
-    "format-disconnected": "offline",
-    "on-click": "foot nmtui"
-  },
-  "bluetooth": {
-    "format": "bluetooth: {status}",
-    "format-disabled": "bluetooth: off",
-    "format-connected": "bluetooth: on ({device_alias})",
-    "format-no-controller": "bluetooth: off",
-    "tooltip": false,
-    "on-click": "foot bluetuith"
+    "format-wifi": "WiFi: {essid}",
+    "format-ethernet": "ETH",
+    "format-disconnected": "Offline",
+    "on-click": "foot nmtui",
+    "tooltip": false
   },
   "pulseaudio": {
-    "format": "speaker: {volume}%",
-    "format-bluetooth": "bluetooth: {volume}%",
-    "format-bluetooth-muted": "bluetooth: muted",
-    "format-muted": "speaker: muted",
-    "on-click": "foot pulsemixer"
+    "format": "VOL: {volume}%",
+    "format-muted": "MUTE: {volume}%",
+    "on-click": "foot pulsemixer",
+    "tooltip": false
   }
 }

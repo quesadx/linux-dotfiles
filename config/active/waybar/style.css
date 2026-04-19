@@ -1,96 +1,85 @@
 * {
     font-family: "IBM Plex Mono";
-    font-size: 13px;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 window#waybar {
     background-color: #2D2B55;
     border-top: 1px solid #4B4892;
     color: #C7C4FF;
-    opacity: 0.92;
+    opacity: 0.95;
+    padding: 0;
+    margin: 0;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
-}
-
-button {
-    padding: 0 1px;
-    color: #C7C4FF;
-}
-
-button:hover {
-    background-color: #4B4892;
-}
-
-/* Module container styling */
-#battery,
+#clock,
 #cpu,
 #memory,
-#temperature,
 #backlight,
+#battery,
 #network,
-#bluetooth,
 #pulseaudio,
-#clock,
-#tray,
-#scratchpad,
-#power-profiles-daemon {
-    border-top: 1px solid #4B4892;
-    background-color: #3A3866;
-    padding: 0 8px;
-}
-
-#workspaces button {
-    padding: 0 5px;
+#tray {
     background-color: transparent;
-    border-radius: 0;
+    padding: 0 6px;
+    border-left: 1px solid #4B4892;
+    margin: 0;
 }
 
-#workspaces button.hover {
-    background-color: rgba(75, 72, 146, 0.5);
+#clock {
+    border-left: none;
+    padding: 0 8px;
+    font-weight: bold;
 }
 
-#workspaces button.focused,
-#workspaces button.active {
-    background-color: #91B4FF;
-    color: #1E1E3F;
+#tray {
+    border-left: 1px solid #4B4892;
+    padding: 0 4px;
 }
 
-#workspaces button.urgent {
-    background-color: #FF628C;
+#tray > .passive {
+    -gtk-icon-effect: dim;
 }
 
-#window {
-    margin: 0 4px;
+#pulseaudio {
+    color: #91B4FF;
 }
 
-#workspaces {
-    margin: 0 4px;
-}
-
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-}
-
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
-}
-
-/* Critical states only */
-#battery.critical:not(.charging) {
-    background-color: #FF628C;
-    animation: blink 0.5s steps(12) infinite alternate;
-}
-
-@keyframes blink {
-    to { background-color: #FF9DFF; }
+#network {
+    color: #FFD0A2;
 }
 
 #network.disconnected {
-    background-color: #FF628C;
+    color: #FF628C;
 }
 
-#temperature.critical {
-    background-color: #FF628C;
+#battery.critical:not(.charging) {
+    color: #FF628C;
+    animation: blink 0.5s steps(12) infinite alternate;
 }
+
+#battery.warning:not(.charging) {
+    color: #FFB366;
+}
+
+#battery.charging {
+    color: #95E1D3;
+}
+
+@keyframes blink {
+    to { color: #FF9DFF; }
+}
+
+#cpu {
+    color: #C9E4FF;
+}
+
+#memory {
+    color: #C9E4FF;
+}
+
+#backlight {
+    color: #FFC87F;
+}
+

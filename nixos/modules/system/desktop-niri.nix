@@ -10,7 +10,20 @@
   services.displayManager.gdm.enable = true;
   services.displayManager.defaultSession = "niri";
 
-  # Wayland basics
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  services.xserver.displayManager.gdm.wayland = true;
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
+    config.common.default = [ "gtk" ];
+  };
+
+  security.polkit.extraConfig = ''
+    polkit.addAdminRule(function(action, subject) {
+      return ["yes"];
+    });
+  '';
 }

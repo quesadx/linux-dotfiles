@@ -55,7 +55,7 @@ let
     gnome-calculator
     gnome-text-editor
     foot
-    wofi
+    fuzzel
     waybar
     mako
     alacritty
@@ -149,6 +149,20 @@ in
   # ─── SYSTEM SERVICES ───────────────────────────────────────────────────────
   services.ssh-agent.enable = true;
   xdg.configFile = configSources;
+
+  # ─── CURSOR THEME ───────────────────────────────────────────────────────────
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.adwaita-icon-theme;
+    name = "Adwaita";
+    size = 24;
+  };
+
+  # ─── GTK SETTINGS ──────────────────────────────────────────────────────────
+  gtk.enable = true;
+  gtk.theme.name = "Adwaita";
+  gtk.iconTheme.name = "Adwaita";
+  gtk.iconTheme.package = pkgs.adwaita-icon-theme;
 
   # ─── SHELL: ZSH & BASH ─────────────────────────────────────────────────────
   programs.starship.enable = true;
