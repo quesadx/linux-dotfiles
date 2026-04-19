@@ -33,16 +33,16 @@ layout {
 
     focus-ring {
         width 2
-        active-color "#7fc8ff"
-        inactive-color "#505050"
+        active-color "#8F71FF"
+        inactive-color "#5A4A7F"
     }
 
     border {
         off
         width 4
-        active-color "#ffc87f"
-        inactive-color "#505050"
-        urgent-color "#9b0000"
+        active-color "#866EC7"
+        inactive-color "#5A4A7F"
+        urgent-color "#FF6B9D"
     }
 
     shadow {
@@ -76,6 +76,11 @@ window-rule {
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
+}
+
+window-rule {
+    geometry-corner-radius 5
+    clip-to-geometry true
 }
 
 binds {

@@ -125,6 +125,7 @@ let
     "niri".source = ../../config/active/niri;
     "foot".source = ../../config/active/foot;
     "waybar".source = ../../config/active/waybar;
+    "fuzzel".source = ../../config/active/fuzzel;
   };
 
 in
