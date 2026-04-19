@@ -104,8 +104,12 @@ let
 in
 {
   config = lib.mkIf isMacbookPro141 {
-    # Force legacy HDA path and load patched CS8409 codec module for MBP 14,1 speakers.
+    # Force legacy HDA path and load patched CS8409 codec module for MBP 14,1 audio.
     boot.kernelParams = [ "snd_intel_dspcfg.dsp_driver=1" ];
+    # The upstream Cirrus driver uses model fixups; forcing mbp131 helps internal mic routing on 14,1.
+    boot.extraModprobeConfig = ''
+      options snd_hda_codec_cs8409 model=mbp131
+    '';
     boot.extraModulePackages = [ sndHdaCirrus ];
     boot.kernelModules = [ "snd_hda_codec_cs8409" ];
   };
