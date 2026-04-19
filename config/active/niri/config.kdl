@@ -20,7 +20,7 @@ input {
 }
 
 layout {
-    gaps 8
+    gaps 4
     center-focused-column "never"
 
     preset-column-widths {
@@ -46,6 +46,7 @@ layout {
     }
 
     shadow {
+        off
         softness 30
         spread 5
         offset x=0 y=5

@@ -1,10 +1,9 @@
 {
   "position": "top",
-  "height": 28,
+  "height": 22,
   "spacing": 4,
   "layer": "top",
   "modules-left": [
-    "niri/workspaces"
   ],
   "modules-center": [
     "clock"

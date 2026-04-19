@@ -1,31 +1,26 @@
 * {
     font-family: "IBM Plex Mono";
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
 }
 
 window#waybar {
     background-color: #1A1530;
     color: #E0DCFF;
-    opacity: 0.98;
+
     padding: 0;
     margin: 0;
-    border-bottom: 1px solid #866EC7;
-    border-left: 1px solid #866EC7;
-    border-right: 1px solid #866EC7;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
 }
 
 #workspaces button {
-    padding: 2px 6px;
+    padding: 1px 4px;
     margin: 0 1px;
     background-color: transparent;
     color: #E0DCFF;
     border-radius: 3px;
     transition: all 150ms ease;
     border: 1px solid transparent;
-    min-width: 20px;
+    min-width: 18px;
 }
 
 #workspaces button:hover {
@@ -48,7 +43,7 @@ window#waybar {
 #pulseaudio,
 #tray {
     background-color: transparent;
-    padding: 0 6px;
+    padding: 0 4px;
     border-left: 1px solid #5A4A7F;
     margin: 0;
     border-radius: 2px;
@@ -56,14 +51,14 @@ window#waybar {
 
 #clock {
     border-left: none;
-    padding: 0 8px;
+    padding: 0 6px;
     font-weight: bold;
     color: #B7FBFF;
 }
 
 #tray {
     border-left: 1px solid #5A4A7F;
-    padding: 0 4px;
+    padding: 0 2px;
 }
 
 #tray > .passive {
