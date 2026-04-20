@@ -14,15 +14,15 @@
 
   # ─── GNOME EXTENSIONS ─────────────────────────────────────────────────────
   environment.systemPackages = with pkgs.gnomeExtensions; [
-    caffeine                           # Prevent screen lock
-    luminus-desktop                    # Status bar enhancements
-    appindicator                       # Legacy system tray support
+    caffeine # Prevent screen lock
+    luminus-desktop # Status bar enhancements
+    appindicator # Legacy system tray support
     touchpad-gesture-customization # Custom touchpad gestures
   ];
 
   # ─── GNOME EXCLUSIONS ─────────────────────────────────────────────────────
   environment.gnome.excludePackages = with pkgs; [
-    gnome-tour       # Skip GNOME welcome tour
-    gnome-user-docs  # Exclude offline documentation
+    gnome-tour # Skip GNOME welcome tour
+    gnome-user-docs # Exclude offline documentation
   ];
 }

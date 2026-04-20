@@ -80,6 +80,7 @@ let
     calcurse
     arduino-ide
     github-copilot-cli
+    showtime
   ];
 
   # ─── VS CODE EXTENSIONS ────────────────────────────────────────────────────
