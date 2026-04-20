@@ -20,7 +20,7 @@ input {
 }
 
 layout {
-    gaps 4
+    gaps 8
     center-focused-column "never"
 
     preset-column-widths {
@@ -33,16 +33,16 @@ layout {
 
     focus-ring {
         width 2
-        active-color "#8F71FF"
-        inactive-color "#5A4A7F"
+        active-color "#FF8F00"
+        inactive-color "#8F4628"
     }
 
     border {
         off
         width 4
-        active-color "#866EC7"
-        inactive-color "#5A4A7F"
-        urgent-color "#FF6B9D"
+        active-color "#C94C1D"
+        inactive-color "#8F4628"
+        urgent-color "#FF5C3F"
     }
 
     shadow {
@@ -57,6 +57,7 @@ layout {
     }
 }
 
+spawn-sh-at-startup "pkill -x swaybg >/dev/null 2>&1; swaybg -i ~/.local/share/wallpapers/gnome-drool-orange.png -m fill"
 spawn-at-startup "waybar"
 
 hotkey-overlay {

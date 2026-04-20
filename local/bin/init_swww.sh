@@ -24,7 +24,7 @@ if [ "$1" == "next" ]; then
 else
     # Default initialization
     # Try the specific wallpaper first, otherwise random
-    DEFAULT_WALL="$WALLPAPER_DIR/Black_Hole_3.png"
+    DEFAULT_WALL="$WALLPAPER_DIR/gnome-drool-orange.png"
     if [ -f "$DEFAULT_WALL" ]; then
         swww img "$DEFAULT_WALL" --transition-type none
     else

@@ -4,6 +4,7 @@
   "spacing": 4,
   "layer": "top",
   "modules-left": [
+    "niri/workspaces"
   ],
   "modules-center": [
     "clock"
@@ -63,12 +64,7 @@
     "tooltip": false
   },
   "niri/workspaces": {
-    "format": "{name}",
-    "format-icons": {
-      "active": "",
-      "default": ""
-    },
-    "persistent-workspaces": {},
+    "format": "{value}",
     "on-scroll-up": "niri msg action focus-workspace-up",
     "on-scroll-down": "niri msg action focus-workspace-down",
     "on-click": "niri msg action focus-workspace {}"

@@ -5,32 +5,35 @@
 }
 
 window#waybar {
-    background-color: #1A1530;
-    color: #E0DCFF;
+    background-color: #2a1a22;
+    color: #ffe3c4;
 
     padding: 0;
     margin: 0;
 }
 
-#workspaces button {
-    padding: 1px 4px;
-    margin: 0 1px;
+#workspaces button,
+#niri-workspaces button {
+    padding: 1px 8px;
+    margin: 0 2px;
     background-color: transparent;
-    color: #E0DCFF;
+    color: #ffd9b0;
     border-radius: 3px;
     transition: all 150ms ease;
     border: 1px solid transparent;
     min-width: 18px;
 }
 
-#workspaces button:hover {
-    background-color: rgba(241, 113, 255, 0.15);
-    color: #8F71FF;
+#workspaces button:hover,
+#niri-workspaces button:hover {
+    background-color: rgba(255, 143, 0, 0.20);
+    color: #ffb85a;
 }
 
-#workspaces button.active {
-    background-color: #8F71FF;
-    color: #1A1530;
+#workspaces button.active,
+#niri-workspaces button.active {
+    background-color: #ff8f00;
+    color: #2a1a22;
     font-weight: bold;
 }
 
@@ -43,22 +46,22 @@ window#waybar {
 #pulseaudio,
 #tray {
     background-color: transparent;
-    padding: 0 4px;
-    border-left: 1px solid #5A4A7F;
+    padding: 0 8px;
+    border-left: 1px solid #8f4628;
     margin: 0;
     border-radius: 2px;
 }
 
 #clock {
     border-left: none;
-    padding: 0 6px;
+    padding: 0 10px;
     font-weight: bold;
-    color: #B7FBFF;
+    color: #ffcf99;
 }
 
 #tray {
-    border-left: 1px solid #5A4A7F;
-    padding: 0 2px;
+    border-left: 1px solid #8f4628;
+    padding: 0 8px;
 }
 
 #tray > .passive {
@@ -66,44 +69,44 @@ window#waybar {
 }
 
 #pulseaudio {
-    color: #82ACFF;
+    color: #ffb85a;
 }
 
 #network {
-    color: #B7FBFF;
+    color: #ffd9b0;
 }
 
 #network.disconnected {
-    color: #FF6B9D;
+    color: #ff5c3f;
 }
 
 #battery.critical:not(.charging) {
-    color: #FF6B9D;
+    color: #ff5c3f;
     animation: blink 0.5s steps(12) infinite alternate;
 }
 
 #battery.warning:not(.charging) {
-    color: #FFB366;
+    color: #ffb347;
 }
 
 #battery.charging {
-    color: #95E1D3;
+    color: #ffd178;
 }
 
 @keyframes blink {
-    to { color: #FFD0A2; }
+    to { color: #ffd9b0; }
 }
 
 #cpu {
-    color: #82ACFF;
+    color: #ffb85a;
 }
 
 #memory {
-    color: #82ACFF;
+    color: #ffb85a;
 }
 
 #backlight {
-    color: #8F71FF;
+    color: #ff8f00;
 }
 
 

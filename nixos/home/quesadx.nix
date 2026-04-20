@@ -84,6 +84,7 @@ let
     calcurse
     arduino-ide
     github-copilot-cli
+    swaybg
   ];
 
   # ─── VS CODE EXTENSIONS ────────────────────────────────────────────────────
@@ -150,6 +151,9 @@ in
   # ─── SYSTEM SERVICES ───────────────────────────────────────────────────────
   services.ssh-agent.enable = true;
   xdg.configFile = configSources;
+  home.file = {
+    ".local/share/wallpapers/gnome-drool-orange.png".source = ../../wallpapers/gnome-drool-orange.png;
+  };
 
   # ─── CURSOR THEME ───────────────────────────────────────────────────────────
   home.pointerCursor = {
