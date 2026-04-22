@@ -30,6 +30,7 @@ let
     "kvm" # Virtualization
     "dialout"
     "libvirtd"
+    "input"
   ];
 
   isLaptop = host.flakeTarget == "thinkpad" || host.flakeTarget == "macbook-pro";
@@ -69,7 +70,7 @@ in
 {
   imports = [
     host.hardwareConfig
-    ./modules/system/desktop-gnome.nix
+    ./modules/system/desktop-niri.nix
     ./modules/system/macbook-pro-cirrus-audio.nix
   ];
 
@@ -177,9 +178,13 @@ in
   services.pipewire.wireplumber.enable = true;
 
   # ─── HARDWARE-SPECIFIC UDEV RULES ───────────────────────────────────────
-  services.udev.extraRules = if isThinkpad then ''
-    ACTION=="add", ENV{ID_INPUT_TOUCHSCREEN}=="1", ATTRS{name}=="ELAN901C:00 04F3:2CBF", ENV{LIBINPUT_IGNORE_DEVICE}="1"
-  '' else "";
+  services.udev.extraRules =
+    if isThinkpad then
+      ''
+        ACTION=="add", ENV{ID_INPUT_TOUCHSCREEN}=="1", ATTRS{name}=="ELAN901C:00 04F3:2CBF", ENV{LIBINPUT_IGNORE_DEVICE}="1"
+      ''
+    else
+      "";
 
   # ─── ENVIRONMENT ────────────────────────────────────────────────────────
   environment.systemPackages = corePackages;

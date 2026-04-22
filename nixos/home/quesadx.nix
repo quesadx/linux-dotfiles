@@ -81,6 +81,11 @@ let
     arduino-ide
     github-copilot-cli
     showtime
+
+    fuzzel
+    waybar
+    foot
+    mako
   ];
 
   # ─── VS CODE EXTENSIONS ────────────────────────────────────────────────────
@@ -119,6 +124,8 @@ let
   # ─── CONFIG FILE SOURCES ───────────────────────────────────────────────────
   configSources = {
     "fastfetch".source = ../../config/active/fastfetch;
+    "niri".source = ../../config/active/niri;
+    "waybar".source = ../../config/active/waybar;
   };
 
 in
@@ -127,7 +134,7 @@ in
 
 {
   imports = [
-    ../modules/home/desktop-gnome-user.nix
+    #../modules/home/desktop-gnome-user.nix
   ];
 
   # ─── HOME MANAGER METADATA ─────────────────────────────────────────────────
