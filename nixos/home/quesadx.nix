@@ -128,7 +128,6 @@ let
     "waybar".source = ../../config/active/waybar;
     "fuzzel".source = ../../config/active/fuzzel;
     "foot".source = ../../config/active/foot;
-    "starship.toml".source = ../../config/active/starship/starship.toml;
   };
 
 in
