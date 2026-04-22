@@ -62,6 +62,7 @@ let
     noto-fonts-color-emoji # Unicode coverage
     font-awesome # Icon font
     nerd-fonts.jetbrains-mono # Monospace with ligatures
+    font-awesome
   ];
 
 in
