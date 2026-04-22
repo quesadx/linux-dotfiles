@@ -67,6 +67,7 @@
 
     # ─── EXTENSION: Touchpad Gesture Customization ─────────────────────────
     "org/gnome/shell/extensions/touchpad-gesture-customization" = {
+      overview-navigation-states = "GNOME";
       horizontal-swipe-3-fingers-gesture = "WORKSPACE_SWITCHING";
       horizontal-swipe-4-fingers-gesture = "WORKSPACE_SWITCHING";
       vertical-swipe-4-fingers-gesture = "WINDOW_MANIPULATION";

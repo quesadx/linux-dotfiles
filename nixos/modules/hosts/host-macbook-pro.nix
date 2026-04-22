@@ -42,7 +42,7 @@
   };
 
   services.logind.settings.Login = {
-    HandleLidSwitch = "hibernate";
-    HandleLidSwitchExternalPower = "hibernate";
+    HandleLidSwitch = "nothing";
+    HandleLidSwitchExternalPower = "nothing";
   };
 }
