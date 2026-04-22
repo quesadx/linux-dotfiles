@@ -33,16 +33,16 @@ layout {
 
     focus-ring {
         width 2
-        active-color "#FF8F00"
-        inactive-color "#8F4628"
+        active-color "#55FF55"
+        inactive-color "#555555"
     }
 
     border {
         off
-        width 4
-        active-color "#C94C1D"
-        inactive-color "#8F4628"
-        urgent-color "#FF5C3F"
+        width 1
+        active-color "#00AA00"
+        inactive-color "#555555"
+        urgent-color "#FF5555"
     }
 
     shadow {
@@ -57,8 +57,8 @@ layout {
     }
 }
 
-spawn-sh-at-startup "pkill -x swaybg >/dev/null 2>&1; swaybg -i ~/.local/share/wallpapers/gnome-drool-orange.png -m fill"
-spawn-at-startup "waybar"
+// spawn-sh-at-startup "pkill -x swaybg >/dev/null 2>&1; swaybg -i ~/.local/share/wallpapers/gnome-drool-orange.png -m fill"
+spawn-sh-at-startup "GTK_USE_PORTAL=0 waybar"
 
 hotkey-overlay {
 }
@@ -81,7 +81,7 @@ window-rule {
 }
 
 window-rule {
-    geometry-corner-radius 5
+    geometry-corner-radius 0
     clip-to-geometry true
 }
 

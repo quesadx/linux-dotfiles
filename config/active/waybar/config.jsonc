@@ -15,17 +15,13 @@
     "cpu",
     "memory",
     "backlight",
-    "battery",
-    "tray"
+    "battery"
   ],
   "sway/scratchpad": {
     "format": "scratchpad {count}",
     "show-empty": false,
     "tooltip": true,
     "tooltip-format": "{app}: {title}"
-  },
-  "tray": {
-    "spacing": 0
   },
   "clock": {
     "format": "{:%H:%M}",

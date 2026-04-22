@@ -5,8 +5,8 @@
 }
 
 window#waybar {
-    background-color: #2a1a22;
-    color: #ffe3c4;
+    background-color: #000000;
+    color: #aaaaaa;
 
     padding: 0;
     margin: 0;
@@ -17,8 +17,8 @@ window#waybar {
     padding: 1px 8px;
     margin: 0 2px;
     background-color: transparent;
-    color: #ffd9b0;
-    border-radius: 3px;
+    color: #aaaaaa;
+    border-radius: 0;
     transition: all 150ms ease;
     border: 1px solid transparent;
     min-width: 18px;
@@ -26,14 +26,14 @@ window#waybar {
 
 #workspaces button:hover,
 #niri-workspaces button:hover {
-    background-color: rgba(255, 143, 0, 0.20);
-    color: #ffb85a;
+    background-color: rgba(85, 85, 85, 0.35);
+    color: #ffffff;
 }
 
 #workspaces button.active,
 #niri-workspaces button.active {
-    background-color: #ff8f00;
-    color: #2a1a22;
+    background-color: #00aa00;
+    color: #000000;
     font-weight: bold;
 }
 
@@ -47,20 +47,20 @@ window#waybar {
 #tray {
     background-color: transparent;
     padding: 0 8px;
-    border-left: 1px solid #8f4628;
+    border-left: 1px solid #555555;
     margin: 0;
-    border-radius: 2px;
+    border-radius: 0;
 }
 
 #clock {
     border-left: none;
     padding: 0 10px;
     font-weight: bold;
-    color: #ffcf99;
+    color: #55ff55;
 }
 
 #tray {
-    border-left: 1px solid #8f4628;
+    border-left: 1px solid #555555;
     padding: 0 8px;
 }
 
@@ -69,44 +69,44 @@ window#waybar {
 }
 
 #pulseaudio {
-    color: #ffb85a;
+    color: #00aaaa;
 }
 
 #network {
-    color: #ffd9b0;
+    color: #55ffff;
 }
 
 #network.disconnected {
-    color: #ff5c3f;
+    color: #ff5555;
 }
 
 #battery.critical:not(.charging) {
-    color: #ff5c3f;
+    color: #ff5555;
     animation: blink 0.5s steps(12) infinite alternate;
 }
 
 #battery.warning:not(.charging) {
-    color: #ffb347;
+    color: #ffff55;
 }
 
 #battery.charging {
-    color: #ffd178;
+    color: #55ff55;
 }
 
 @keyframes blink {
-    to { color: #ffd9b0; }
+    to { color: #ffffff; }
 }
 
 #cpu {
-    color: #ffb85a;
+    color: #0000aa;
 }
 
 #memory {
-    color: #ffb85a;
+    color: #5555ff;
 }
 
 #backlight {
-    color: #ff8f00;
+    color: #aa5500;
 }
 
 
