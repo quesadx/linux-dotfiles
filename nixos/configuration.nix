@@ -167,6 +167,8 @@ in
   services.openssh.enable = false;
   services.gnome.gnome-keyring.enable = true;
 
+  services.ollama.enable = true;
+
   # ─── AUDIO (PipeWire) ─────────────────────────────────────────────────────
   services.pipewire.enable = true;
   services.pipewire.alsa.enable = true;

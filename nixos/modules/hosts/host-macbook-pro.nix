@@ -28,13 +28,14 @@
   systemd.services."systemd-suspend".environment.SYSTEMD_SLEEP_FREEZE_USER_SESSIONS = "false";
   systemd.services."systemd-hibernate".environment.SYSTEMD_SLEEP_FREEZE_USER_SESSIONS = "false";
   systemd.services."systemd-hybrid-sleep".environment.SYSTEMD_SLEEP_FREEZE_USER_SESSIONS = "false";
-  systemd.services."systemd-suspend-then-hibernate".environment.SYSTEMD_SLEEP_FREEZE_USER_SESSIONS = "false";
+  systemd.services."systemd-suspend-then-hibernate".environment.SYSTEMD_SLEEP_FREEZE_USER_SESSIONS =
+    "false";
 
   services.mbpfan = {
     enable = true;
     settings.general = {
       min_fan1_speed = 1200;
-      max_fan1_speed = 5000;
+      max_fan1_speed = 6000;
       low_temp = 55;
       high_temp = 70;
       max_temp = 90;
