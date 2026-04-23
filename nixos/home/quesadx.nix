@@ -75,7 +75,6 @@ let
     nix-direnv
     fastfetch
     wl-clipboard
-    btop
     xournalpp
     calcurse
     arduino-ide

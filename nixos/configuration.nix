@@ -53,6 +53,8 @@ let
     tldr # Community-driven man pages
     libsecret # For GNOME Keyring integration
     dnsmasq
+    bottom
+    pulsemixer
   ];
 
   # ─── SYSTEM FONTS ────────────────────────────────────────────────────────
