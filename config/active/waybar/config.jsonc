@@ -36,11 +36,11 @@
     "cpu": {
         "format": "{usage}% ",
         "tooltip": false,
-        "on-click": "foot bottom"
+        "on-click": "foot btm"
     },
     "memory": {
         "format": "{}% ",
-        "on-click": "foot bottom"
+        "on-click": "foot btm"
     },
     "backlight": {
         // "device": "acpi_video1",
@@ -48,7 +48,7 @@
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "battery": {
-        "on-click": "foot bottom",
+        "on-click": "foot btm",
         "states": {
             // "good": 95,
             "warning": 30,
@@ -100,6 +100,6 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pulsemixer"
+        "on-click": "foot pulsemixer"
     }
 }

@@ -41,7 +41,11 @@ button:hover {
 }
 
 .modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
+    margin-left: 2;
+}
+
+.modules-right > widget:last-child > #battery {
+    margin-right: 2;
 }
 
 #clock,
