@@ -309,7 +309,7 @@ window-rule {
 // (This example rule is commented out with a "/-" in front.)
 
 window-rule {
-    geometry-corner-radius 13
+    geometry-corner-radius 0
     clip-to-geometry true
 }
 
