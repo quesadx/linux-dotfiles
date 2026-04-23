@@ -86,6 +86,7 @@ let
     waybar
     foot
     mako
+    swaybg
   ];
 
   # ─── VS CODE EXTENSIONS ────────────────────────────────────────────────────
