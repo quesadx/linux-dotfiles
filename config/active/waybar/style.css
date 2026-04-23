@@ -73,6 +73,7 @@ button:hover {
 #battery {
     border-top-right-radius: 13px;
     border-bottom-right-radius: 13px;
+    padding-right: 15px;
 }
 
 #network {

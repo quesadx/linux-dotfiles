@@ -15,7 +15,6 @@
         "tray",
         "power-profiles-daemon",
         "backlight",
-        "keyboard-state",
         "network",
         "pulseaudio",
         "battery",
