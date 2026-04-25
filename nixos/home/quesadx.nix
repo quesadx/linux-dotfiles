@@ -46,10 +46,6 @@ let
 
   # ─── USER PACKAGES ────────────────────────────────────────────────────────
   userPackages = with pkgs; [
-    file-roller
-    unzip
-    unrar
-    p7zip
     gnome-music
     gnome-calendar
     gnome-calculator
@@ -75,7 +71,6 @@ let
     nix-direnv
     fastfetch
     wl-clipboard
-    btop
     xournalpp
     calcurse
     arduino-ide

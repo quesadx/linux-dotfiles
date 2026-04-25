@@ -37,6 +37,7 @@ let
 
   # ─── CORE PACKAGES ────────────────────────────────────────────────────────
   corePackages = with pkgs; [
+    bottom
     vim
     wget
     curl # CLI tools
@@ -52,6 +53,10 @@ let
     tldr # Community-driven man pages
     libsecret # For GNOME Keyring integration
     dnsmasq
+    file-roller
+    unzip
+    unrar
+    p7zip
   ];
 
   # ─── SYSTEM FONTS ────────────────────────────────────────────────────────
