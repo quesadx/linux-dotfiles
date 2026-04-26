@@ -46,6 +46,7 @@ let
 
   # ─── USER PACKAGES ────────────────────────────────────────────────────────
   userPackages = with pkgs; [
+    gnome-software
     gnome-music
     gnome-calendar
     gnome-calculator
