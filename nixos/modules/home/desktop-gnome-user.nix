@@ -18,7 +18,7 @@
     ];
 
     "org/gnome/mutter" = {
-      # experimental-features = [ "scale-monitor-framebuffer" ];
+      experimental-features = [ "scale-monitor-framebuffer" ];
     };
 
     # ─── EXTENSION: AppIndicator (System Tray) ────────────────────────────

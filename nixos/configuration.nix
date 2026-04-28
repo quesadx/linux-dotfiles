@@ -163,8 +163,9 @@ in
   security.sudo.wheelNeedsPassword = false;
 
   # ─── POWER SERVICES ──────────────────────────────────────────────────────
-  # Always use power-profiles-daemon; avoid mixing TLP and maintain performance.
-  services.power-profiles-daemon.enable = true;
+  # Enable power-profiles-daemon on non-MacBook systems.
+  # MacBook uses TLP for better performance control.
+  services.power-profiles-daemon.enable = host.flakeTarget != "macbook-pro";
 
   # ─── CORE SERVICES ───────────────────────────────────────────────────────
   services.fwupd.enable = true;

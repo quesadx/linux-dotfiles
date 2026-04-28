@@ -46,4 +46,48 @@
     HandleLidSwitch = "nothing";
     HandleLidSwitchExternalPower = "nothing";
   };
+
+  # ─── POWER MANAGEMENT WITH TLP ─────────────────────────────────────────────
+  # Use TLP instead of power-profiles-daemon for optimized MacBook performance.
+  # Balanced/low-power modes cause noticeable slowdowns, so we configure TLP with
+  # a performance-oriented profile.
+  services.tlp = {
+    enable = true;
+    settings = {
+      # ─── CPU SCALING ───────────────────────────────────────────────────────
+      # Use performance governor for responsive system behavior
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "performance";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "performance";
+
+      # ─── CPU TURBO BOOST ───────────────────────────────────────────────────
+      # Keep turbo boost enabled for better performance
+      CPU_BOOST_ON_AC = 1;
+      CPU_BOOST_ON_BAT = 1;
+
+      # ─── DISK POWER MANAGEMENT ─────────────────────────────────────────────
+      # Minimize disk parking for better responsiveness
+      DISK_APM_LEVEL_ON_AC = 254;
+      DISK_APM_LEVEL_ON_BAT = 254;
+      DISK_SPINDOWN_TIMEOUT_ON_AC = 0;
+      DISK_SPINDOWN_TIMEOUT_ON_BAT = 0;
+
+      # ─── WIFI & BLUETOOTH ──────────────────────────────────────────────────
+      # Keep Wi-Fi and Bluetooth on for consistent connectivity
+      WIFI_PWR_ON_AC = "off";
+      WIFI_PWR_ON_BAT = "off";
+      BLUETOOTH_PWR_ON_AC = "on";
+      BLUETOOTH_PWR_ON_BAT = "on";
+
+      # ─── USB POWER MANAGEMENT ──────────────────────────────────────────────
+      # Keep USB power management disabled for device compatibility
+      USB_AUTOSUSPEND = 0;
+
+      # ─── POWER SAVE ───────────────────────────────────────────────────────
+      # Minimal power saving to maintain performance
+      SCHED_POWERSAVE_ON_AC = 0;
+      SCHED_POWERSAVE_ON_BAT = 0;
+    };
+  };
 }
