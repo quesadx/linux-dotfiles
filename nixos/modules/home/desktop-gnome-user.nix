@@ -83,6 +83,7 @@
       show-mounts = false;
       intellihide-mode = "ALL_WINDOWS";
       hide-tooltip = true;
+      autohide-in-fullscreen = true;
     };
 
 
