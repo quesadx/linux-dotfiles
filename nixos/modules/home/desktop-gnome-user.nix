@@ -15,6 +15,7 @@
       "caffeine@patapon.info"                                                       # Prevent screen lock
       "luminus-desktop@dikasp.gitlab"                                               # Status bar tweaks
       "touchpad-gesture-customization@coooolapps.com"                               # Touchpad gestures
+      "dash-to-dock@micxgx.gmail.com"                                               # Dock customization
     ];
 
     "org/gnome/mutter" = {
@@ -74,6 +75,16 @@
       pinch-3-finger-gesture = "NONE";
       pinch-4-finger-gesture = "NONE";
     };
+
+    # ─── EXTENSION: Dash to Dock Customization ─────────────────────────────
+    "org/gnome/shell/extensions/dash-to-dock" = {
+      disable-overview-on-startup = true;
+      show-trash = false;
+      show-mounts = false;
+      intellihide-mode = "ALL_WINDOWS";
+      hide-tooltip = true;
+    };
+
 
     # ─── MOUSE & ACCESSIBILITY ────────────────────────────────────────────
     "org/gnome/desktop/peripherals/mouse".accel-profile = "flat";

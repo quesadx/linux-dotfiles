@@ -18,6 +18,7 @@
     luminus-desktop # Status bar enhancements
     appindicator # Legacy system tray support
     touchpad-gesture-customization # Custom touchpad gestures
+    dash-to-dock
   ];
 
   # ─── GNOME EXCLUSIONS ─────────────────────────────────────────────────────

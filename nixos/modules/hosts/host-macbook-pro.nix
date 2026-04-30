@@ -57,14 +57,14 @@
       # ─── CPU SCALING ───────────────────────────────────────────────────────
       # Use performance governor for responsive system behavior
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "performance";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
 
       # ─── CPU TURBO BOOST ───────────────────────────────────────────────────
       # Keep turbo boost enabled for better performance
       CPU_BOOST_ON_AC = 1;
-      CPU_BOOST_ON_BAT = 1;
+      CPU_BOOST_ON_BAT = 0;
 
       # ─── DISK POWER MANAGEMENT ─────────────────────────────────────────────
       # Minimize disk parking for better responsiveness
@@ -87,7 +87,7 @@
       # ─── POWER SAVE ───────────────────────────────────────────────────────
       # Minimal power saving to maintain performance
       SCHED_POWERSAVE_ON_AC = 0;
-      SCHED_POWERSAVE_ON_BAT = 0;
+      SCHED_POWERSAVE_ON_BAT = 1;
     };
   };
 }
