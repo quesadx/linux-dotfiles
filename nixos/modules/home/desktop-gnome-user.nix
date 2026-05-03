@@ -15,7 +15,7 @@
       "caffeine@patapon.info"                                                       # Prevent screen lock
       "luminus-desktop@dikasp.gitlab"                                               # Status bar tweaks
       "touchpad-gesture-customization@coooolapps.com"                               # Touchpad gestures
-      "dash-to-dock@micxgx.gmail.com"                                               # Dock customization
+      # "dash-to-dock@micxgx.gmail.com"                                               # Dock customization
     ];
 
     "org/gnome/mutter" = {
