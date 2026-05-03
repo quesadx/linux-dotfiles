@@ -95,7 +95,6 @@ let
     formulahendry.auto-rename-tag
     formulahendry.auto-close-tag
     shardulm94.trailing-spaces
-    mongodb.mongodb-vscode
     prisma.prisma
     pkief.material-icon-theme
   ];
