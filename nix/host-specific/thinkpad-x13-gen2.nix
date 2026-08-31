@@ -43,7 +43,6 @@
     path = with pkgs; [ bash util-linux docker docker-compose hdparm coreutils ];
     serviceConfig = {
       Type = "oneshot";
-      RequiresMountsFor = [ "/mnt/backup-hdd" ];
       ExecStart = "${pkgs.bash}/bin/bash /home/quesadx/cloud-selfhost/backup-hdd.sh";
       TimeoutStartSec = "6h";
     };
