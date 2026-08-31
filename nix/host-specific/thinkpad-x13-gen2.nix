@@ -40,10 +40,10 @@
     description = "Backup cloud-selfhost data to external HDD via restic (docker compose)";
     after = [ "docker.service" ];
     wants = [ "docker.service" ];
-    requiresMountsFor = [ "/mnt/backup-hdd" ];
     path = with pkgs; [ bash util-linux docker docker-compose hdparm coreutils ];
     serviceConfig = {
       Type = "oneshot";
+      RequiresMountsFor = [ "/mnt/backup-hdd" ];
       ExecStart = "${pkgs.bash}/bin/bash /home/quesadx/cloud-selfhost/backup-hdd.sh";
       TimeoutStartSec = "6h";
     };
