@@ -23,6 +23,7 @@ in
     ];
     sessionPath = [
       "/opt/homebrew/bin"
+      "$HOME/.local/bin"
     ];
   };
 
